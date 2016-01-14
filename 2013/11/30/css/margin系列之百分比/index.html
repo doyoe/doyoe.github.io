@@ -1,0 +1,683 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="margin,margin百分比,w3c," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="你可能从没注意过它在 margin系列之keyword auto 中，说过了 margin 值为 auto 的情况，这次要聊的是值为百分比的情形。
+我必须承认这是一个非常基础的知识点，但有一段时间我发现很多人对此有错误的认知。偶尔在面试或者分享的时候，我会问到这个问题，有人会脱口而出的告诉我他对此的感性理解。
+或许现在大多数人对此不屑一顾，但我仍想说一说，这样以后就可以不再问类似的问题了。
+假设有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="margin系列之百分比">
+<meta property="og:url" content="http://blog.doyoe.com/2013/11/30/css/margin系列之百分比/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="你可能从没注意过它在 margin系列之keyword auto 中，说过了 margin 值为 auto 的情况，这次要聊的是值为百分比的情形。
+我必须承认这是一个非常基础的知识点，但有一段时间我发现很多人对此有错误的认知。偶尔在面试或者分享的时候，我会问到这个问题，有人会脱口而出的告诉我他对此的感性理解。
+或许现在大多数人对此不屑一顾，但我仍想说一说，这样以后就可以不再问类似的问题了。
+假设有">
+<meta property="og:updated_time" content="2016-01-14T07:58:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="margin系列之百分比">
+<meta name="twitter:description" content="你可能从没注意过它在 margin系列之keyword auto 中，说过了 margin 值为 auto 的情况，这次要聊的是值为百分比的情形。
+我必须承认这是一个非常基础的知识点，但有一段时间我发现很多人对此有错误的认知。偶尔在面试或者分享的时候，我会问到这个问题，有人会脱口而出的告诉我他对此的感性理解。
+或许现在大多数人对此不屑一顾，但我仍想说一说，这样以后就可以不再问类似的问题了。
+假设有">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> margin系列之百分比 | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              margin系列之百分比
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2013-11-30T11:15:00+08:00" content="2013-11-30">
+            2013-11-30
+          </time>
+        </span>
+
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="你可能从没注意过它">你可能从没注意过它</h2><p>在 <a href="http://blog.doyoe.com/~posts/css/2013-11-29-margin%E7%B3%BB%E5%88%97%E4%B9%8Bkeyword%20auto.md">margin系列之keyword auto</a> 中，说过了 <code>margin</code> 值为 <code>auto</code> 的情况，这次要聊的是值为百分比的情形。</p>
+<p>我必须承认这是一个非常基础的知识点，但有一段时间我发现很多人对此有错误的认知。偶尔在面试或者分享的时候，我会问到这个问题，有人会脱口而出的告诉我他对此的感性理解。</p>
+<p>或许现在大多数人对此不屑一顾，但我仍想说一说，这样以后就可以不再问类似的问题了。</p>
+<h2 id="假设有这样一个场景">假设有这样一个场景</h2><p>仍然以一个问题来开始，这是我之前在 <a href="http://weibo.com/doyoe" target="_blank" rel="external">微博</a> 发过的，原文是这样的：</p>
+<a id="more"></a>
+<p>假设一个块级包含容器，宽1000px，高600px，块级子元素定义 <code>margin:10% 5%;</code> 大家说说 <code>margin</code> 的 <code>top, right, bottom, left</code> 计算值最终是多少？</p>
+<p>我记得得到不少 <code>100px 30px 100px 30px</code> 的反馈，我们来还原代码：</p>
+<h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#demo</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">1000px</span></span></span>;</span><br><span class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">600px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="id">#demo</span> <span class="tag">p</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">10%</span> <span class="number">5%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">p</span>&gt;</span>恩，注意看我所在的位置。<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>事实告诉我们结果是 <code>100px 50px 100px 50px</code>，不论结果是否符合你的预期，我们先来看demo验证一下：<a href="//demo.doyoe.com/css/margin/percentage.htm">margin百分比结果猜想</a>，当然，你也根据上面还原的代码自己创建一个例子。</p>
+<h2 id="为什么会这样？">为什么会这样？</h2><p>诧异吗？不用怀疑浏览器出了问题，因为这是正确的实现。</p>
+<p>规范中注明 <code>margin</code> 的百分比值参照其包含块的宽度进行计算。</p>
+<p>当然，它不会这么简单，和上篇文章 keyword auto 一样，这只发生在默认的 <code>writing-mode: horizontal-tb;</code> 和 <code>direction: ltr;</code> 的情况下。</p>
+<p>当书写模式变成纵向的时候，其参照将会变成包含块的高度。我们改变一下上面例子中的CSS书写模式：</p>
+<h3 id="CSS:-1">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#demo</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">-webkit-writing-mode</span>:<span class="value"> vertical-rl</span></span>; <span class="comment">/* for browsers of webkit engine */</span></span><br><span class="line">	<span class="rule"><span class="attribute">writing-mode</span>:<span class="value"> tb-rl</span></span>; <span class="comment">/* for ie */</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在 #demo 中添加这2句，其它code不变。也有个例子供观：<a href="//demo.doyoe.com/css/margin/percentage2.htm">书写模式影响margin百分比的参照对象</a>。</p>
+<p>恩，这回的结果是 <code>60px 30px 60px 30px</code> ，因为其参照对象变成了包含块的高度。</p>
+<h2 id="顺带再说说">顺带再说说</h2><p>你是否觉得这不符合常规的感性认知？感性认知更多感觉应该横向参照包含块宽度，纵向参照包含块高度。</p>
+<p>其实这是为了要横向和纵向2个方向都创建相同的margin，如果它们的参照物不一致，那就无法得到两个方向相同的留白。</p>
+<p>你可能会问那为什么要选择宽度做参照而不是高度呢？</p>
+<p>这其实更多的要从CSS设计意图上去想，因为CSS的基础需求是排版，而通常我们所见的横排文字，其水平宽度一定（仔细回想一下，如果没有显式的定义宽度或者强制一行显示，都会遇到边界换行，而不是水平延展），垂直方向可以无限延展。但当书写模式为纵向时，其参照就变成了高度而不再是宽度了。</p>
+<p>还记得我们在 <a href="http://blog.doyoe.com/~posts/css/2013-11-29-margin%E7%B3%BB%E5%88%97%E4%B9%8Bkeyword%20auto.md">margin系列之keyword auto</a> 留了个问题：为什么 <code>margin: auto;</code> 无法再纵向上垂直居中？其实原因也是上面所说的，因为纵向是可以无限延展的，所以没有一个一定的值可以被参照被用来计算。</p>
+<h2 id="受书写模式影响的其它特性：">受书写模式影响的其它特性：</h2><ul>
+<li>margin折叠</li>
+<li>margin的keyword auto value</li>
+<li>padding的百分比值</li>
+</ul>
+<h2 id="可参考：">可参考：</h2><ul>
+<li><a href="http://dev.w3.org/csswg/css-box/#the-margin-properties" target="_blank" rel="external">http://dev.w3.org/csswg/css-box/#the-margin-properties</a></li>
+<li><a href="http://dev.w3.org/csswg/css-box/#ltpercentagegt" target="_blank" rel="external">http://dev.w3.org/csswg/css-box/#ltpercentagegt</a></li>
+<li><a href="http://dev.w3.org/csswg/css-box/#Calculating" target="_blank" rel="external">http://dev.w3.org/csswg/css-box/#Calculating</a></li>
+</ul>
+<h2 id="margin系列文章：">margin系列文章：</h2><ul>
+<li><a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a></li>
+<li><a href="/2013/12/20/css/margin系列之bug巡演（三）/">margin系列之bug巡演（三）</a></li>
+<li><a href="/2013/12/17/css/margin系列之bug巡演（二）/">margin系列之bug巡演（二）</a></li>
+<li><a href="/2013/12/14/css/margin系列之内秀篇（二）/">margin系列之内秀篇（二）</a></li>
+<li><a href="/2013/12/10/css/margin系列之bug巡演/">margin系列之bug巡演</a></li>
+<li><a href="/2013/12/06/css/margin系列之内秀篇/">margin系列之内秀篇</a></li>
+<li><a href="/2013/12/04/css/margin系列之外边距折叠/">margin系列之外边距折叠</a></li>
+<li><a href="/2013/12/02/css/margin系列之与相对偏移的异同/">margin系列之与相对偏移的异同</a></li>
+<li><a href="/2013/11/30/css/margin系列之百分比/">margin系列之百分比</a></li>
+<li><a href="/2013/11/29/css/margin系列之keyword%20auto/">margin系列之keyword auto</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/margin/" rel="tag">#margin</a>
+          
+            <a href="/tags/margin百分比/" rel="tag">#margin百分比</a>
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/12/02/css/margin系列之与相对偏移的异同/" rel="prev">margin系列之与相对偏移的异同</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/11/29/css/margin系列之keyword auto/" rel="next">margin系列之keyword auto</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/mobile/blog/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#你可能从没注意过它"><span class="nav-number">1.</span> <span class="nav-text">你可能从没注意过它</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假设有这样一个场景"><span class="nav-number">2.</span> <span class="nav-text">假设有这样一个场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:"><span class="nav-number">2.1.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML:"><span class="nav-number">2.2.</span> <span class="nav-text">HTML:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会这样？"><span class="nav-number">3.</span> <span class="nav-text">为什么会这样？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-1"><span class="nav-number">3.1.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺带再说说"><span class="nav-number">4.</span> <span class="nav-text">顺带再说说</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#受书写模式影响的其它特性："><span class="nav-number">5.</span> <span class="nav-text">受书写模式影响的其它特性：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可参考："><span class="nav-number">6.</span> <span class="nav-text">可参考：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-number">7.</span> <span class="nav-text">margin系列文章：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,708 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="margin,margin bug,w3c," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="IE6/7 clear引发的margin-top bug我知道，这是一个被谈及较少的bug，但我几乎可以肯定你在遇见过的同时并没有把它当成是一个bug。
+w3c关于 clear 特性的描述设置了 clear 为非 none 值的元素，其顶部 border 边界在垂直方向不允许出现在之前的浮动元素底部 margin 之上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="margin系列之bug巡演（二）">
+<meta property="og:url" content="http://blog.doyoe.com/2013/12/17/css/margin系列之bug巡演（二）/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="IE6/7 clear引发的margin-top bug我知道，这是一个被谈及较少的bug，但我几乎可以肯定你在遇见过的同时并没有把它当成是一个bug。
+w3c关于 clear 特性的描述设置了 clear 为非 none 值的元素，其顶部 border 边界在垂直方向不允许出现在之前的浮动元素底部 margin 之上。">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/clear-margin.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/clear-margin-on-ie67.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/clear-margin-2.png">
+<meta property="og:updated_time" content="2016-01-14T07:58:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="margin系列之bug巡演（二）">
+<meta name="twitter:description" content="IE6/7 clear引发的margin-top bug我知道，这是一个被谈及较少的bug，但我几乎可以肯定你在遇见过的同时并没有把它当成是一个bug。
+w3c关于 clear 特性的描述设置了 clear 为非 none 值的元素，其顶部 border 边界在垂直方向不允许出现在之前的浮动元素底部 margin 之上。">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> margin系列之bug巡演（二） | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              margin系列之bug巡演（二）
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2013-12-17T11:15:00+08:00" content="2013-12-17">
+            2013-12-17
+          </time>
+        </span>
+
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="IE6/7_clear引发的margin-top_bug">IE6/7 clear引发的margin-top bug</h2><p>我知道，这是一个被谈及较少的bug，但我几乎可以肯定你在遇见过的同时并没有把它当成是一个bug。</p>
+<h2 id="w3c关于_clear_特性的描述">w3c关于 clear 特性的描述</h2><p>设置了 <code>clear</code> 为非 <code>none</code> 值的元素，其顶部 <code>border</code> 边界在垂直方向不允许出现在之前的浮动元素底部 <code>margin</code> 之上。</p>
+<a id="more"></a>
+<p>什么意思呢？用段代码来阐述：</p>
+<h3 id="HTML">HTML</h3><pre><code>&lt;<span class="tag">div</span> class=<span class="string">"a"</span>&gt;<span class="attribute">float</span>:<span class="attribute">left</span>&lt;/div&gt;
+&lt;<span class="tag">div</span> class=<span class="string">"b"</span>&gt;<span class="attribute">clear</span>:<span class="attribute">left</span>&lt;/div&gt;
+</code></pre><h3 id="CSS">CSS</h3><pre><code><span class="class">.a</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">20px</span></span></span>;
+}</span>
+<span class="class">.b</span><span class="rules">{
+    <span class="rule"><span class="attribute">clear</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;
+    <span class="rule"><span class="attribute">margin-top</span>:<span class="value">-<span class="number">30px</span></span></span>;
+}</span>
+</code></pre><p>如上代码，你认为 <code>.b</code> 是否会相对自身向上偏移 30px 呢？然后盖住 <code>.a</code> 底部 10px？如果你真这么猜想，那就错了。</p>
+<p>来看上述代码，我们会得到什么样的结果，如 <code>图一</code>：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/clear-margin.png" alt="clear margin">（图一）</p>
+<p>恩，你觉得这可能会是落后浏览器才这样，比如IE6/7。很高兴的告诉你，其实高级浏览器才这样，IE6/7的表现会是之前你猜想的那样，如下 <code>图二</code>：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/clear-margin-on-ie67.png" alt="clear margin">（图二）</p>
+<p>不论你相信与否，看个例子你就明白了 <code>DEMO1</code>：<a href="http://demo.doyoe.com/css/margin/bug/clear-margin.html" target="_blank" rel="external">clear margin 猜想</a>，你会发现就算将 <code>margin-top</code> 去掉，<code>.b</code> 的位置也丝毫不会改变。</p>
+<h2 id="为什么会这样？">为什么会这样？</h2><p>我们已经说过设置了 <code>clear</code> 为非 <code>none</code> 值的元素其顶部 <code>border</code> 边界不允许出现在之前浮动元素的底部margin边界之上。也就是说必须在垂直方向上递次堆叠却不能重合。</p>
+<p>所以说高级浏览器是遵循w3c规范的，而IE6/7的实现明显有悖该规则。</p>
+<p>虽然拥有 <code>clear</code> 特性的元素其 <code>border</code> 顶部边界不允许超越之前浮动元素的底部margin边界之上，但是其margin可以和之前浮动元素的任何区域重合。我们稍微改下之前代码：</p>
+<h3 id="HTML-1">HTML</h3><pre><code>&lt;<span class="tag">div</span> class=<span class="string">"a"</span>&gt;<span class="attribute">float</span>:<span class="attribute">left</span>&lt;/div&gt;
+&lt;<span class="tag">div</span> class=<span class="string">"b"</span>&gt;<span class="attribute">clear</span>:<span class="attribute">left</span>&lt;/div&gt;
+</code></pre><h3 id="CSS-1">CSS</h3><pre><code><span class="class">.a</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">20px</span></span></span>;
+}</span>
+<span class="class">.b</span><span class="rules">{
+    <span class="rule"><span class="attribute">clear</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;
+    <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">50px</span></span></span>;
+}</span>
+</code></pre><p>我们将 <code>.b</code> 的 <code>margin-top</code> 修改为一个正值，能得到如下 <code>图三</code>：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/clear-margin-2.png" alt="clear margin">（图三）</p>
+<p>图中的黄色区域是 <code>.b</code> 的 <code>margin-top</code>，你会发现，它可以和 <code>.a</code> 的任何区域重合。同时，你也可以发现 <code>图三</code> 和 <code>图一</code> 居然是一样的效果，<code>.b</code> 的实际位置都没变化过。来看例子 <code>DEMO2</code>：<a href="http://demo.doyoe.com/css/margin/bug/clear-margin-2.html" target="_blank" rel="external">clear margin 验证</a></p>
+<p>这是否说明拥有 <code>clear</code> 特性的元素对其之前的浮动元素没有任何影响？因为不论是正值还是负值，其位置都不会发生变化。</p>
+<p>如果你这样想，那你就又错了。</p>
+<h2 id="拥有clear特性的元素其margin紧邻之前的浮动元素依然有效">拥有clear特性的元素其margin紧邻之前的浮动元素依然有效</h2><p>是的，在某个临界值，这一切会发生改变，并非全然无效。</p>
+<p>这个临界值是什么？</p>
+<p>临界值是包含块内浮动元素的实际高度，即浮动元素的 margin + border + padding + height，拿我们的 <code>DEMO2</code> 来详述：</p>
+<p><code>DEMO2</code> 中的浮动元素 <code>.a</code> 的实际高度为 30 + 20*2 = 70px，也就说当 <code>.b</code> 的 <code>margin-top</code> 大于 70px 时，超过的部分将会使得 <code>.b</code> 发生偏移。</p>
+<h3 id="CSS-2">CSS</h3><pre><code><span class="class">.b</span><span class="rules">{
+    <span class="rule"><span class="attribute">clear</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">30px</span></span></span>;
+    <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">100px</span></span></span>;
+}</span>
+</code></pre><p>我们将 <code>DEMO2</code> 中的 <code>margin-top</code> 改成 100px，再看看具体情况 <code>DEMO3</code>：<a href="http://demo.doyoe.com/css/margin/bug/clear-margin-3.html" target="_blank" rel="external">clear margin 验证2</a>，你可以手动的修改其 <code>margin-top</code> 值，看看临界值是否如前所述。</p>
+<h2 id="解决方案">解决方案</h2><p>IE6/7下由 <code>clear</code> 特性引发的 <code>margin-top</code> bug，并没有像 double margin 那样的万精油 <code>display:inline</code> 解决方案，所以需要寻求的是让IE6/7和其它浏览器绕过此问题来进行解决。</p>
+<p>例如：</p>
+<ul>
+<li>尽量避免为设置了 <code>clear</code> 为非 <code>none</code> 值的元素定义margin-top；</li>
+<li>如果必须，可以将拥有 <code>clear</code> 特性的元素作为容器，在其子元素上设置margin-top；</li>
+<li>视情况换成padding-top；</li>
+</ul>
+<h2 id="要注意的问题">要注意的问题</h2><p><code>.a</code> 和 <code>.b</code> 需要在处在同一个块级上下文内，或者其包含块拥有 <code>padding-top/border-top</code>，否则临界值情况将失效，不过任何IE目前都不需要此前置条件。用IE和非IE查看 <code>DEMO4</code>：<a href="http://demo.doyoe.com/css/margin/bug/clear-margin-4.html" target="_blank" rel="external">clear margin 验证3</a></p>
+<h2 id="margin系列文章：">margin系列文章：</h2><ul>
+<li><a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a></li>
+<li><a href="/2013/12/20/css/margin系列之bug巡演（三）/">margin系列之bug巡演（三）</a></li>
+<li><a href="/2013/12/17/css/margin系列之bug巡演（二）/">margin系列之bug巡演（二）</a></li>
+<li><a href="/2013/12/14/css/margin系列之内秀篇（二）/">margin系列之内秀篇（二）</a></li>
+<li><a href="/2013/12/10/css/margin系列之bug巡演/">margin系列之bug巡演</a></li>
+<li><a href="/2013/12/06/css/margin系列之内秀篇/">margin系列之内秀篇</a></li>
+<li><a href="/2013/12/04/css/margin系列之外边距折叠/">margin系列之外边距折叠</a></li>
+<li><a href="/2013/12/02/css/margin系列之与相对偏移的异同/">margin系列之与相对偏移的异同</a></li>
+<li><a href="/2013/11/30/css/margin系列之百分比/">margin系列之百分比</a></li>
+<li><a href="/2013/11/29/css/margin系列之keyword%20auto/">margin系列之keyword auto</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/margin/" rel="tag">#margin</a>
+          
+            <a href="/tags/margin-bug/" rel="tag">#margin bug</a>
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/12/20/css/margin系列之bug巡演（三）/" rel="prev">margin系列之bug巡演（三）</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/12/14/css/margin系列之内秀篇（二）/" rel="next">margin系列之内秀篇（二）</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/mobile/blog/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IE6/7_clear引发的margin-top_bug"><span class="nav-number">1.</span> <span class="nav-text">IE6/7 clear引发的margin-top bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#w3c关于_clear_特性的描述"><span class="nav-number">2.</span> <span class="nav-text">w3c关于 clear 特性的描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">2.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">2.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会这样？"><span class="nav-number">3.</span> <span class="nav-text">为什么会这样？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-1"><span class="nav-number">3.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-1"><span class="nav-number">3.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拥有clear特性的元素其margin紧邻之前的浮动元素依然有效"><span class="nav-number">4.</span> <span class="nav-text">拥有clear特性的元素其margin紧邻之前的浮动元素依然有效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-2"><span class="nav-number">4.1.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">5.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#要注意的问题"><span class="nav-number">6.</span> <span class="nav-text">要注意的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-number">7.</span> <span class="nav-text">margin系列文章：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="w3c,包含块,视觉格式化模型," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="在聊这个话题之前，我们可能得先简单说说 视觉格式化模型 这个概念。
+视觉格式化模型 的全称是 Visual formatting model，它被用来描述用户代理（比如浏览器）在图形媒体下如何处理文档树。
+在 视觉格式化模型 中，每个文档树的元素会根据框模型产生零到多个框（boxes）。这些框的布局取决于框的尺寸，类型，定位方式（正常流，浮动和绝对定位），元素之间的关系和外部信息（例如：视口 ①">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视觉格式化模型中的各种框">
+<meta property="og:url" content="http://blog.doyoe.com/2015/03/09/css/视觉格式化模型中的各种框/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="在聊这个话题之前，我们可能得先简单说说 视觉格式化模型 这个概念。
+视觉格式化模型 的全称是 Visual formatting model，它被用来描述用户代理（比如浏览器）在图形媒体下如何处理文档树。
+在 视觉格式化模型 中，每个文档树的元素会根据框模型产生零到多个框（boxes）。这些框的布局取决于框的尺寸，类型，定位方式（正常流，浮动和绝对定位），元素之间的关系和外部信息（例如：视口 ①">
+<meta property="og:image" content="http://blog.doyoe.com/../../../../../image/boxes/block-boxes.png">
+<meta property="og:image" content="http://blog.doyoe.com/../../../../../image/boxes/inline-boxes.png">
+<meta property="og:image" content="http://www.w3.org/TR/CSS2/images/anon-block.png">
+<meta property="og:image" content="http://blog.doyoe.com/../../../../../image/boxes/anon-inline.png">
+<meta property="og:updated_time" content="2016-01-14T07:58:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="视觉格式化模型中的各种框">
+<meta name="twitter:description" content="在聊这个话题之前，我们可能得先简单说说 视觉格式化模型 这个概念。
+视觉格式化模型 的全称是 Visual formatting model，它被用来描述用户代理（比如浏览器）在图形媒体下如何处理文档树。
+在 视觉格式化模型 中，每个文档树的元素会根据框模型产生零到多个框（boxes）。这些框的布局取决于框的尺寸，类型，定位方式（正常流，浮动和绝对定位），元素之间的关系和外部信息（例如：视口 ①">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> 视觉格式化模型中的各种框 | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              视觉格式化模型中的各种框
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-03-09T17:29:00+08:00" content="2015-03-09">
+            2015-03-09
+          </time>
+        </span>
+
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>在聊这个话题之前，我们可能得先简单说说 <code>视觉格式化模型</code> 这个概念。</p>
+<p><code>视觉格式化模型</code> 的全称是 <code>Visual formatting model</code>，它被用来描述用户代理（比如浏览器）在图形媒体下如何处理文档树。</p>
+<p>在 <code>视觉格式化模型</code> 中，每个文档树的元素会根据<a href="http://www.w3.org/TR/CSS2/box.html" target="_blank" rel="external">框模型</a>产生零到多个框（boxes）。这些框的布局取决于框的尺寸，类型，定位方式（正常流，浮动和绝对定位），元素之间的关系和外部信息（例如：视口 ① 大小，置换元素的固有尺寸等等）。</p>
+<blockquote>
+<p>举个最简单的例子来讲，假设一个页面上有2个div，那么第2个div的位置会取决第1个div的高度定义；假设更复杂一点，第1个div是浮动的，那么第2个div的位置还要取决于第1个div的宽度。</p>
+</blockquote>
+<h2 id="不同类型的框">不同类型的框</h2><p>在 <code>CSS</code> 中，可能会产生不同类型的框，框的类型取决于 <code>display</code> 属性的设定。某种程度上，框的类型会影响其在视觉格式化模型中的表现。接下来会详细的聊聊这些不同类型的框以及它们在视觉可视化模型中的表现。</p>
+<p>在说这个之前，我们先回忆一下，大家常说的一些名词：</p>
+<a id="more"></a>
+<ul>
+<li><a href="#containing-block">Containing block（包含块）</a></li>
+<li><a href="#block-level-element">Block-level element（块级元素）</a></li>
+<li><a href="#block-element">Block element（块元素）</a></li>
+<li><a href="#block-boxes">Block-level box（块级框）, Block container box（块容器框）, Block box（块框）</a></li>
+<li><a href="#inline-level-element">Inline-level element（行内级元素）</a></li>
+<li><a href="#inline-element">Inline element（行内元素）</a></li>
+<li><a href="#inline-boxes">Inline-level box（行内级框）, Atomic inline-level box（原子行内级框）, Inline box（行内框）</a></li>
+<li><a href="#anonymous-boxes">Anonymous boxes（匿名框）</a></li>
+</ul>
+<p><a name="containing-block"></a></p>
+<h2 id="包含块">包含块</h2><p>首先，来看看什么是 <code>包含块</code>？这个说及 <code>CSS</code> 一般的都会提及的基本概念。</p>
+<p>一个元素，它的框的尺寸和位置会相对于一个特定的矩形框边缘来计算而得到，这个特定的矩形框称之为该元素的 <code>包含块</code>。</p>
+<p>（为）一个元素生成的框通常会充当其子框的包含块；当我们叫一个 <code>框的包含块</code> 时，其实表达的是 <code>该框所处的包含块</code>，而不是其自身产生的包含块。</p>
+<p>每个框相对于其包含块（<code>该框所处的包含块</code>）都会被给予一个位置，不过该框并不局限在包含块内，有可能会溢出，通常这个时候你会借助 <code>overflow</code> 属性来进行处理。</p>
+<p>除了说什么是包含块，这里顺带再介绍一下生成包含块的一些特殊场景：</p>
+<ul>
+<li>由根元素生成的包含块叫做 <code>初始包含块（initial containing block）</code>。</li>
+<li><p>对于其它元素，如果元素的 <code>position</code> 值是 <code>relative</code> 或者 <code>static</code>，其包含块由最近的祖先 <code>块容器框</code> 的内容边界（如果想知道什么是内容边界，可以先看看CSS盒模型）形成。</p>
+<blockquote>
+<p>举个例子，<code>td</code>, <code>th</code> 就算有父容器 <code>tr</code>，但它们的包含块却是由 <code>table</code> 生成，因为 <code>table</code> 是 <code>块容器框</code> 而 <code>tr</code> 不是</p>
+</blockquote>
+</li>
+<li><p>绝对定位元素的包含块由最近的定位（<code>position</code> 值非 <code>static</code>）祖先生成，如果不存在这样的祖先，则采用初始包含块；</p>
+</li>
+<li>固定定位元素（<code>position: fixed</code>）的包含块一般情况下都由视口 ① 生成；</li>
+</ul>
+<p>说了这几个特殊的情景，你会发现并不是所有的包含块都是由父元素所生成。</p>
+<p><a name="block-level-element"></a></p>
+<h2 id="什么是块级元素？">什么是块级元素？</h2><p>块级元素是那些视觉上会被格式化成块状的元素，通俗一点来说就是那些会换新行的元素。<code>display</code> 属性的：<code>block</code>, <code>list-item</code>, <code>table</code>, <code>flex</code>, <code>grid</code> 值都可以将一个元素设置成块级元素。</p>
+<blockquote>
+<p>举个例子来说，<code>li</code> 是一个 <code>块级元素</code>，但也有人会说它是一个 <code>块元素</code>。嗯，<code>li</code> 确实是一个块级元素，但并不是一个块元素，为什么？</p>
+</blockquote>
+<p><a name="block-element"></a></p>
+<h2 id="什么是块元素？">什么是块元素？</h2><p>块元素是 <code>display</code> 属性值为 <code>block</code> 的元素，它应该是 <code>块级元素</code> 的一个子集，而不是等同的，一个 <code>块元素</code> 是一个 <code>块级元素</code>，但一个 <code>块级元素</code> 不一定是一个 <code>块元素</code>，所以不要混淆。</p>
+<p><a name="block-boxes"></a></p>
+<h2 id="块级框，块容器框，块框">块级框，块容器框，块框</h2><h3 id="什么是块级框？">什么是块级框？</h3><p>块级元素生成块级框，这些框会参与某些 <code>BFC</code>。每个块级元素都会生成一个主要的块级框来包含其子框和生成的内容，同时任何定位方式都会与这个主要的块级框有关。</p>
+<p>某些块级元素还会在主要的块级框之外产生额外的框：例如 <code>list-item</code> 元素，它需要生成一个额外的框用于包含 <code>list-style-type</code>。这些额外的框会相对于主要的块级框来进行排版。</p>
+<h3 id="什么是块容器框？">什么是块容器框？</h3><p>一个 <code>块容器框</code> 要么只包含 <code>块级框</code>，要么创建一个 <code>IFC</code> 而只包含 <code>行内级框</code>，但不能同时包含 <code>块级框</code> 和 <code>行内级框</code>。</p>
+<p>除了 <code>table框</code> 和 <code>置换元素</code>，一个 <code>块级框</code> 同时也是一个 <code>块容器框</code>。<code>非置换的行内块</code> 和 <code>单元格</code> 是 <code>块容器</code> 但不是 <code>块级框</code>。</p>
+<p>并不是所有的 <code>块级框</code> 都是 <code>块容器框</code>，也并不是所有的 <code>块容器框</code> 都是 <code>块级框</code>。</p>
+<p><code>块级框</code> 和 <code>块容器框</code> 的另外一个重要的区别是：<code>块级框</code> 需要能够包含其生成的内容，但 <code>块容器框</code> 并不需要。这是什么意思呢？简单的解释一下：</p>
+<blockquote>
+<p>比如一个 <code>iframe</code> 其内容由 <code>src</code> 属性所决定，这可以当成是生成的内容，所以 <code>iframe</code> 是一个 <code>块级框</code> 但却不是 <code>块容器框</code></p>
+</blockquote>
+<h3 id="什么是块框？">什么是块框？</h3><p>简要的来说，是 <code>块容器</code> 的 <code>块级框</code> 称之为 <code>块框</code>。</p>
+<p>可以通过下面这个图来快速的梳理清楚这3者之间的联系：</p>
+<p><img src="../../../../../image/boxes/block-boxes.png" alt="block boxes">（图一）</p>
+<p>说完了块级框，接下来说说行内级框</p>
+<p><a name="inline-level-element"></a></p>
+<h2 id="什么是行内级元素？">什么是行内级元素？</h2><p>行内级元素是那些不会为自身内容形成新的块，而让内容分布在多行中的元素。<code>display</code> 属性的：<code>inline</code>, <code>inline-table</code>, <code>inline-block</code>, <code>inline-flex</code>, <code>inline-grid</code> 值都可以将一个元素设置成行内级元素。</p>
+<p><a name="inline-element"></a></p>
+<h2 id="什么是行内元素？">什么是行内元素？</h2><p>如同块元素之于块级元素的关系，行内元素仅仅是 <code>display</code> 属性值为 <code>inline</code> 的元素，这里不再赘述。</p>
+<p><a name="inline-boxes"></a></p>
+<h2 id="行内级框，原子行内级框，行内框">行内级框，原子行内级框，行内框</h2><p>行内级元素生成行内级框，而这些框会参与某个 <code>IFC</code>。一个 <code>行内框</code> 是 <code>行内级框</code>，且其内容参与了包含它的 <code>IFC</code>。一个 <code>display</code> 值是 <code>inline</code> 的非置换元素会生成一个行内框。那些不是行内框的行内级框（例如行内级置换元素、行内块元素、行内表格元素）被称为 <code>原子行内级框</code>，因为它们是以单一不透明框的形式来参与其 <code>IFC</code> 的。</p>
+<p>细心的你会发现并没有一个 <code>行内容器框</code> 与 <code>块容器框</code> 相对应，但却多了一个 <code>原子行内级框</code>。并且有趣的是<code>行内块</code>（包括置换和非置换元素）是<code>原子行内级框</code>，而<code>非置换行内块</code>却同时还是<code>块容器框</code>。</p>
+<p><img src="../../../../../image/boxes/inline-boxes.png" alt="inline boxes">（图二）</p>
+<p><a name="anonymous-boxes"></a></p>
+<h2 id="匿名框">匿名框</h2><p><code>匿名框</code> 包括 <code>匿名块框</code> 和 <code>匿名行内框</code>。</p>
+<p>假设一个 <code>div</code> 中包含有一个 <code>p</code> 和一段纯文本 <code>xxx</code>。由于 <code>块容器框</code> 只允许要么包含 <code>块级框</code>，要么包含 <code>行内级框</code>，所以，为了符合这种情况，<code>div</code> 会生成一个匿名的块级框用于包裹 <code>xxx</code>，这个匿名框就叫做 <code>匿名块框</code>。</p>
+<p>我们拿 <code>W3C</code> 上的一个例子来加深对匿名块框的印象：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span>&gt;</span><br><span class="line">  Some <span class="type">text</span></span><br><span class="line">  &lt;p&gt;More <span class="type">text</span>&lt;/p&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.w3.org/TR/CSS2/images/anon-block.png" alt="Anonymous block boxes">（图三）</p>
+<p>与此同时，我们将上面的代码稍微改一下，将 <code>p</code> 变成 <code>span</code>：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span>&gt;</span><br><span class="line">  Some <span class="type">text</span></span><br><span class="line">  &lt;span&gt;More <span class="type">text</span>&lt;/span&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><code>div</code> 生成一个块框，<code>More text</code> 由 <code>span</code> 生成一个行内框，由于 <code>Some text</code> 没有与之相关的行级元素，将由 <code>div</code> 为其生成一个行内框用以包裹，这个框称为匿名行内框。如图四：</p>
+<p><img src="../../../../../image/boxes/anon-inline.png" alt="Anonymous block boxes">（图四）</p>
+<p>假设一个匿名框的类型可根据上下文来清晰界定，则 <code>匿名行内框</code> 和 <code>匿名块框</code> 都可被简称为 <code>匿名框</code>。</p>
+<p>匿名框的继承属性会从包含它的非匿名框那里继承，非继承属性取其初始值。</p>
+<h2 id="附注：">附注：</h2><ul>
+<li>① 用户代理一般会向用户提供一个载体（屏幕上的一个窗口或其它可视区域）用以访问文档，这个载体就叫做 <code>视口</code>。用户代理可以在视口大小被调整时改变文档的布局。如果视口小于渲染文档的画布区域，用户代理应当提供一个滚动机制。每个画布只能拥有一个视口，但用户代理可以把文档渲染至多个画布上（即为相同文档提供不同的视图）。</li>
+</ul>
+<h2 id="说明：">说明：</h2><ul>
+<li>最近的文章都是断断续续写的，如读者朋友发现存在描述错误地方请及时提醒。</li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+            <a href="/tags/包含块/" rel="tag">#包含块</a>
+          
+            <a href="/tags/视觉格式化模型/" rel="tag">#视觉格式化模型</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/03/15/css/置换和非置换元素/" rel="prev">置换和非置换元素</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/01/21/css/你需要了解的z-index世界/" rel="next">你需要了解的z-index世界</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/mobile/blog/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不同类型的框"><span class="nav-number">1.</span> <span class="nav-text">不同类型的框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包含块"><span class="nav-number">2.</span> <span class="nav-text">包含块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是块级元素？"><span class="nav-number">3.</span> <span class="nav-text">什么是块级元素？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是块元素？"><span class="nav-number">4.</span> <span class="nav-text">什么是块元素？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级框，块容器框，块框"><span class="nav-number">5.</span> <span class="nav-text">块级框，块容器框，块框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是块级框？"><span class="nav-number">5.1.</span> <span class="nav-text">什么是块级框？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是块容器框？"><span class="nav-number">5.2.</span> <span class="nav-text">什么是块容器框？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是块框？"><span class="nav-number">5.3.</span> <span class="nav-text">什么是块框？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是行内级元素？"><span class="nav-number">6.</span> <span class="nav-text">什么是行内级元素？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是行内元素？"><span class="nav-number">7.</span> <span class="nav-text">什么是行内元素？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行内级框，原子行内级框，行内框"><span class="nav-number">8.</span> <span class="nav-text">行内级框，原子行内级框，行内框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名框"><span class="nav-number">9.</span> <span class="nav-text">匿名框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附注："><span class="nav-number">10.</span> <span class="nav-text">附注：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明："><span class="nav-number">11.</span> <span class="nav-text">说明：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

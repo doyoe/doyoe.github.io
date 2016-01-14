@@ -1,0 +1,769 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="margin,margin bug,w3c," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="我所知道的浏览器margin bug
+IE6浮动双倍margin bug；
+IE6浮动相邻元素3px bug；
+IE6/7 clear引发的margin-top bug；
+待补充的有一堆
+
+为bug生为bug死为bug欲仙欲死的日子各浏览器的实现差异或者由此而引入的错误，一直都是前端开发人员的梦魇。相信大多数的前端都为此而精疲力尽过，浏览器bug你所知有几？
+IE6浮动双倍margin bug这当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="margin系列之bug巡演">
+<meta property="og:url" content="http://blog.doyoe.com/2013/12/10/css/margin系列之bug巡演/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="我所知道的浏览器margin bug
+IE6浮动双倍margin bug；
+IE6浮动相邻元素3px bug；
+IE6/7 clear引发的margin-top bug；
+待补充的有一堆
+
+为bug生为bug死为bug欲仙欲死的日子各浏览器的实现差异或者由此而引入的错误，一直都是前端开发人员的梦魇。相信大多数的前端都为此而精疲力尽过，浏览器bug你所知有几？
+IE6浮动双倍margin bug这当">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-non-ie6.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-on-ie6.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-only-first-child-on-ie6.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-on-ie6-3.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-on-ie6-4.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-writing-mode-on-ie6.png">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/double-margin-writing-mode-on-ie6-2.png">
+<meta property="og:updated_time" content="2016-01-14T07:58:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="margin系列之bug巡演">
+<meta name="twitter:description" content="我所知道的浏览器margin bug
+IE6浮动双倍margin bug；
+IE6浮动相邻元素3px bug；
+IE6/7 clear引发的margin-top bug；
+待补充的有一堆
+
+为bug生为bug死为bug欲仙欲死的日子各浏览器的实现差异或者由此而引入的错误，一直都是前端开发人员的梦魇。相信大多数的前端都为此而精疲力尽过，浏览器bug你所知有几？
+IE6浮动双倍margin bug这当">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> margin系列之bug巡演 | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              margin系列之bug巡演
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2013-12-10T11:15:00+08:00" content="2013-12-10">
+            2013-12-10
+          </time>
+        </span>
+
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="我所知道的浏览器margin_bug">我所知道的浏览器margin bug</h2><ul>
+<li>IE6浮动双倍margin bug；</li>
+<li>IE6浮动相邻元素3px bug；</li>
+<li>IE6/7 clear引发的margin-top bug；</li>
+<li>待补充的有一堆</li>
+</ul>
+<h2 id="为bug生为bug死为bug欲仙欲死的日子">为bug生为bug死为bug欲仙欲死的日子</h2><p>各浏览器的实现差异或者由此而引入的错误，一直都是前端开发人员的梦魇。相信大多数的前端都为此而精疲力尽过，浏览器bug你所知有几？</p>
+<h2 id="IE6浮动双倍margin_bug">IE6浮动双倍margin bug</h2><p>这当是IE6最为经典的bug之一。高大上的前端，你肯定从未与其失之交臂过。</p>
+<h2 id="触发方式">触发方式</h2><ul>
+<li>元素被设置浮动</li>
+<li>元素在与浮动一致的方向上设置margin值</li>
+</ul>
+<a id="more"></a>
+<p>来看看详细的代码吧：</p>
+<h3 id="HTML">HTML</h3><pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>IE6下浮动方向上的margin值将会双倍于其指定值<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="CSS">CSS</h3><pre><code><span class="id">#demo</span> <span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">10px</span></span></span>;
+}</span>
+</code></pre><h3 id="效果对比">效果对比</h3><p><img src="http://demo.doyoe.com/css/margin/images/double-margin-non-ie6.png" alt="非IE6下浮动无双边距"> （图一）</p>
+<p>图一 是非IE6下的效果</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/double-margin-on-ie6.png" alt="IE6下浮动双边距"> （图二）</p>
+<p>图二 是IE6下的效果</p>
+<p>从图一和图二的对比，我们肉眼就可以发现区别。是的，IE6下左边的外边距变成了 <code>margin-left</code> 指定值的2倍，而其它浏览器下正常，这就是经典的IE6浮动元素双倍边距bug。来看看具体的例子：<code>DEMO1</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin.html" target="_blank" rel="external">IE6浮动元素双倍margin bug重现</a></p>
+<p>很开心告诉你，问题要比这还更复杂一些，接着往下看。</p>
+<h2 id="同个浮动方向的元素只有第一个元素会double_margin">同个浮动方向的元素只有第一个元素会double margin</h2><p><code>double margin</code> 并不会发生在所有的浮动元素上，同个包含块内，在相同的浮动方向上，它只发生在第一个浮动元素上。</p>
+<p>用代码说话：</p>
+<h3 id="HTML-1">HTML</h3><pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>第一个float:left<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>第二个float:left<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>第三个float:left<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><p>CSS Code不变，加多2个浮动元素，再来看具体情况，有图有真相：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/double-margin-only-first-child-on-ie6.png" alt="同个浮动方向的元素只有第一个元素会double margin"> （图三）</p>
+<p>看到图三结果一目了然，三个 <code>float:left</code> 的元素只有第一个元素才 <code>double margin</code> 了。用个例子来终结它：<code>DEMO2</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin-2.html" target="_blank" rel="external">同个浮动方向的元素只有第一个元素会double margin</a></p>
+<h2 id="double_margin只发生在float:left时？">double margin只发生在float:left时？</h2><p>你觉得呢？结果当然不会是这样。在之前，我们只说过在同个浮动方向的第一个浮动元素会double margin，并没有说只有 <code>float:left</code> 才触发。</p>
+<p>我们将 <code>DEMO1</code> 的CSS简单改改，HTML不变</p>
+<h3 id="CSS-1">CSS</h3><pre><code><span class="id">#demo</span> <span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">right</span></span>;
+    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"><span class="number">10px</span></span></span>;
+}</span>
+</code></pre><p>结果会是怎样呢？看 <code>图四</code>：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/double-margin-on-ie6-3.png" alt="IE6 double margin也会发生在float:right时"> （图四）</p>
+<p>在图四中，我们看到右侧的外边距明显比指定值 <code>margin-right:10px</code> 要大，恩，确实，它是20px，也double了。瞧瞧：<code>DEMO3</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin-3.html" target="_blank" rel="external">IE6 double margin也会发生在float:right时</a></p>
+<h2 id="既有左浮动又有右浮动的情况将会是怎样呢？">既有左浮动又有右浮动的情况将会是怎样呢？</h2><p>我们先来将代码呈上：</p>
+<h3 id="HTML-2">HTML</h3><pre><code>&lt;<span class="tag">div</span> id=<span class="string">"demo"</span>&gt;
+    &lt;<span class="tag">p</span> class=<span class="string">"a"</span>&gt;<span class="number">1</span> <span class="attribute">float</span>:<span class="attribute">left</span>&lt;/p&gt;
+    &lt;<span class="tag">p</span> class=<span class="string">"b"</span>&gt;<span class="number">2</span> <span class="attribute">float</span>:<span class="attribute">left</span>&lt;/p&gt;
+    &lt;<span class="tag">p</span> class=<span class="string">"c"</span>&gt;<span class="number">3</span> <span class="attribute">float</span>:<span class="attribute">right</span>&lt;/p&gt;
+    &lt;<span class="tag">p</span> class=<span class="string">"d"</span>&gt;<span class="number">4</span> <span class="attribute">float</span>:<span class="attribute">right</span>&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><h3 id="CSS-2">CSS</h3><pre><code><span class="id">#demo</span> <span class="class">.a</span>,<span class="id">#demo</span> <span class="class">.b</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">10px</span></span></span>;
+}</span>
+<span class="id">#demo</span> <span class="class">.c</span>,<span class="id">#demo</span> <span class="class">.d</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">right</span></span>;
+    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"><span class="number">10px</span></span></span>;
+}</span>
+</code></pre><p>是的，你可能想到了，第一个左浮动元素和第一个右浮动元素都将会出现 double margin。来看 <code>图五</code>：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/double-margin-on-ie6-4.png" alt="既有左浮动又有右浮动的情况"> （图五）</p>
+<p>左右都 double margin 了，这看似挺复杂，其实为什么会这样，前面都讲得比较明白了，所以应该能理解？本例也奉上：<code>DEMO4</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin-4.html" target="_blank" rel="external">复杂的double margin</a></p>
+<h2 id="double_margin_不仅仅出现在margin-left/right">double margin 不仅仅出现在margin-left/right</h2><p>和大多数其它 <code>margin</code> 特性一样，double margin 也受书写模式 <code>writing-mode</code> 影响。我们在开篇所说的触发条件之一 <code>元素在与浮动一致的方向设置margin值</code> ，其实并不完全精确。当 <code>writing-mode</code> 为纵向时，会发生 double margin 的方向也相应变成了纵向。</p>
+<p>当书写模式 <code>writing-mode</code> 纵向时，设置 <code>float:right</code> 时，会发生什么？来看代码：</p>
+<h3 id="HTML-3">HTML</h3><pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">p</span>&gt;</span>书写模式改变双倍margin bug方向<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><h3 id="CSS-3">CSS</h3><pre><code><span class="id">#demo</span><span class="rules">{
+    <span class="rule"><span class="attribute">-webkit-writing-mode</span>:<span class="value">vertical-rl</span></span>;
+    <span class="rule"><span class="attribute">writing-mode</span>:<span class="value">tb-rl</span></span>;
+}</span>
+<span class="id">#demo</span> <span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">right</span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">10px</span> <span class="number">0</span></span></span>;
+}</span>
+</code></pre><p>CSS Code中，我们同时设置了 <code>margin-top/bottom</code> 的值都为 10px。你预期会 double 的方向是 top or bottom？不太确定？看到 <code>图六</code> 你就知道了：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/double-margin-writing-mode-on-ie6.png" alt="书写模式改变IE6浮动双倍margin bug方向"> （图六）</p>
+<p>图六清晰的验证了 <code>writing-mode</code> 会影响 double margin 的方向；并且当设置了 <code>float:right</code> 时，只有 <code>margin-bottom</code> 会 double。看看示例吧：<code>DEMO5</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin-tbrl.html" target="_blank" rel="external">书写模式改变IE6浮动双倍margin bug方向</a></p>
+<h2 id="float:left_时，_double_margin_的将会是_top_or_bottom？"><code>float:left</code> 时， double margin 的将会是 top or bottom？</h2><p>大家再猜猜，在书写模式为纵向时，设置了 <code>float:left</code>，结果又将会如何？</p>
+<p>我们只简单的将 <code>DEMO5</code> 中的CSS改成 <code>float:left</code> 其余不变，于是得到 <code>图七</code> 如下：</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/double-margin-writing-mode-on-ie6-2.png" alt="书写模式改变IE6浮动双倍margin bug方向"> （图七）</p>
+<p>你会惊讶的发现，<code>margin-top/bottom</code> 两个方向都出现了 double，这真是一件好神奇的事，事实胜于雄辩：<code>DEMO6</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin-tbrl-2.html" target="_blank" rel="external">书写模式纵向时margin-top/bottom都将double</a></p>
+<p>写到这，关于IE6浮动双倍margin bug就说的差不多了，包括触发方式，各种情景下的变化，还有解决方案。哦，解决方案貌似还没写…</p>
+<h2 id="fix_IE6浮动双倍margin_bug">fix IE6浮动双倍margin bug</h2><p>我们以 <code>DEMO1</code> 作为需要fix的case</p>
+<h3 id="给IE6在会_double_margin_的方向上设置小一倍的margin值，如下：">给IE6在会 double margin 的方向上设置小一倍的margin值，如下：</h3><h3 id="CSS-4">CSS</h3><pre><code><span class="id">#demo</span> <span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">10px</span></span></span>;
+    <span class="rule"><span class="attribute">_margin-left</span>:<span class="value"><span class="number">5px</span></span></span>;
+}</span>
+</code></pre><p>恩，IE6的hack，就不再赘述了。不过这种处理方式有一个明显的缺陷，那就是不够灵活，无法通用。因为当标准 margin 值改变时，这个值就得变化。所以不推荐使用这种方式。</p>
+<h3 id="display:inline">display:inline</h3><h3 id="CSS-5">CSS</h3><pre><code><span class="id">#demo</span> <span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">_display</span>:<span class="value">inline</span></span>;
+    <span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"><span class="number">10px</span></span></span>;
+}</span>
+</code></pre><p>恩，仍然是only ie6的hack，不过这个方案更Cool，它不需要care margin值到底是什么，足够灵活。看具体的例子吧：<code>DEMO7</code> <a href="http://demo.doyoe.com/css/margin/bug/double-margin-fix.html" target="_blank" rel="external">修复IE6浮动双倍margin bug</a>。至于为什么会有这种解法，我想只能问问微软的童鞋了。</p>
+<p>完全没想到，单一个双边距bug就写了这么长的篇幅，本打算一篇文章涵盖一堆bug，看来得分篇了。</p>
+<h2 id="margin系列文章：">margin系列文章：</h2><ul>
+<li><a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a></li>
+<li><a href="/2013/12/20/css/margin系列之bug巡演（三）/">margin系列之bug巡演（三）</a></li>
+<li><a href="/2013/12/17/css/margin系列之bug巡演（二）/">margin系列之bug巡演（二）</a></li>
+<li><a href="/2013/12/14/css/margin系列之内秀篇（二）/">margin系列之内秀篇（二）</a></li>
+<li><a href="/2013/12/10/css/margin系列之bug巡演/">margin系列之bug巡演</a></li>
+<li><a href="/2013/12/06/css/margin系列之内秀篇/">margin系列之内秀篇</a></li>
+<li><a href="/2013/12/04/css/margin系列之外边距折叠/">margin系列之外边距折叠</a></li>
+<li><a href="/2013/12/02/css/margin系列之与相对偏移的异同/">margin系列之与相对偏移的异同</a></li>
+<li><a href="/2013/11/30/css/margin系列之百分比/">margin系列之百分比</a></li>
+<li><a href="/2013/11/29/css/margin系列之keyword%20auto/">margin系列之keyword auto</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/margin/" rel="tag">#margin</a>
+          
+            <a href="/tags/margin-bug/" rel="tag">#margin bug</a>
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2013/12/14/css/margin系列之内秀篇（二）/" rel="prev">margin系列之内秀篇（二）</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/12/06/css/margin系列之内秀篇/" rel="next">margin系列之内秀篇</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/mobile/blog/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我所知道的浏览器margin_bug"><span class="nav-number">1.</span> <span class="nav-text">我所知道的浏览器margin bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为bug生为bug死为bug欲仙欲死的日子"><span class="nav-number">2.</span> <span class="nav-text">为bug生为bug死为bug欲仙欲死的日子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE6浮动双倍margin_bug"><span class="nav-number">3.</span> <span class="nav-text">IE6浮动双倍margin bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发方式"><span class="nav-number">4.</span> <span class="nav-text">触发方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">4.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">4.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果对比"><span class="nav-number">4.3.</span> <span class="nav-text">效果对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同个浮动方向的元素只有第一个元素会double_margin"><span class="nav-number">5.</span> <span class="nav-text">同个浮动方向的元素只有第一个元素会double margin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-1"><span class="nav-number">5.1.</span> <span class="nav-text">HTML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double_margin只发生在float:left时？"><span class="nav-number">6.</span> <span class="nav-text">double margin只发生在float:left时？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-1"><span class="nav-number">6.1.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#既有左浮动又有右浮动的情况将会是怎样呢？"><span class="nav-number">7.</span> <span class="nav-text">既有左浮动又有右浮动的情况将会是怎样呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-2"><span class="nav-number">7.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-2"><span class="nav-number">7.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double_margin_不仅仅出现在margin-left/right"><span class="nav-number">8.</span> <span class="nav-text">double margin 不仅仅出现在margin-left/right</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-3"><span class="nav-number">8.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-3"><span class="nav-number">8.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#float:left_时，_double_margin_的将会是_top_or_bottom？"><span class="nav-number">9.</span> <span class="nav-text">float:left 时， double margin 的将会是 top or bottom？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fix_IE6浮动双倍margin_bug"><span class="nav-number">10.</span> <span class="nav-text">fix IE6浮动双倍margin bug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给IE6在会_double_margin_的方向上设置小一倍的margin值，如下："><span class="nav-number">10.1.</span> <span class="nav-text">给IE6在会 double margin 的方向上设置小一倍的margin值，如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-4"><span class="nav-number">10.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display:inline"><span class="nav-number">10.3.</span> <span class="nav-text">display:inline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-5"><span class="nav-number">10.4.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-number">11.</span> <span class="nav-text">margin系列文章：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

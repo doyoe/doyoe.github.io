@@ -1,0 +1,746 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="HTML5,meta,viewport," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="前言这次想聊聊移动开发相关的事。是的，你没有看错，一句话就可以开始你的移动前端开发。
+你心里一定在想，什么话这么酷，能够瞬间带入到移动前端开发的世界。
+但其实它一点也不新奇，不复杂。
+viewport简介没错，就是viewport特性，一个移动专属的Meta值，用于定义视口的各种行为。
+该特性最先由Apple引入，用于解决移动端的页面展示问题，后续被越来越多的厂商跟进。
+举个简单的例子来讲为什么会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动前端第一弹：viewport详解">
+<meta property="og:url" content="http://blog.doyoe.com/2015/10/13/mobile/移动前端第一弹：viewport详解/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="前言这次想聊聊移动开发相关的事。是的，你没有看错，一句话就可以开始你的移动前端开发。
+你心里一定在想，什么话这么酷，能够瞬间带入到移动前端开发的世界。
+但其实它一点也不新奇，不复杂。
+viewport简介没错，就是viewport特性，一个移动专属的Meta值，用于定义视口的各种行为。
+该特性最先由Apple引入，用于解决移动端的页面展示问题，后续被越来越多的厂商跟进。
+举个简单的例子来讲为什么会">
+<meta property="og:updated_time" content="2015-10-19T10:33:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动前端第一弹：viewport详解">
+<meta name="twitter:description" content="前言这次想聊聊移动开发相关的事。是的，你没有看错，一句话就可以开始你的移动前端开发。
+你心里一定在想，什么话这么酷，能够瞬间带入到移动前端开发的世界。
+但其实它一点也不新奇，不复杂。
+viewport简介没错，就是viewport特性，一个移动专属的Meta值，用于定义视口的各种行为。
+该特性最先由Apple引入，用于解决移动端的页面展示问题，后续被越来越多的厂商跟进。
+举个简单的例子来讲为什么会">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> 移动前端第一弹：viewport详解 | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              移动前端第一弹：viewport详解
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-13T13:00:11+08:00" content="2015-10-13">
+            2015-10-13
+          </time>
+        </span>
+
+        
+        <span class="post-time">
+          &nbsp; | &nbsp; 杜瑶
+        </span>
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/mobile/" itemprop="url" rel="index">
+                  <span itemprop="name">mobile</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="前言">前言</h2><p>这次想聊聊移动开发相关的事。是的，你没有看错，一句话就可以开始你的移动前端开发。</p>
+<p>你心里一定在想，什么话这么酷，能够瞬间带入到移动前端开发的世界。</p>
+<p>但其实它一点也不新奇，不复杂。</p>
+<h2 id="viewport简介">viewport简介</h2><p>没错，就是<code>viewport</code>特性，一个移动专属的<code>Meta</code>值，用于定义视口的各种行为。</p>
+<p>该特性最先由<code>Apple</code>引入，用于解决移动端的页面展示问题，后续被越来越多的厂商跟进。</p>
+<p>举个简单的例子来讲为什么会需要它：</p>
+<p>我们知道用户大规模使用手机等移动设备来进行网页浏览器，其实得益于智能手持设备的兴起，也就是近几年的事。（还记得不久前的几年，满大街都还是诺基亚的天下么？）</p>
+<p>这时有一个很现实的问题摆在了厂商面前，用户并不能很好地通过手机等设备访问网页，因为屏幕太小。</p>
+<a id="more"></a>
+<h3 id="layout_viewport">layout viewport</h3><p><code>Apple</code>也发现了这个问题，并且适时的出现，它提出了一个方案用来解决这个问题。在iOS Safari中定义了一个<code>viewport meta</code>标签，用来创建一个虚拟的<code>布局视口（layout viewport）</code>，而这个视口的分辨率接近于PC显示器，<code>Apple</code>将其定义为<code>980px</code>（其他厂商各有不同①）。</p>
+<p>这就很好的解决了早期的页面在手机上显示的问题，由于两者之间的宽度趋近，CSS只需要像在PC上那样渲染页面就行，原有的页面结构不会被破坏。</p>
+<blockquote>
+<p>①的描述大致如下，数值不一定持续准确，厂商可能更改，但这个绝对值其实并非特别重要：<br>iOS, Android基本都是: 980px<br>BlackBerry: 1024px</p>
+</blockquote>
+<h3 id="visual_viewport">visual viewport</h3><p>有了<code>layout viewport</code>，我们还需要一个视口用来承载它，这个视口可以简单的认为是手持设备物理屏幕的可视区域，我们称之为<code>（视觉视口）visual viewport</code>。这是一个比较直观的概念，因为你能看得见你的手机屏幕。</p>
+<p>对于<code>visual viewport</code>，开发者一般只需要知道它的存在和概念就行，因为无法对它进行任何设置或者修改。很明显，<code>visual viewport</code>的尺寸不会是一个固定的值，甚至每款设备都可能不同。大致列几种常见设备的<code>visual viewport</code>尺寸：</p>
+<ul>
+<li>iPhone4~iPhone5S: 320*480px</li>
+<li>iPhone6~iPhone6S: 375*627px</li>
+<li>iPhone6 Plus~iPhone6S Plus: 414*736px</li>
+</ul>
+<p>以<code>iPhone4S</code>为例，会在其320px②的<code>visual viewport</code>上，创建一个宽<code>980px</code>的<code>layout viewport</code>，于是用户可以在<code>visual viewport</code>中拖动或者缩放网页，来获得良好的浏览效果；布局视口用来配合CSS渲染布局，当我们定义一个容器的宽度为<code>100%</code>时，这个容器的实际宽度是<code>980px</code>而不是<code>320px</code>，通过这种方式大部分网页就能以缩放的形式正常显示在手机屏幕上了。</p>
+<blockquote>
+<p>②的描述大致如下：<br>早期移动前端开发工程师常能见到宽640px的设计稿，原因就是UI工程师以物理屏幕宽度为320px的<code>iPhone4-iPhone5S</code>作为参照设计；<br>当然，现在你还可能会见到750px和1242px尺寸的设计稿，原因当然是iPhone6的出现</p>
+</blockquote>
+<p>当然，为了更好的适配移动端或者只为移动端设计的应用，单有布局视口和视觉视口还是不够的。</p>
+<h3 id="ideal_viewport">ideal viewport</h3><p>我们还需要一个视口，它类似于布局视口，但宽度和视觉视口相同，这就是完美视口（ideal viewport）。</p>
+<p>有了完美视口，用户不用缩放和拖动网页就能够很好的进行网页浏览。而完美视口也是通过<code>viewport meta</code>的某种设置来达到。</p>
+<p>说了这么一大堆的东西，貌似都和<code>viewport</code>有关联，那么<code>viewport</code>到底怎么搞，请继续往下。</p>
+<blockquote>
+<p>关于3个视口，<a href="http://www.quirksmode.org/" target="_blank" rel="external">PPK</a>已经做了非常棒的阐释，你也可以在<code>StackOverflow</code>上找到一些对此描述的相互补充，例如：<a href="http://stackoverflow.com/questions/6333927/difference-between-visual-viewport-and-layout-viewport" target="_blank" rel="external">[1]</a>, <a href="http://stackoverflow.com/questions/7344886/visual-viewport-vs-layout-viewport-on-mobile-devices" target="_blank" rel="external">[2]</a>，有兴趣的童鞋也可以看看</p>
+</blockquote>
+<h2 id="viewport特性">viewport特性</h2><p>通常情况下，<code>viewport</code>有以下6种设置。当然厂商可能会增加一些特定的设置，比如iOS Safari7.1增加了一种在网页加载时隐藏地址栏与导航栏的设置：<code>minimal-ui</code>，不过随后又将之移除了。</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>正整数或<code>device-width</code></td>
+<td>定义视口的宽度，单位为像素</td>
+</tr>
+<tr>
+<td>height</td>
+<td>正整数或<code>device-height</code></td>
+<td>定义视口的高度，单位为像素</td>
+</tr>
+<tr>
+<td>initial-scale</td>
+<td>[0.0-10.0]</td>
+<td>定义初始缩放值</td>
+</tr>
+<tr>
+<td>minimum-scale</td>
+<td>[0.0-10.0]</td>
+<td>定义缩小最小比例，它必须小于或等于maximum-scale设置</td>
+</tr>
+<tr>
+<td>maximum-scale</td>
+<td>[0.0-10.0]</td>
+<td>定义放大最大比例，它必须大于或等于minimum-scale设置</td>
+</tr>
+<tr>
+<td>user-scalable</td>
+<td>yes/no</td>
+<td>定义是否允许用户手动缩放页面，默认值yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="width">width</h3><p><code>width</code>被用来定义<code>layout viewport</code>的宽度，如果不指定该属性（或者移除<code>viewport meta</code>标签），则<code>layout viewport</code>宽度为厂商默认值。如：iPhone为<code>980px</code>；</p>
+<p>举个例子：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"width=device-width"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>此时的<code>layout viewport</code>将成为<code>ideal viewport</code>，因为<code>layout viewport</code>宽度与设备视觉视口宽度一致了。</p>
+<p>除了<code>width</code>之外，还有一个属性定义也能实现<code>ideal viewport</code>，那就是<code>initial-scale</code>。</p>
+<h3 id="height">height</h3><p>与<code>width</code>类似，但实际上却不常用，因为没有太多的use case。</p>
+<h3 id="initial-scale">initial-scale</h3><p>如果想页面默认以某个比例放大或者缩小然后呈现给用户，那么可以通过定义<code>initial-scale</code>来完成。</p>
+<p><code>initial-scale</code>用于指定页面的初始缩放比例，假定你这样定义：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=2"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>那么用户将会看到2倍大小的页面内容。</p>
+<p>在说<code>width</code>的时候，我们说到<code>initial-scale</code>也能实现<code>ideal viewport</code>，是的，你只需要这样做，也可以得到完美视口：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=1"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="maximum-scale">maximum-scale</h3><p>在移动端，你可能会考虑用户浏览不便，然后给予用户放大页面的权利，但同时又希望是在一定范围内的放大，这时就可以使用<code>maximum-scale</code>来进行约束。</p>
+<p><code>maximum-scale</code>用于指定用户能够放大的比例。</p>
+<p>举个例子来讲：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=1,maximum-scale=5"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>假设页面的默认缩放值<code>initial-scale</code>是<code>1</code>，那么用户最终能够将页面放大到这个初始页面大小的5倍。</p>
+<h3 id="minimum-scale">minimum-scale</h3><p>类似<code>maximum-scale</code>的描述，不过<code>minimum-scale</code>是用来指定页面缩小比例的。</p>
+<p>通常情况下，为了有更好地体验，不会定义该属性的值比<code>1</code>更小，因为那样页面将变得难以阅读。</p>
+<h3 id="user-scalable">user-scalable</h3><p>如果你不想页面被放大或者缩小，通过定义<code>user-scalable</code>来约束用户是否可以通过手势对页面进行缩放即可。</p>
+<p>该属性的默认值为<code>yes</code>，即可被缩放（如果使用默认值，该属性可以不定义）；当然，如果你的应用不打算让用户拥有缩放权限，可以将该值设置为<code>no</code>。</p>
+<p>使用方法如下：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"user-scalable=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="结语">结语</h2><p>正如开篇所说，这既不高深也不新奇，它而仅仅是一点观念转变。</p>
+<p>当你掌握了<code>viewport</code>，那么意味着你已经大致了解了移动平台与PC平台的不同，你可以更专注而细致的去解决某些平台差异问题。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML5/" rel="tag">#HTML5</a>
+          
+            <a href="/tags/meta/" rel="tag">#meta</a>
+          
+            <a href="/tags/viewport/" rel="tag">#viewport</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/12/css/BFC如何应用到实际场景/" rel="next">BFC如何应用到实际场景</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/mobile/blog/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport简介"><span class="nav-number">2.</span> <span class="nav-text">viewport简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#layout_viewport"><span class="nav-number">2.1.</span> <span class="nav-text">layout viewport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#visual_viewport"><span class="nav-number">2.2.</span> <span class="nav-text">visual viewport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ideal_viewport"><span class="nav-number">2.3.</span> <span class="nav-text">ideal viewport</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport特性"><span class="nav-number">3.</span> <span class="nav-text">viewport特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#width"><span class="nav-number">3.1.</span> <span class="nav-text">width</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#height"><span class="nav-number">3.2.</span> <span class="nav-text">height</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#initial-scale"><span class="nav-number">3.3.</span> <span class="nav-text">initial-scale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#maximum-scale"><span class="nav-number">3.4.</span> <span class="nav-text">maximum-scale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minimum-scale"><span class="nav-number">3.5.</span> <span class="nav-text">minimum-scale</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#user-scalable"><span class="nav-number">3.6.</span> <span class="nav-text">user-scalable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">4.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
