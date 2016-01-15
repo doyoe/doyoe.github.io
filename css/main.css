@@ -1062,7 +1062,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #cd0e9e;
+  background: #b57454;
 }
 .links-of-social {
   margin-top: 20px;
@@ -1276,6 +1276,7 @@ body {
 .posts-expand .post-title {
   font-size: 26px;
   text-align: center;
+  font-weight: bold;
 }
 @media (max-width: 767px) {
   .posts-expand .post-title {
@@ -1337,7 +1338,7 @@ body {
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid #ddd;
-  font-size: 28px;
+  font-size: 24px;
 }
 .posts-expand .post-body h3 {
   margin-bottom: 20px;
