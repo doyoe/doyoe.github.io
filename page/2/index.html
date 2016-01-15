@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
+<html class="theme-next  ">
 <head>
   
 
@@ -22,12 +22,10 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+<link rel="stylesheet" type="text/css" href="//main.css?v="/>
 
 
     <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
@@ -41,8 +39,6 @@
   <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
 
 
-
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
 <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美">
@@ -58,8 +54,8 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'always'
+    scheme: '',
+    sidebar: ''
   };
 </script>
 
@@ -109,53 +105,6 @@
 <nav class="site-nav">
   
 
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            <i class="menu-item-icon icon-next-home"></i> <br />
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            <i class="menu-item-icon icon-next-categories"></i> <br />
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            <i class="menu-item-icon icon-next-archives"></i> <br />
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            <i class="menu-item-icon icon-next-tags"></i> <br />
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            <i class="menu-item-icon icon-next-about"></i> <br />
-            关于
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
   
 
   
@@ -238,7 +187,7 @@
 <p>前面几篇文章大概的讲了一些关于 <code>margin</code> 的特性，所以本篇会聊聊 <code>margin</code> 的实际应用场景，也算让自己休息一下，不用再讲知识点。</p>
 <h2 id="有个很典型的需求">有个很典型的需求</h2>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/06/css/margin系列之内秀篇/#more" rel="contents">
+            <a class="btn" href="/2013/12/06/css/margin系列之内秀篇/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -332,7 +281,7 @@
 <h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">p</span>&gt;</span>我是一个华丽的段落，别看我文字少<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">p</span>&gt;</span>我是另一个华丽的段落<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>大家觉得这 <code>2p</code> 之间会发生点什么？是会合体呢？还是分开？来看看 <code>DEMO1</code> <a href="http://demo.doyoe.com/css/margin/collapse-margin.htm">margin折叠</a></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/04/css/margin系列之外边距折叠/#more" rel="contents">
+            <a class="btn" href="/2013/12/04/css/margin系列之外边距折叠/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -427,7 +376,7 @@
 <h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"margin-top"</span>&gt;</span>我是margin-top:50px<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"relative-top"</span>&gt;</span>我是relative top:50px<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上述2种方式，我们都可以完成 div 向下偏移 50 个像素的需求。来看看 <code>DEMO1</code>: <a href="http://demo.doyoe.com/css/margin/margin-top-vs-relative-top.htm">margin-top vs. relative top</a></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/12/02/css/margin系列之与相对偏移的异同/#more" rel="contents">
+            <a class="btn" href="/2013/12/02/css/margin系列之与相对偏移的异同/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -520,7 +469,7 @@
 <p>或许现在大多数人对此不屑一顾，但我仍想说一说，这样以后就可以不再问类似的问题了。</p>
 <h2 id="假设有这样一个场景">假设有这样一个场景</h2><p>仍然以一个问题来开始，这是我之前在 <a href="http://weibo.com/doyoe">微博</a> 发过的，原文是这样的：</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/30/css/margin系列之百分比/#more" rel="contents">
+            <a class="btn" href="/2013/11/30/css/margin系列之百分比/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -627,7 +576,7 @@
 <p>看起来似乎有不少的知识点？恩，这些都是我们需要了解的，包括一些没有被列举出来的点。</p>
 <p>今天要讲的其实只是其中很少的一部分，恩，标题里有：keyword auto</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/29/css/margin系列之keyword auto/#more" rel="contents">
+            <a class="btn" href="/2013/11/29/css/margin系列之keyword auto/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -715,18 +664,9 @@
 
       
         
-          <span itemprop="articleBody">
-            
-            ## 
-不知不觉，一年又要过去了。这是年龄暴增的节奏啊，以后是不能过青年节了么？次奥！
-
-            
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2013/11/28/life/一年又要过去了/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody"><p>## </p>
+<p>不知不觉，一年又要过去了。这是年龄暴增的节奏啊，以后是不能过青年节了么？次奥！</p>
+</span>
         
       
     </div>
@@ -781,37 +721,29 @@
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/archives">
+            <a href="/">
               <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
-            <a href="/tags">
+            
               <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
-              </a>
+              
           </div>
 
         </nav>
 
         <div class="links-of-social motion-element">
-          
-            
-            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
-            
-            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
-            
-            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
-            
           
         </div>
 
@@ -857,7 +789,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT
   </a>
 </div>
 
@@ -868,7 +800,7 @@
     <div class="back-to-top"></div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
 
   
   
@@ -880,7 +812,7 @@
   
 
   <script type="text/javascript">
-    var duoshuoQuery = {short_name:""};
+    var duoshuoQuery = {short_name:"doyoe"};
     (function() {
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
@@ -891,28 +823,20 @@
     })();
   </script>
     
-     
-
     
   
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
 
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="//helpers.js?v="></script>
   
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+  <script type="text/javascript" src="//motion_fallback.js?v=" id="motion.fallback"></script>
 
 
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="//nav-toggle.js?v="></script>
+  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
 
@@ -933,11 +857,11 @@
   
 
   
-  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript" src="//lazyload.js"></script>
   <script type="text/javascript">
     $(function () {
       $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
+        placeholder: "//loading.gif",
         effect: "fadeIn"
       });
     });
