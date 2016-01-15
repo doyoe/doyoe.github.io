@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next use-motion theme-next-mist">
+<html class="theme-next  ">
 <head>
   
 
@@ -22,12 +22,10 @@
 
 
 
-  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+<link rel="stylesheet" type="text/css" href="//main.css?v="/>
 
 
     <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
@@ -41,8 +39,6 @@
   <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
 
 
-
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
 <meta name="description" content="我所知道的浏览器margin bug
@@ -87,8 +83,8 @@ IE6浮动双倍margin bug这当">
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: 'Mist',
-    sidebar: 'always'
+    scheme: '',
+    sidebar: ''
   };
 </script>
 
@@ -136,53 +132,6 @@ IE6浮动双倍margin bug这当">
 <nav class="site-nav">
   
 
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            <i class="menu-item-icon icon-next-home"></i> <br />
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            <i class="menu-item-icon icon-next-categories"></i> <br />
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            <i class="menu-item-icon icon-next-archives"></i> <br />
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            <i class="menu-item-icon icon-next-tags"></i> <br />
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            <i class="menu-item-icon icon-next-about"></i> <br />
-            关于
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
   
 
   
@@ -460,37 +409,29 @@ IE6浮动双倍margin bug这当">
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/archives">
+            <a href="/">
               <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            <a href="/categories">
+            
               <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">分类</span>
-              </a>
+              
           </div>
 
           <div class="site-state-item site-state-tags">
-            <a href="/tags">
+            
               <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
-              </a>
+              
           </div>
 
         </nav>
 
         <div class="links-of-social motion-element">
-          
-            
-            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
-            
-            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
-            
-            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
-            
           
         </div>
 
@@ -516,7 +457,7 @@ IE6浮动双倍margin bug这当">
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我所知道的浏览器margin_bug"><span class="nav-number">1.</span> <span class="nav-text">我所知道的浏览器margin bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为bug生为bug死为bug欲仙欲死的日子"><span class="nav-number">2.</span> <span class="nav-text">为bug生为bug死为bug欲仙欲死的日子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE6浮动双倍margin_bug"><span class="nav-number">3.</span> <span class="nav-text">IE6浮动双倍margin bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发方式"><span class="nav-number">4.</span> <span class="nav-text">触发方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">4.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">4.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果对比"><span class="nav-number">4.3.</span> <span class="nav-text">效果对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同个浮动方向的元素只有第一个元素会double_margin"><span class="nav-number">5.</span> <span class="nav-text">同个浮动方向的元素只有第一个元素会double margin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-1"><span class="nav-number">5.1.</span> <span class="nav-text">HTML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double_margin只发生在float:left时？"><span class="nav-number">6.</span> <span class="nav-text">double margin只发生在float:left时？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-1"><span class="nav-number">6.1.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#既有左浮动又有右浮动的情况将会是怎样呢？"><span class="nav-number">7.</span> <span class="nav-text">既有左浮动又有右浮动的情况将会是怎样呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-2"><span class="nav-number">7.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-2"><span class="nav-number">7.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double_margin_不仅仅出现在margin-left/right"><span class="nav-number">8.</span> <span class="nav-text">double margin 不仅仅出现在margin-left/right</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-3"><span class="nav-number">8.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-3"><span class="nav-number">8.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#float:left_时，_double_margin_的将会是_top_or_bottom？"><span class="nav-number">9.</span> <span class="nav-text">float:left 时， double margin 的将会是 top or bottom？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fix_IE6浮动双倍margin_bug"><span class="nav-number">10.</span> <span class="nav-text">fix IE6浮动双倍margin bug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给IE6在会_double_margin_的方向上设置小一倍的margin值，如下："><span class="nav-number">10.1.</span> <span class="nav-text">给IE6在会 double margin 的方向上设置小一倍的margin值，如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-4"><span class="nav-number">10.2.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display:inline"><span class="nav-number">10.3.</span> <span class="nav-text">display:inline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-5"><span class="nav-number">10.4.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-number">11.</span> <span class="nav-text">margin系列文章：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我所知道的浏览器margin_bug"><span class="nav-text">我所知道的浏览器margin bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为bug生为bug死为bug欲仙欲死的日子"><span class="nav-text">为bug生为bug死为bug欲仙欲死的日子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE6浮动双倍margin_bug"><span class="nav-text">IE6浮动双倍margin bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发方式"><span class="nav-text">触发方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果对比"><span class="nav-text">效果对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同个浮动方向的元素只有第一个元素会double_margin"><span class="nav-text">同个浮动方向的元素只有第一个元素会double margin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-1"><span class="nav-text">HTML</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double_margin只发生在float:left时？"><span class="nav-text">double margin只发生在float:left时？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-1"><span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#既有左浮动又有右浮动的情况将会是怎样呢？"><span class="nav-text">既有左浮动又有右浮动的情况将会是怎样呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-2"><span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-2"><span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#double_margin_不仅仅出现在margin-left/right"><span class="nav-text">double margin 不仅仅出现在margin-left/right</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-3"><span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-3"><span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#float:left_时，_double_margin_的将会是_top_or_bottom？"><span class="nav-text">float:left 时， double margin 的将会是 top or bottom？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fix_IE6浮动双倍margin_bug"><span class="nav-text">fix IE6浮动双倍margin bug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#给IE6在会_double_margin_的方向上设置小一倍的margin值，如下："><span class="nav-text">给IE6在会 double margin 的方向上设置小一倍的margin值，如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-4"><span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display:inline"><span class="nav-text">display:inline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-5"><span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-text">margin系列文章：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -547,7 +488,7 @@ IE6浮动双倍margin bug这当">
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT
   </a>
 </div>
 
@@ -558,7 +499,7 @@ IE6浮动双倍margin bug这当">
     <div class="back-to-top"></div>
   </div>
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
 
   
   
@@ -584,27 +525,21 @@ IE6浮动双倍margin bug这当">
     
   
   
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
 
-
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="//helpers.js?v="></script>
   
 
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+  <script type="text/javascript" src="//motion_fallback.js?v=" id="motion.fallback"></script>
 
 
 
 
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="//nav-toggle.js?v="></script>
+  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="//bootstrap.scrollspy.js?v=" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -780,11 +715,11 @@ IE6浮动双倍margin bug这当">
   
 
   
-  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript" src="//lazyload.js"></script>
   <script type="text/javascript">
     $(function () {
       $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
+        placeholder: "//loading.gif",
         effect: "fadeIn"
       });
     });
