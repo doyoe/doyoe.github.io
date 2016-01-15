@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next  ">
+<html class="theme-next use-motion theme-next-mist">
 <head>
   
 
@@ -22,10 +22,12 @@
 
 
 
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
 
-<link rel="stylesheet" type="text/css" href="//main.css?v="/>
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
 
 
     <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
@@ -39,6 +41,8 @@
   <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
 
 
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
 <meta name="description" content="不怀疑你也在工作中遇见过几乎可以不用怀疑，前端工作中的你一定遇见过 margin 折叠。
@@ -64,8 +68,8 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: '',
-    sidebar: ''
+    scheme: 'Mist',
+    sidebar: 'always'
   };
 </script>
 
@@ -113,6 +117,53 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
 <nav class="site-nav">
   
 
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
   
 
   
@@ -350,29 +401,37 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
-            <a href="/">
+            <a href="/archives">
               <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
-            
+            <a href="/categories">
               <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">分类</span>
-              
+              </a>
           </div>
 
           <div class="site-state-item site-state-tags">
-            
+            <a href="/tags">
               <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
-              
+              </a>
           </div>
 
         </nav>
 
         <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
           
         </div>
 
@@ -398,7 +457,7 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不怀疑你也在工作中遇见过"><span class="nav-text">不怀疑你也在工作中遇见过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:"><span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML:"><span class="nav-text">HTML:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#它们之间到底发生了些什么？"><span class="nav-text">它们之间到底发生了些什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有margin折叠这样的设计？"><span class="nav-text">为什么会有margin折叠这样的设计？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动元素真的不会发生margin折叠吗？"><span class="nav-text">浮动元素真的不会发生margin折叠吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-1"><span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仅此而已？"><span class="nav-text">仅此而已？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现在我们来解释一下到底什么是margin折叠？"><span class="nav-text">现在我们来解释一下到底什么是margin折叠？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是垂直边缘毗邻？"><span class="nav-text">什么是垂直边缘毗邻？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免margin折叠？"><span class="nav-text">如何避免margin折叠？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这样干掉margin折叠"><span class="nav-text">这样干掉margin折叠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可参考："><span class="nav-text">可参考：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-text">margin系列文章：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#不怀疑你也在工作中遇见过"><span class="nav-number">1.</span> <span class="nav-text">不怀疑你也在工作中遇见过</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:"><span class="nav-number">1.1.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML:"><span class="nav-number">1.2.</span> <span class="nav-text">HTML:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#它们之间到底发生了些什么？"><span class="nav-number">2.</span> <span class="nav-text">它们之间到底发生了些什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会有margin折叠这样的设计？"><span class="nav-number">3.</span> <span class="nav-text">为什么会有margin折叠这样的设计？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动元素真的不会发生margin折叠吗？"><span class="nav-number">4.</span> <span class="nav-text">浮动元素真的不会发生margin折叠吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-1"><span class="nav-number">4.1.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仅此而已？"><span class="nav-number">5.</span> <span class="nav-text">仅此而已？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现在我们来解释一下到底什么是margin折叠？"><span class="nav-number">6.</span> <span class="nav-text">现在我们来解释一下到底什么是margin折叠？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是垂直边缘毗邻？"><span class="nav-number">6.1.</span> <span class="nav-text">什么是垂直边缘毗邻？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免margin折叠？"><span class="nav-number">7.</span> <span class="nav-text">如何避免margin折叠？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这样干掉margin折叠"><span class="nav-number">8.</span> <span class="nav-text">这样干掉margin折叠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可参考："><span class="nav-number">9.</span> <span class="nav-text">可参考：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#margin系列文章："><span class="nav-number">10.</span> <span class="nav-text">margin系列文章：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -429,7 +488,7 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
+    NexT.Mist
   </a>
 </div>
 
@@ -440,7 +499,7 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
     <div class="back-to-top"></div>
   </div>
 
-  <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
   
@@ -466,21 +525,27 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
     
   
   
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
 
-  <script type="text/javascript" src="//helpers.js?v="></script>
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
   
 
-  <script type="text/javascript" src="//motion_fallback.js?v=" id="motion.fallback"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
 
 
 
 
-  <script type="text/javascript" src="//nav-toggle.js?v="></script>
-  <script type="text/javascript" src="//fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
   
-<script type="text/javascript" src="//bootstrap.scrollspy.js?v=" id="bootstrap.scrollspy.custom"></script>
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
 
 
 <script type="text/javascript" id="sidebar.toc.highlight">
@@ -656,11 +721,11 @@ HTML:1234&amp;lt;div id=&quot;demo&quot;&amp;gt;	&amp;lt;p&amp;gt;我是一个�
   
 
   
-  <script type="text/javascript" src="//lazyload.js"></script>
+  <script type="text/javascript" src="/js/lazyload.js"></script>
   <script type="text/javascript">
     $(function () {
       $("#posts").find('img').lazyload({
-        placeholder: "//loading.gif",
+        placeholder: "/images/loading.gif",
         effect: "fadeIn"
       });
     });
