@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.doyoe.com/"/>
-  <updated>2015-10-19T10:33:32.000Z</updated>
+  <updated>2016-02-22T09:00:09.000Z</updated>
   <id>http://blog.doyoe.com/</id>
   
   <author>
@@ -13,6 +13,127 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[移动前端第二弹：善用meta]]></title>
+    <link href="http://blog.doyoe.com/2015/10/20/mobile/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AF%E7%AC%AC%E4%BA%8C%E5%BC%B9%EF%BC%9A%E5%96%84%E7%94%A8meta/"/>
+    <id>http://blog.doyoe.com/2015/10/20/mobile/移动前端第二弹：善用meta/</id>
+    <published>2015-10-20T08:00:11.000Z</published>
+    <updated>2016-02-22T09:00:09.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>在<a href="/2015/10/13/mobile/移动前端第一弹：viewport详解/">移动前端第一弹：viewport详解</a>中，我们讲了<code>viewport</code>，那是一个关于<code>meta</code>的故事。这次我们会就将<code>meta</code>这个故事讲得更广阔、更有意思一些。</p>
+<p>写过<code>HTML</code>的童鞋，应该都对这个不陌生，或用它来定义页面编码，或用它来定义搜索引擎抓取方式，或用它定义页面关键字，描述等等。</p>
+<h2 id="meta列表">meta列表</h2><p>好的<code>meta</code>使用，能更好地提高页面的可用性及被检索的几率。</p>
+<p>这里并不会列出所有的<code>meta</code>使用方式，只挑选一些常用及实际意义比较大的讲讲，当然也包括一些厂商私有定制的。</p>
+<a id="more"></a>
+<h3 id="常规">常规</h3><h4 id="声明文档使用的字符编码">声明文档使用的字符编码</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该声明用来指定文档的编码，除了<code>utf-8</code>，可选值还有：ISO-8859-1、BIG5、iso-8859-2, iso-2022-jp, iso-2022-kr, gb2312等</p>
+<p>当然，你可能还见过使用另外一种方式来定义文档字符编码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"content-type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>相对于这种方式，更推荐你使用第1种，言外之意，就是推荐使用<code>HTML5</code>。</p>
+<h4 id="声明页面刷新或跳转">声明页面刷新或跳转</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"refresh"</span> <span class="attribute">content</span>=<span class="value">"10"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"refresh"</span> <span class="attribute">content</span>=<span class="value">"10; url=http://www.doyoe.com"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该声明用来指定页面自刷新或者跳转到其它页面，其中的时间单位是<code>s</code>。</p>
+<h4 id="声明页面过期时间">声明页面过期时间</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"expires"</span> <span class="attribute">content</span>=<span class="value">"0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"expires"</span> <span class="attribute">content</span>=<span class="value">"Wed, 26 Feb 1997 08:21:57 GMT"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该声明用来指定页面的过期时间，一旦网页过期，从服务器上重新请求，其中时间必须使用<code>GMT</code>格式，或者直接是<code>0</code>（即不缓存）</p>
+<h4 id="声明页面是否缓存">声明页面是否缓存</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"pragma"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"cache-control"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述语句都可以用来指定文档不被缓存。一些仍然在使用HTTP/1.0的可以使用第1条，第2条由HTTP/1.1提供，常用值还有：public, no-cache, no-store等</p>
+<h4 id="声明作者信息">声明作者信息</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"author"</span> content=<span class="string">"joy, dooyoe@gmail.com"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="声明文档关键字">声明文档关键字</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"keywords"</span> content=<span class="string">"CSS, HTML, JavaScript, 前端"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>多关键字之间以半角逗号分隔</p>
+<h4 id="声明文档描述">声明文档描述</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"description"</span> content=<span class="string">"这是一份meta列表"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>文档描述内容最好是完整的一句话，以不超过50个字符为宜</p>
+<h4 id="声明使用的浏览器及版本">声明使用的浏览器及版本</h4><p><code>x-ua-compatible</code>设置是从<code>IE8</code>开始增加的（很明显，只适用于IE），对于过往的版本无法识别。<br>开发者可以通过设置<code>x-ua-compatible</code>来指定渲染引擎的类型和版本，并且因为需求不同可以有多种不同的设置：</p>
+<h5 id="Case1:">Case1:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=7"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=4"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=xx"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=50"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当直接指定<code>content</code>为<code>IE的某个具体版本</code>，如上述代码第1条，客户端的IE将会使用IE7.0标准模式对页面进行渲染，并忽略Doctype定义。<br><strong>当指定的IE版本在客户端IE中不存在时，IE将会尝试将该值转换为最为接近的版本。</strong><br>例如指定一个错误的或者低于5.0的IE版本，如上述代码第2，3条，客户端的IE将会使用IE5.0对页面进行渲染，由于IE5.0并没有标准模式，所以将会直接使用<code>quirks mode</code>来渲染；<br>如果指定一个大于客户端IE的版本，如上述代码第4条，假定客户端IE的最高版本为9.0，那么IE会将该值转换为<code>IE=9</code>，即使用IE9.0标准模式对页面进行渲染。</p>
+<h5 id="Case2:">Case2:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=EmulateIE7"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值加了<code>Emulate</code>前缀时，如上述代码，客户端IE将会根据Doctype定义来决定如何来对页面进行渲染。假设页面使用了标准的Doctype，那么此定义效果等同<code>Case1</code>；假设页面并没有使用标准的Doctype，那么将使用<code>quirks mode</code>来渲染。</p>
+<h5 id="Case3:">Case3:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=Edge"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值为<code>IE=Edge</code>时，如上述代码，客户端的IE将会使用最高的标准模式对页面进行渲染。</p>
+<h5 id="Case4:">Case4:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=7, 10, 11"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值有多个版本时，如上述代码，假定客户端IE版本为8.0或者9.0，则使用IE7.0标准模式对页面进行渲染；假定客户端IE版本为10.0或者11.0，则直接使用对应版本的标准模式对页面进行渲染。</p>
+<h5 id="Case5:">Case5:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=Edge, chrome=1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值为<code>IE=Edge, chrome=1</code>时，如上述代码，假定客户端安装了<code>Google Chrome Frame</code>，则在IE中使用chrome的渲染引擎来渲染页面，否则，将会使用客户端IE最高的标准模式对页面进行渲染。</p>
+<h4 id="声明搜索引擎抓取方式">声明搜索引擎抓取方式</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"robots"</span> content=<span class="string">"index"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>通知搜索引擎文档是否需要被索引。可选值有：</p>
+<ul>
+<li>all（默认值，索引当前页并跟踪链接，相当于：index, follow）</li>
+<li>none（忽略当前页，相当于：noindex, nofollow）</li>
+<li>index（索引当前页）</li>
+<li>noindex（不索引当前页）</li>
+<li>follow（跟踪当前页链接，不论当前页是否被索引）</li>
+<li>nofollow（不跟踪当前页链接，不论当前页是否被索引）</li>
+</ul>
+<p>如果声明冲突，某些引擎可能会做严格处理：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"robots"</span> content=<span class="string">"noindex"</span> /&gt;</span><br><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"robots"</span> content=<span class="string">"index"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>类似上述代码，在<code>Google</code>引擎中，会执行<code>noindex</code>这个更为严格的声明。</p>
+<p>需要注意的是并不是所有搜索引擎都支持<code>robots meta</code>，比较保守的做法是配合<code>robots.txt</code>使用。</p>
+<h4 id="声明搜索引擎抓取间隔">声明搜索引擎抓取间隔</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"revisit-after"</span> content=<span class="string">"10 days"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>有时候你可能并不希望站点一直被搜索引擎抓取，而是每间隔一段时间才来访问一次，这时，可以声明<code>revisit-after meta</code>。</p>
+<h3 id="移动">移动</h3><h4 id="声明viewport视口">声明viewport视口</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>该声明用于指定在移动设备上页面的布局视口如何设置。对于<code>viewport meta</code>的详细设置，请参考：<a href="/2015/10/13/mobile/移动前端第一弹：viewport详解/">移动前端第一弹：viewport详解</a></p>
+<h4 id="声明添加到主屏幕的Web_App标题">声明添加到主屏幕的Web App标题</h4><p><code>iOS Safari</code>允许用户将一个网页添加到主屏幕然后像<code>App</code>一样来操作它。我们知道每个<code>App</code>下方都会有一个名字，<code>iOS Safari</code>提供了一个私有的<code>meta</code>来定义这个名字，代码如下：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-title"</span> content=<span class="string">"Web App名称"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>Android Chrome31.0</code>，<code>Android Browser5.0</code>也开始支持添加到主屏幕了，但并没有提供相应的定义标题的方式，所以如果你想统一<code>iOS</code>和<code>Android</code>平台定义<code>Web app</code>名称的方式，可以使用<code>title</code>标签来定义，代码如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>Web App名称<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>但如果你想要网页标题和App名字不一样的话，那就只有iOS才行。</p>
+<h4 id="声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）">声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）</h4><p>当我们将一个网页添加到主屏幕时，会更希望它能有像<code>App</code>一样的表现，没有地址栏和状态栏全屏显示，代码如下：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>该方案在 <code>iOS</code> 和 <code>Android5.0+</code> 上都通用。</p>
+<h4 id="声明添加到主屏幕时设置系统顶栏颜色">声明添加到主屏幕时设置系统顶栏颜色</h4><p>当我们将一个网页添加到主屏幕时，还可以对 <code>系统显示手机信号、时间、电池的顶部状态栏</code> 颜色进行设置，前提是开启了：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>有了这个前提，你可以通过下面的方式来进行定义：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>content只有3个固定值可选：default | black | black-translucent</p>
+<ul>
+<li>如果设置为 <code>default</code>，状态栏将为正常的，即白色，网页从状态栏以下开始显示；</li>
+<li>如果设置为 <code>black</code>，状态栏将为黑色，网页从状态栏以下开始显示；</li>
+<li>如果设置为 <code>black-translucent</code>，状态栏将为灰色半透明，网页将充满整个屏幕，状态栏会盖在网页之上；</li>
+</ul>
+<p>该设置只在 <code>iOS</code> 上有效。</p>
+<h4 id="电话号码识别">电话号码识别</h4><p>在 <code>iOS Safari</code> （其他浏览器和Android均不会）上会对那些看起来像是电话号码的数字处理为电话链接，比如：</p>
+<ul>
+<li>7位数字，形如：1234567</li>
+<li>带括号及加号的数字，形如：(+86)123456789</li>
+<li>双连接线的数字，形如：00-00-00111</li>
+<li>11位数字，形如：13800138000</li>
+</ul>
+<p>可能还有其他类型的数字也会被识别，但在具体的业务场景中，有些时候这是不必须的，所以你可以关闭电话自动识别，然后在需要拨号的地方，开启电话呼出和短信功能。</p>
+<ol>
+<li><p>关闭电话号码识别：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启拨打电话功能：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"tel:123456"</span>&gt;</span>123456<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启发送短信功能：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"sms:123456"</span>&gt;</span>123456<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="邮箱地址识别">邮箱地址识别</h4><p>在 <code>Android</code> （iOS不会）上，浏览器会自动识别看起来像邮箱地址的字符串，不论有你没有加上邮箱链接，当你在这个字符串上长按，会弹出发邮件的提示。</p>
+<ol>
+<li><p>关闭邮箱地址识别：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"format-detection"</span> content=<span class="string">"email=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启邮件发送：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"mailto:dooyoe@gmail.com"</span>&gt;</span>dooyoe@gmail.com<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想同时关闭电话和邮箱识别，可以把它们写到一条 meta 内，代码如下：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no,email=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="附注">附注</h2><p>部分<code>meta</code>定义来自于<a href="https://github.com/doyoe/trip" target="_blank" rel="external">trip</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="前言">前言</h2><p>在<a href="/2015/10/13/mobile/移动前端第一弹：viewport详解/">移动前端第一弹：viewport详解</a>中，我们讲了<code>viewport</code>，那是一个关于<code>meta</code>的故事。这次我们会就将<code>meta</code>这个故事讲得更广阔、更有意思一些。</p>
+<p>写过<code>HTML</code>的童鞋，应该都对这个不陌生，或用它来定义页面编码，或用它来定义搜索引擎抓取方式，或用它定义页面关键字，描述等等。</p>
+<h2 id="meta列表">meta列表</h2><p>好的<code>meta</code>使用，能更好地提高页面的可用性及被检索的几率。</p>
+<p>这里并不会列出所有的<code>meta</code>使用方式，只挑选一些常用及实际意义比较大的讲讲，当然也包括一些厂商私有定制的。</p>]]>
+    
+    </summary>
+    
+      <category term="HTML5" scheme="http://blog.doyoe.com/tags/HTML5/"/>
+    
+      <category term="meta" scheme="http://blog.doyoe.com/tags/meta/"/>
+    
+      <category term="meta列表" scheme="http://blog.doyoe.com/tags/meta%E5%88%97%E8%A1%A8/"/>
+    
+      <category term="meta大全" scheme="http://blog.doyoe.com/tags/meta%E5%A4%A7%E5%85%A8/"/>
+    
+      <category term="mobile" scheme="http://blog.doyoe.com/categories/mobile/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[移动前端第一弹：viewport详解]]></title>

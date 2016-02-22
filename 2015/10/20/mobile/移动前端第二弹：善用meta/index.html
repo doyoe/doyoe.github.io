@@ -1,0 +1,763 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="HTML5,meta,meta列表,meta大全," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="前言在移动前端第一弹：viewport详解中，我们讲了viewport，那是一个关于meta的故事。这次我们会就将meta这个故事讲得更广阔、更有意思一些。
+写过HTML的童鞋，应该都对这个不陌生，或用它来定义页面编码，或用它来定义搜索引擎抓取方式，或用它定义页面关键字，描述等等。
+meta列表好的meta使用，能更好地提高页面的可用性及被检索的几率。
+这里并不会列出所有的meta使用方式，只挑选">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动前端第二弹：善用meta">
+<meta property="og:url" content="http://blog.doyoe.com/2015/10/20/mobile/移动前端第二弹：善用meta/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="前言在移动前端第一弹：viewport详解中，我们讲了viewport，那是一个关于meta的故事。这次我们会就将meta这个故事讲得更广阔、更有意思一些。
+写过HTML的童鞋，应该都对这个不陌生，或用它来定义页面编码，或用它来定义搜索引擎抓取方式，或用它定义页面关键字，描述等等。
+meta列表好的meta使用，能更好地提高页面的可用性及被检索的几率。
+这里并不会列出所有的meta使用方式，只挑选">
+<meta property="og:updated_time" content="2016-02-22T09:00:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动前端第二弹：善用meta">
+<meta name="twitter:description" content="前言在移动前端第一弹：viewport详解中，我们讲了viewport，那是一个关于meta的故事。这次我们会就将meta这个故事讲得更广阔、更有意思一些。
+写过HTML的童鞋，应该都对这个不陌生，或用它来定义页面编码，或用它来定义搜索引擎抓取方式，或用它定义页面关键字，描述等等。
+meta列表好的meta使用，能更好地提高页面的可用性及被检索的几率。
+这里并不会列出所有的meta使用方式，只挑选">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> 移动前端第二弹：善用meta | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              移动前端第二弹：善用meta
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-20T16:00:11+08:00" content="2015-10-20">
+            2015-10-20
+          </time>
+        </span>
+
+        
+        <span class="post-time">
+          &nbsp; | &nbsp; 杜瑶
+        </span>
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/mobile/" itemprop="url" rel="index">
+                  <span itemprop="name">mobile</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/20/mobile/移动前端第二弹：善用meta/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/mobile/移动前端第二弹：善用meta/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="前言">前言</h2><p>在<a href="/2015/10/13/mobile/移动前端第一弹：viewport详解/">移动前端第一弹：viewport详解</a>中，我们讲了<code>viewport</code>，那是一个关于<code>meta</code>的故事。这次我们会就将<code>meta</code>这个故事讲得更广阔、更有意思一些。</p>
+<p>写过<code>HTML</code>的童鞋，应该都对这个不陌生，或用它来定义页面编码，或用它来定义搜索引擎抓取方式，或用它定义页面关键字，描述等等。</p>
+<h2 id="meta列表">meta列表</h2><p>好的<code>meta</code>使用，能更好地提高页面的可用性及被检索的几率。</p>
+<p>这里并不会列出所有的<code>meta</code>使用方式，只挑选一些常用及实际意义比较大的讲讲，当然也包括一些厂商私有定制的。</p>
+<a id="more"></a>
+<h3 id="常规">常规</h3><h4 id="声明文档使用的字符编码">声明文档使用的字符编码</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该声明用来指定文档的编码，除了<code>utf-8</code>，可选值还有：ISO-8859-1、BIG5、iso-8859-2, iso-2022-jp, iso-2022-kr, gb2312等</p>
+<p>当然，你可能还见过使用另外一种方式来定义文档字符编码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"content-type"</span> <span class="attribute">content</span>=<span class="value">"text/html; charset=utf-8"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>相对于这种方式，更推荐你使用第1种，言外之意，就是推荐使用<code>HTML5</code>。</p>
+<h4 id="声明页面刷新或跳转">声明页面刷新或跳转</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"refresh"</span> <span class="attribute">content</span>=<span class="value">"10"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"refresh"</span> <span class="attribute">content</span>=<span class="value">"10; url=http://www.doyoe.com"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该声明用来指定页面自刷新或者跳转到其它页面，其中的时间单位是<code>s</code>。</p>
+<h4 id="声明页面过期时间">声明页面过期时间</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"expires"</span> <span class="attribute">content</span>=<span class="value">"0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"expires"</span> <span class="attribute">content</span>=<span class="value">"Wed, 26 Feb 1997 08:21:57 GMT"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>该声明用来指定页面的过期时间，一旦网页过期，从服务器上重新请求，其中时间必须使用<code>GMT</code>格式，或者直接是<code>0</code>（即不缓存）</p>
+<h4 id="声明页面是否缓存">声明页面是否缓存</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"pragma"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"cache-control"</span> <span class="attribute">content</span>=<span class="value">"no-cache"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述语句都可以用来指定文档不被缓存。一些仍然在使用HTTP/1.0的可以使用第1条，第2条由HTTP/1.1提供，常用值还有：public, no-cache, no-store等</p>
+<h4 id="声明作者信息">声明作者信息</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"author"</span> content=<span class="string">"joy, dooyoe@gmail.com"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="声明文档关键字">声明文档关键字</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"keywords"</span> content=<span class="string">"CSS, HTML, JavaScript, 前端"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>多关键字之间以半角逗号分隔</p>
+<h4 id="声明文档描述">声明文档描述</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"description"</span> content=<span class="string">"这是一份meta列表"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>文档描述内容最好是完整的一句话，以不超过50个字符为宜</p>
+<h4 id="声明使用的浏览器及版本">声明使用的浏览器及版本</h4><p><code>x-ua-compatible</code>设置是从<code>IE8</code>开始增加的（很明显，只适用于IE），对于过往的版本无法识别。<br>开发者可以通过设置<code>x-ua-compatible</code>来指定渲染引擎的类型和版本，并且因为需求不同可以有多种不同的设置：</p>
+<h5 id="Case1:">Case1:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=7"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=4"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=xx"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=50"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当直接指定<code>content</code>为<code>IE的某个具体版本</code>，如上述代码第1条，客户端的IE将会使用IE7.0标准模式对页面进行渲染，并忽略Doctype定义。<br><strong>当指定的IE版本在客户端IE中不存在时，IE将会尝试将该值转换为最为接近的版本。</strong><br>例如指定一个错误的或者低于5.0的IE版本，如上述代码第2，3条，客户端的IE将会使用IE5.0对页面进行渲染，由于IE5.0并没有标准模式，所以将会直接使用<code>quirks mode</code>来渲染；<br>如果指定一个大于客户端IE的版本，如上述代码第4条，假定客户端IE的最高版本为9.0，那么IE会将该值转换为<code>IE=9</code>，即使用IE9.0标准模式对页面进行渲染。</p>
+<h5 id="Case2:">Case2:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=EmulateIE7"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值加了<code>Emulate</code>前缀时，如上述代码，客户端IE将会根据Doctype定义来决定如何来对页面进行渲染。假设页面使用了标准的Doctype，那么此定义效果等同<code>Case1</code>；假设页面并没有使用标准的Doctype，那么将使用<code>quirks mode</code>来渲染。</p>
+<h5 id="Case3:">Case3:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=Edge"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值为<code>IE=Edge</code>时，如上述代码，客户端的IE将会使用最高的标准模式对页面进行渲染。</p>
+<h5 id="Case4:">Case4:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=7, 10, 11"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值有多个版本时，如上述代码，假定客户端IE版本为8.0或者9.0，则使用IE7.0标准模式对页面进行渲染；假定客户端IE版本为10.0或者11.0，则直接使用对应版本的标准模式对页面进行渲染。</p>
+<h5 id="Case5:">Case5:</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"x-ua-compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=Edge, chrome=1"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当指定的<code>content</code>值为<code>IE=Edge, chrome=1</code>时，如上述代码，假定客户端安装了<code>Google Chrome Frame</code>，则在IE中使用chrome的渲染引擎来渲染页面，否则，将会使用客户端IE最高的标准模式对页面进行渲染。</p>
+<h4 id="声明搜索引擎抓取方式">声明搜索引擎抓取方式</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"robots"</span> content=<span class="string">"index"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>通知搜索引擎文档是否需要被索引。可选值有：</p>
+<ul>
+<li>all（默认值，索引当前页并跟踪链接，相当于：index, follow）</li>
+<li>none（忽略当前页，相当于：noindex, nofollow）</li>
+<li>index（索引当前页）</li>
+<li>noindex（不索引当前页）</li>
+<li>follow（跟踪当前页链接，不论当前页是否被索引）</li>
+<li>nofollow（不跟踪当前页链接，不论当前页是否被索引）</li>
+</ul>
+<p>如果声明冲突，某些引擎可能会做严格处理：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"robots"</span> content=<span class="string">"noindex"</span> /&gt;</span><br><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"robots"</span> content=<span class="string">"index"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>类似上述代码，在<code>Google</code>引擎中，会执行<code>noindex</code>这个更为严格的声明。</p>
+<p>需要注意的是并不是所有搜索引擎都支持<code>robots meta</code>，比较保守的做法是配合<code>robots.txt</code>使用。</p>
+<h4 id="声明搜索引擎抓取间隔">声明搜索引擎抓取间隔</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"revisit-after"</span> content=<span class="string">"10 days"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>有时候你可能并不希望站点一直被搜索引擎抓取，而是每间隔一段时间才来访问一次，这时，可以声明<code>revisit-after meta</code>。</p>
+<h3 id="移动">移动</h3><h4 id="声明viewport视口">声明viewport视口</h4><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"viewport"</span> content=<span class="string">"initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+<p>该声明用于指定在移动设备上页面的布局视口如何设置。对于<code>viewport meta</code>的详细设置，请参考：<a href="/2015/10/13/mobile/移动前端第一弹：viewport详解/">移动前端第一弹：viewport详解</a></p>
+<h4 id="声明添加到主屏幕的Web_App标题">声明添加到主屏幕的Web App标题</h4><p><code>iOS Safari</code>允许用户将一个网页添加到主屏幕然后像<code>App</code>一样来操作它。我们知道每个<code>App</code>下方都会有一个名字，<code>iOS Safari</code>提供了一个私有的<code>meta</code>来定义这个名字，代码如下：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-title"</span> content=<span class="string">"Web App名称"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>Android Chrome31.0</code>，<code>Android Browser5.0</code>也开始支持添加到主屏幕了，但并没有提供相应的定义标题的方式，所以如果你想统一<code>iOS</code>和<code>Android</code>平台定义<code>Web app</code>名称的方式，可以使用<code>title</code>标签来定义，代码如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span>Web App名称<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>但如果你想要网页标题和App名字不一样的话，那就只有iOS才行。</p>
+<h4 id="声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）">声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）</h4><p>当我们将一个网页添加到主屏幕时，会更希望它能有像<code>App</code>一样的表现，没有地址栏和状态栏全屏显示，代码如下：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>该方案在 <code>iOS</code> 和 <code>Android5.0+</code> 上都通用。</p>
+<h4 id="声明添加到主屏幕时设置系统顶栏颜色">声明添加到主屏幕时设置系统顶栏颜色</h4><p>当我们将一个网页添加到主屏幕时，还可以对 <code>系统显示手机信号、时间、电池的顶部状态栏</code> 颜色进行设置，前提是开启了：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>有了这个前提，你可以通过下面的方式来进行定义：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>content只有3个固定值可选：default | black | black-translucent</p>
+<ul>
+<li>如果设置为 <code>default</code>，状态栏将为正常的，即白色，网页从状态栏以下开始显示；</li>
+<li>如果设置为 <code>black</code>，状态栏将为黑色，网页从状态栏以下开始显示；</li>
+<li>如果设置为 <code>black-translucent</code>，状态栏将为灰色半透明，网页将充满整个屏幕，状态栏会盖在网页之上；</li>
+</ul>
+<p>该设置只在 <code>iOS</code> 上有效。</p>
+<h4 id="电话号码识别">电话号码识别</h4><p>在 <code>iOS Safari</code> （其他浏览器和Android均不会）上会对那些看起来像是电话号码的数字处理为电话链接，比如：</p>
+<ul>
+<li>7位数字，形如：1234567</li>
+<li>带括号及加号的数字，形如：(+86)123456789</li>
+<li>双连接线的数字，形如：00-00-00111</li>
+<li>11位数字，形如：13800138000</li>
+</ul>
+<p>可能还有其他类型的数字也会被识别，但在具体的业务场景中，有些时候这是不必须的，所以你可以关闭电话自动识别，然后在需要拨号的地方，开启电话呼出和短信功能。</p>
+<ol>
+<li><p>关闭电话号码识别：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启拨打电话功能：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"tel:123456"</span>&gt;</span>123456<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启发送短信功能：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"sms:123456"</span>&gt;</span>123456<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="邮箱地址识别">邮箱地址识别</h4><p>在 <code>Android</code> （iOS不会）上，浏览器会自动识别看起来像邮箱地址的字符串，不论有你没有加上邮箱链接，当你在这个字符串上长按，会弹出发邮件的提示。</p>
+<ol>
+<li><p>关闭邮箱地址识别：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"format-detection"</span> content=<span class="string">"email=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开启邮件发送：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"mailto:dooyoe@gmail.com"</span>&gt;</span>dooyoe@gmail.com<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想同时关闭电话和邮箱识别，可以把它们写到一条 meta 内，代码如下：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="property">name</span>=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no,email=no"</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="附注">附注</h2><p>部分<code>meta</code>定义来自于<a href="https://github.com/doyoe/trip" target="_blank" rel="external">trip</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML5/" rel="tag">#HTML5</a>
+          
+            <a href="/tags/meta/" rel="tag">#meta</a>
+          
+            <a href="/tags/meta列表/" rel="tag">#meta列表</a>
+          
+            <a href="/tags/meta大全/" rel="tag">#meta大全</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/13/mobile/移动前端第一弹：viewport详解/" rel="next">移动前端第一弹：viewport详解</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/10/20/mobile/移动前端第二弹：善用meta/"
+                   data-title="移动前端第二弹：善用meta" data-url="http://blog.doyoe.com/2015/10/20/mobile/移动前端第二弹：善用meta/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/images/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta列表"><span class="nav-number">2.</span> <span class="nav-text">meta列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常规"><span class="nav-number">2.1.</span> <span class="nav-text">常规</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明文档使用的字符编码"><span class="nav-number">2.1.1.</span> <span class="nav-text">声明文档使用的字符编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明页面刷新或跳转"><span class="nav-number">2.1.2.</span> <span class="nav-text">声明页面刷新或跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明页面过期时间"><span class="nav-number">2.1.3.</span> <span class="nav-text">声明页面过期时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明页面是否缓存"><span class="nav-number">2.1.4.</span> <span class="nav-text">声明页面是否缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明作者信息"><span class="nav-number">2.1.5.</span> <span class="nav-text">声明作者信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明文档关键字"><span class="nav-number">2.1.6.</span> <span class="nav-text">声明文档关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明文档描述"><span class="nav-number">2.1.7.</span> <span class="nav-text">声明文档描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明使用的浏览器及版本"><span class="nav-number">2.1.8.</span> <span class="nav-text">声明使用的浏览器及版本</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Case1:"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">Case1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Case2:"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">Case2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Case3:"><span class="nav-number">2.1.8.3.</span> <span class="nav-text">Case3:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Case4:"><span class="nav-number">2.1.8.4.</span> <span class="nav-text">Case4:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Case5:"><span class="nav-number">2.1.8.5.</span> <span class="nav-text">Case5:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明搜索引擎抓取方式"><span class="nav-number">2.1.9.</span> <span class="nav-text">声明搜索引擎抓取方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明搜索引擎抓取间隔"><span class="nav-number">2.1.10.</span> <span class="nav-text">声明搜索引擎抓取间隔</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动"><span class="nav-number">2.2.</span> <span class="nav-text">移动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明viewport视口"><span class="nav-number">2.2.1.</span> <span class="nav-text">声明viewport视口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明添加到主屏幕的Web_App标题"><span class="nav-number">2.2.2.</span> <span class="nav-text">声明添加到主屏幕的Web App标题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）"><span class="nav-number">2.2.3.</span> <span class="nav-text">声明添加到主屏幕时隐藏地址栏和状态栏（即全屏）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明添加到主屏幕时设置系统顶栏颜色"><span class="nav-number">2.2.4.</span> <span class="nav-text">声明添加到主屏幕时设置系统顶栏颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#电话号码识别"><span class="nav-number">2.2.5.</span> <span class="nav-text">电话号码识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#邮箱地址识别"><span class="nav-number">2.2.6.</span> <span class="nav-text">邮箱地址识别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附注"><span class="nav-number">3.</span> <span class="nav-text">附注</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"doyoe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
