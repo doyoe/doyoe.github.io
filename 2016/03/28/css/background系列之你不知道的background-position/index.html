@@ -1,0 +1,731 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="CSS应用,background,background-position,w3c," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="这是一个有趣的话题其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。
+我今天要聊的 background-position 应该已经被大家玩得色彩斑斓了。尤其是 CSS Sprites 流行的这些年，background-position 基本上是被应用最多的属性之一。
+重拾旧趣我们知道 background-position 是用来指定背景图像的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="background系列之你不知道的background-position">
+<meta property="og:url" content="http://blog.doyoe.com/2016/03/28/css/background系列之你不知道的background-position/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="这是一个有趣的话题其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。
+我今天要聊的 background-position 应该已经被大家玩得色彩斑斓了。尤其是 CSS Sprites 流行的这些年，background-position 基本上是被应用最多的属性之一。
+重拾旧趣我们知道 background-position 是用来指定背景图像的">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/text-image.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/normal.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/percentage.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/normal.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background-position/skin/multi-value.png">
+<meta property="og:updated_time" content="2016-03-28T09:36:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="background系列之你不知道的background-position">
+<meta name="twitter:description" content="这是一个有趣的话题其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。
+我今天要聊的 background-position 应该已经被大家玩得色彩斑斓了。尤其是 CSS Sprites 流行的这些年，background-position 基本上是被应用最多的属性之一。
+重拾旧趣我们知道 background-position 是用来指定背景图像的">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> background系列之你不知道的background-position | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              background系列之你不知道的background-position
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-03-28T11:15:00+08:00" content="2016-03-28">
+            2016-03-28
+          </time>
+        </span>
+
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/03/28/css/background系列之你不知道的background-position/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/28/css/background系列之你不知道的background-position/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="这是一个有趣的话题">这是一个有趣的话题</h2><p>其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。</p>
+<p>我今天要聊的 <code>background-position</code> 应该已经被大家玩得色彩斑斓了。尤其是 <code>CSS Sprites</code> 流行的这些年，<code>background-position</code> 基本上是被应用最多的属性之一。</p>
+<h2 id="重拾旧趣">重拾旧趣</h2><p>我们知道 <code>background-position</code> 是用来指定背景图像的偏移值的，能让一张图从特定的位置开始展现。而 <code>CSS Sprites</code> 就是通过将多个小图拼接成一张大图，然后利用 <code>background-position</code> 来指定需要显示的区域，以此达到合并HTTP请求的预期。</p>
+<a id="more"></a>
+<h2 id="一个足够简单的应用">一个足够简单的应用</h2><p>为了回顾 <code>background-position</code> 的应用，接下来我将会用一个最简单的例子来代入，这里有一张由2个 <code>300*100px</code> 垂直拼接而成的图片作为背景图，如 <code>图0</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/text-image.png" alt="图0：简单的文字图片"></p>
+<p>我现在需要 <code>图0</code> 在2个并排的div中分别显示不同的部分：</p>
+<h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"part1"</span>&gt;</span><span class="comment">&lt;!-- 显示图0上半部分 --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"part2"</span>&gt;</span><span class="comment">&lt;!-- 显示图0下半部分 --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>于是我写了段简单的CSS，如下：</p>
+<h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> gray <span class="function">url</span>(../test.png) no-repeat</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.part1</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">100px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>很显然我可以得到预期，效果如 <code>图1</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/normal.png" alt="图1：简单的CSS Sprites应用"></p>
+<p>这就是最典型的 <code>CSS Sprites</code> 使用场景。当然，你可以在线查看这个例子 <code>Demo1</code> <a href="http://demo.doyoe.com/css3/background-position/normal.htm" target="_blank" rel="external">最简单的 background-position 应用</a>。</p>
+<h2 id="默认值">默认值</h2><p>由于 <code>background-position</code> 的默认值是 <code>0% 0%</code>，那么上述的CSS代码其实可以优化成：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">100px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>因为 <code>.part1</code> 指定的值是 <code>0 0</code>，和默认值相同，所以可以省略。你会发现，对一个属性了解得更多，就更能帮助你写出简洁的代码。</p>
+<h2 id="百分比">百分比</h2><p>我并不能确定大家是否使用过 <code>background-position</code> 的百分比，这里就权当大家对此并不甚了解。</p>
+<h3 id="试着使用百分比去实现上个例子">试着使用百分比去实现上个例子</h3><p>我相信肯定有童鞋会这样写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="comment">/* background-position: 0 -100px; */</span></span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>按照一般的思维，上述两行代码应该是等价的，不是么？在开篇的时候我们就说了背景图 <code>图0</code> 的高度是 <code>200px</code>，那么 <code>-50%</code> 正好是 <code>-100px</code>。</p>
+<p>不用着急，我们会用实际的例子来验证这个结果，来看 <code>Demo2</code> <a href="http://demo.doyoe.com/css3/background-position/percentage.htm" target="_blank" rel="external">检验 background-position 的百分比值</a>。</p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/percentage.png" alt="图2：参照尺寸验证"></p>
+<p>结果让人有点忧伤，这和我们的设想有点出入，这是为什么呢？</p>
+<h3 id="追本溯源">追本溯源</h3><p>我们都知道一个百分比值，必然会需要有一个参照尺寸。举个例子来讲，假设我定义一个元素的宽度是 <code>50%</code>，那么这个元素的具体宽度就是：<code>包含块宽度 * 50%</code>。</p>
+<p>所以，如果你需要使用百分比作为 <code>background-position</code> 的值，必须清楚它的参照尺寸是什么。</p>
+<p><code>w3c</code> 是这样描述 <code>background-position</code> 比分比值的：</p>
+<blockquote>
+<p>原文：refer to size of background positioning area minus size of background image.</p>
+<p>翻译：参照指定背景区域的宽度减去背景图片的宽度</p>
+</blockquote>
+<p>这是什么意思呢？白话一点说：<code>background-position</code> 的百分比值参照的是设置背景的区域减去背景图的尺寸。</p>
+<h3 id="再出发">再出发</h3><p>按照这个思路，我们将：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>换算一下将会得到：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">50px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>换算过程为：(设置背景的区域高度 - 背景图的高度) * -50%，即：(100 - 200) * -50% = 50px</p>
+<p>这就解释了 <code>Demo2</code> 为什么会得到 <code>图2</code> 的效果。但这显然并不是我们想要的，我们预期的效果是 <code>图1</code>。</p>
+<p>根据上述的公式，我们可以逆推预期效果的百分比值是多少：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">100</span> / (<span class="number">100</span> - <span class="number">200</span>) = <span class="number">100</span>%</span><br></pre></td></tr></table></figure>
+<p>所以如果你要使用百分比，那么定义应该是这样的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">100%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其结果如 <code>Demo3</code> <a href="http://demo.doyoe.com/css3/background-position/percentage-value.htm" target="_blank" rel="external">正确使用 background-position 百分比</a></p>
+<p>这会终于得到我们的预期效果了，请看 <code>图3</code></p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/normal.png" alt="图3：百分比的正确预期效果"></p>
+<p>了解了百分比的这个特性后，会帮助我们大大简化某些定义，比如我在 <a href="https://github.com/doyoe/Yo" target="_blank" rel="external">Yo</a> 里面对 <a href="http://blog.doyoe.com/Yo/demo/element/yo-score.html">yo-score</a> 的处理，非常巧妙，有兴趣的童鞋可以自己研究一下，这里不细讲。</p>
+<p>另外：需要注意的是百分比值会受 <code>background-size</code> 影响，因为 <code>background-size</code> 可以改变背景图像的大小。</p>
+<h2 id="多值">多值</h2><p>在 <code>CSS3</code> 中，对 <code>background-position</code> 属性进行了扩展，允许接受3到4个参数，用于指定背景图的起始方向和具体位置。</p>
+<blockquote>
+<p>原文：If three or four values are given, then each &lt;percentage&gt; or &lt;length&gt; represents an offset and must be preceded by a keyword, which specifies from which edge the offset is given.</p>
+<p>翻译：如果指定了三个或四个值，那么每个 &lt;percentage&gt; 或 &lt;length&gt; 之前必须有一个关键字，用于指定该方向的偏移量。</p>
+</blockquote>
+<p>当指定3到4个参数时，不接受 <code>center</code> 关键字作为偏移量作为边界，只能使用 <code>top, right, bottom, left</code> 这4个关键字。</p>
+<h3 id="多值的意义">多值的意义</h3><p>在此前，我们使用 <code>background-position</code> 只能让背景图从 <code>top, right, bottom, left, center</code> 这5个边界开始显示，但无法指定任意一个边界的偏移量。</p>
+<p>举个例子：我想让一个背景图从右下角偏移 <code>20px</code></p>
+<p>你会发现如果没有多值扩展，你很难轻易做到这件事，除非你能确定容器的宽高永远都是显式定义好的，就算如此，其灵活性也一文不值。</p>
+<h3 id="多值的应用">多值的应用</h3><p>如果利用多值特性，这将变得非常轻松，我们仍使用 <code>图0</code> 作为背景图，来做一个演示。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">400px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">400px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url</span>(../test.png) no-repeat</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> right -<span class="number">300px</span> bottom <span class="number">20px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这会终于得到我们的预期效果了，请看 <code>图4</code></p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/multi-value.png" alt="图4：背景图多值应用"></p>
+<p>效果可以查看 <code>Demo4</code> <a href="http://demo.doyoe.com/css3/background-position/multi-value.htm" target="_blank" rel="external">background-position 边界偏移</a>。实际上，有了多值之后，我们可以让背景图在任意方位上偏移，你可能会发现，这甚至可以让你的结构写得更简单，嵌套变浅。</p>
+<h2 id="写在最后">写在最后</h2><p>当你深入了解了每个属性的每个定义，你的CSS世界又会变得和以前不一样。enjoy it.</p>
+<h2 id="background系列文章：">background系列文章：</h2><ul>
+<li><a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS应用/" rel="tag">#CSS应用</a>
+          
+            <a href="/tags/background/" rel="tag">#background</a>
+          
+            <a href="/tags/background-position/" rel="tag">#background-position</a>
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/20/mobile/移动前端第二弹：善用meta/" rel="next">移动前端第二弹：善用meta</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/03/28/css/background系列之你不知道的background-position/"
+                   data-title="background系列之你不知道的background-position" data-url="http://blog.doyoe.com/2016/03/28/css/background系列之你不知道的background-position/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/images/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这是一个有趣的话题"><span class="nav-number">1.</span> <span class="nav-text">这是一个有趣的话题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重拾旧趣"><span class="nav-number">2.</span> <span class="nav-text">重拾旧趣</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个足够简单的应用"><span class="nav-number">3.</span> <span class="nav-text">一个足够简单的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML:"><span class="nav-number">3.1.</span> <span class="nav-text">HTML:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:"><span class="nav-number">3.2.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认值"><span class="nav-number">4.</span> <span class="nav-text">默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百分比"><span class="nav-number">5.</span> <span class="nav-text">百分比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#试着使用百分比去实现上个例子"><span class="nav-number">5.1.</span> <span class="nav-text">试着使用百分比去实现上个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#追本溯源"><span class="nav-number">5.2.</span> <span class="nav-text">追本溯源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再出发"><span class="nav-number">5.3.</span> <span class="nav-text">再出发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多值"><span class="nav-number">6.</span> <span class="nav-text">多值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多值的意义"><span class="nav-number">6.1.</span> <span class="nav-text">多值的意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多值的应用"><span class="nav-number">6.2.</span> <span class="nav-text">多值的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">7.</span> <span class="nav-text">写在最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#background系列文章："><span class="nav-number">8.</span> <span class="nav-text">background系列文章：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"doyoe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

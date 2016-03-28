@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.doyoe.com/"/>
-  <updated>2016-02-22T09:00:09.000Z</updated>
+  <updated>2016-03-28T09:36:34.000Z</updated>
   <id>http://blog.doyoe.com/</id>
   
   <author>
@@ -13,6 +13,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[background系列之你不知道的background-position]]></title>
+    <link href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/"/>
+    <id>http://blog.doyoe.com/2016/03/28/css/background系列之你不知道的background-position/</id>
+    <published>2016-03-28T03:15:00.000Z</published>
+    <updated>2016-03-28T09:36:34.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="这是一个有趣的话题">这是一个有趣的话题</h2><p>其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。</p>
+<p>我今天要聊的 <code>background-position</code> 应该已经被大家玩得色彩斑斓了。尤其是 <code>CSS Sprites</code> 流行的这些年，<code>background-position</code> 基本上是被应用最多的属性之一。</p>
+<h2 id="重拾旧趣">重拾旧趣</h2><p>我们知道 <code>background-position</code> 是用来指定背景图像的偏移值的，能让一张图从特定的位置开始展现。而 <code>CSS Sprites</code> 就是通过将多个小图拼接成一张大图，然后利用 <code>background-position</code> 来指定需要显示的区域，以此达到合并HTTP请求的预期。</p>
+<a id="more"></a>
+<h2 id="一个足够简单的应用">一个足够简单的应用</h2><p>为了回顾 <code>background-position</code> 的应用，接下来我将会用一个最简单的例子来代入，这里有一张由2个 <code>300*100px</code> 垂直拼接而成的图片作为背景图，如 <code>图0</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/text-image.png" alt="图0：简单的文字图片"></p>
+<p>我现在需要 <code>图0</code> 在2个并排的div中分别显示不同的部分：</p>
+<h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"part1"</span>&gt;</span><span class="comment">&lt;!-- 显示图0上半部分 --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"part2"</span>&gt;</span><span class="comment">&lt;!-- 显示图0下半部分 --&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>于是我写了段简单的CSS，如下：</p>
+<h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">div</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> gray <span class="function">url</span>(../test.png) no-repeat</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.part1</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">100px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>很显然我可以得到预期，效果如 <code>图1</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/normal.png" alt="图1：简单的CSS Sprites应用"></p>
+<p>这就是最典型的 <code>CSS Sprites</code> 使用场景。当然，你可以在线查看这个例子 <code>Demo1</code> <a href="http://demo.doyoe.com/css3/background-position/normal.htm" target="_blank" rel="external">最简单的 background-position 应用</a>。</p>
+<h2 id="默认值">默认值</h2><p>由于 <code>background-position</code> 的默认值是 <code>0% 0%</code>，那么上述的CSS代码其实可以优化成：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">100px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>因为 <code>.part1</code> 指定的值是 <code>0 0</code>，和默认值相同，所以可以省略。你会发现，对一个属性了解得更多，就更能帮助你写出简洁的代码。</p>
+<h2 id="百分比">百分比</h2><p>我并不能确定大家是否使用过 <code>background-position</code> 的百分比，这里就权当大家对此并不甚了解。</p>
+<h3 id="试着使用百分比去实现上个例子">试着使用百分比去实现上个例子</h3><p>我相信肯定有童鞋会这样写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="comment">/* background-position: 0 -100px; */</span></span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>按照一般的思维，上述两行代码应该是等价的，不是么？在开篇的时候我们就说了背景图 <code>图0</code> 的高度是 <code>200px</code>，那么 <code>-50%</code> 正好是 <code>-100px</code>。</p>
+<p>不用着急，我们会用实际的例子来验证这个结果，来看 <code>Demo2</code> <a href="http://demo.doyoe.com/css3/background-position/percentage.htm" target="_blank" rel="external">检验 background-position 的百分比值</a>。</p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/percentage.png" alt="图2：参照尺寸验证"></p>
+<p>结果让人有点忧伤，这和我们的设想有点出入，这是为什么呢？</p>
+<h3 id="追本溯源">追本溯源</h3><p>我们都知道一个百分比值，必然会需要有一个参照尺寸。举个例子来讲，假设我定义一个元素的宽度是 <code>50%</code>，那么这个元素的具体宽度就是：<code>包含块宽度 * 50%</code>。</p>
+<p>所以，如果你需要使用百分比作为 <code>background-position</code> 的值，必须清楚它的参照尺寸是什么。</p>
+<p><code>w3c</code> 是这样描述 <code>background-position</code> 比分比值的：</p>
+<blockquote>
+<p>原文：refer to size of background positioning area minus size of background image.</p>
+<p>翻译：参照指定背景区域的宽度减去背景图片的宽度</p>
+</blockquote>
+<p>这是什么意思呢？白话一点说：<code>background-position</code> 的百分比值参照的是设置背景的区域减去背景图的尺寸。</p>
+<h3 id="再出发">再出发</h3><p>按照这个思路，我们将：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> -<span class="number">50%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>换算一下将会得到：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">50px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>换算过程为：(设置背景的区域高度 - 背景图的高度) * -50%，即：(100 - 200) * -50% = 50px</p>
+<p>这就解释了 <code>Demo2</code> 为什么会得到 <code>图2</code> 的效果。但这显然并不是我们想要的，我们预期的效果是 <code>图1</code>。</p>
+<p>根据上述的公式，我们可以逆推预期效果的百分比值是多少：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">100</span> / (<span class="number">100</span> - <span class="number">200</span>) = <span class="number">100</span>%</span><br></pre></td></tr></table></figure>
+<p>所以如果你要使用百分比，那么定义应该是这样的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.part2</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> <span class="number">0</span> <span class="number">100%</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其结果如 <code>Demo3</code> <a href="http://demo.doyoe.com/css3/background-position/percentage-value.htm" target="_blank" rel="external">正确使用 background-position 百分比</a></p>
+<p>这会终于得到我们的预期效果了，请看 <code>图3</code></p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/normal.png" alt="图3：百分比的正确预期效果"></p>
+<p>了解了百分比的这个特性后，会帮助我们大大简化某些定义，比如我在 <a href="https://github.com/doyoe/Yo" target="_blank" rel="external">Yo</a> 里面对 <a href="http://blog.doyoe.com/Yo/demo/element/yo-score.html">yo-score</a> 的处理，非常巧妙，有兴趣的童鞋可以自己研究一下，这里不细讲。</p>
+<p>另外：需要注意的是百分比值会受 <code>background-size</code> 影响，因为 <code>background-size</code> 可以改变背景图像的大小。</p>
+<h2 id="多值">多值</h2><p>在 <code>CSS3</code> 中，对 <code>background-position</code> 属性进行了扩展，允许接受3到4个参数，用于指定背景图的起始方向和具体位置。</p>
+<blockquote>
+<p>原文：If three or four values are given, then each &lt;percentage&gt; or &lt;length&gt; represents an offset and must be preceded by a keyword, which specifies from which edge the offset is given.</p>
+<p>翻译：如果指定了三个或四个值，那么每个 &lt;percentage&gt; 或 &lt;length&gt; 之前必须有一个关键字，用于指定该方向的偏移量。</p>
+</blockquote>
+<p>当指定3到4个参数时，不接受 <code>center</code> 关键字作为偏移量作为边界，只能使用 <code>top, right, bottom, left</code> 这4个关键字。</p>
+<h3 id="多值的意义">多值的意义</h3><p>在此前，我们使用 <code>background-position</code> 只能让背景图从 <code>top, right, bottom, left, center</code> 这5个边界开始显示，但无法指定任意一个边界的偏移量。</p>
+<p>举个例子：我想让一个背景图从右下角偏移 <code>20px</code></p>
+<p>你会发现如果没有多值扩展，你很难轻易做到这件事，除非你能确定容器的宽高永远都是显式定义好的，就算如此，其灵活性也一文不值。</p>
+<h3 id="多值的应用">多值的应用</h3><p>如果利用多值特性，这将变得非常轻松，我们仍使用 <code>图0</code> 作为背景图，来做一个演示。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">400px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">400px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">url</span>(../test.png) no-repeat</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-position</span>:<span class="value"> right -<span class="number">300px</span> bottom <span class="number">20px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这会终于得到我们的预期效果了，请看 <code>图4</code></p>
+<p><img src="http://demo.doyoe.com/css3/background-position/skin/multi-value.png" alt="图4：背景图多值应用"></p>
+<p>效果可以查看 <code>Demo4</code> <a href="http://demo.doyoe.com/css3/background-position/multi-value.htm" target="_blank" rel="external">background-position 边界偏移</a>。实际上，有了多值之后，我们可以让背景图在任意方位上偏移，你可能会发现，这甚至可以让你的结构写得更简单，嵌套变浅。</p>
+<h2 id="写在最后">写在最后</h2><p>当你深入了解了每个属性的每个定义，你的CSS世界又会变得和以前不一样。enjoy it.</p>
+<h2 id="background系列文章：">background系列文章：</h2><ul>
+<li><a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="这是一个有趣的话题">这是一个有趣的话题</h2><p>其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。</p>
+<p>我今天要聊的 <code>background-position</code> 应该已经被大家玩得色彩斑斓了。尤其是 <code>CSS Sprites</code> 流行的这些年，<code>background-position</code> 基本上是被应用最多的属性之一。</p>
+<h2 id="重拾旧趣">重拾旧趣</h2><p>我们知道 <code>background-position</code> 是用来指定背景图像的偏移值的，能让一张图从特定的位置开始展现。而 <code>CSS Sprites</code> 就是通过将多个小图拼接成一张大图，然后利用 <code>background-position</code> 来指定需要显示的区域，以此达到合并HTTP请求的预期。</p>]]>
+    
+    </summary>
+    
+      <category term="CSS应用" scheme="http://blog.doyoe.com/tags/CSS%E5%BA%94%E7%94%A8/"/>
+    
+      <category term="background" scheme="http://blog.doyoe.com/tags/background/"/>
+    
+      <category term="background-position" scheme="http://blog.doyoe.com/tags/background-position/"/>
+    
+      <category term="w3c" scheme="http://blog.doyoe.com/tags/w3c/"/>
+    
+      <category term="CSS" scheme="http://blog.doyoe.com/categories/CSS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[移动前端第二弹：善用meta]]></title>
