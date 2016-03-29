@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.doyoe.com/"/>
-  <updated>2016-03-28T13:38:06.000Z</updated>
+  <updated>2016-03-29T02:39:19.000Z</updated>
   <id>http://blog.doyoe.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://blog.doyoe.com/2016/03/28/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84background-position/"/>
     <id>http://blog.doyoe.com/2016/03/28/css/background系列之你不知道的background-position/</id>
     <published>2016-03-28T03:15:00.000Z</published>
-    <updated>2016-03-28T13:38:06.000Z</updated>
+    <updated>2016-03-29T02:39:19.000Z</updated>
     <content type="html"><![CDATA[<h2 id="这是一个有趣的话题">这是一个有趣的话题</h2><p>其实我并不确切的平时大家是怎么去应用或者玩转一个属性，一个值。我能肯定的是这些东西都有不少的可玩性。</p>
 <p>我今天要聊的 <code>background-position</code> 应该已经被大家玩得色彩斑斓了。尤其是 <code>CSS Sprites</code> 流行的这些年，<code>background-position</code> 基本上是被应用最多的属性之一。</p>
 <h2 id="重拾旧趣">重拾旧趣</h2><p>我们知道 <code>background-position</code> 是用来指定背景图像的偏移值的，能让一张图从特定的位置开始展现。而 <code>CSS Sprites</code> 就是通过将多个小图拼接成一张大图，然后利用 <code>background-position</code> 来指定需要显示的区域，以此达到合并HTTP请求的预期。</p>
@@ -358,7 +358,7 @@
     <link href="http://blog.doyoe.com/2015/04/12/css/BFC%E5%A6%82%E4%BD%95%E5%BA%94%E7%94%A8%E5%88%B0%E5%AE%9E%E9%99%85%E5%9C%BA%E6%99%AF/"/>
     <id>http://blog.doyoe.com/2015/04/12/css/BFC如何应用到实际场景/</id>
     <published>2015-04-12T09:29:00.000Z</published>
-    <updated>2016-01-14T07:58:08.000Z</updated>
+    <updated>2016-03-29T02:40:43.000Z</updated>
     <content type="html"><![CDATA[<h2 id="什么是BFC">什么是BFC</h2><p>首先，你可能需要简单的了解一下什么是 <code>BFC</code>。</p>
 <p>W3C在视觉格式化模型中描述了一个 <code>Block formatting contexts</code> 的概念，大致的说法如下：</p>
 <blockquote>
@@ -399,7 +399,7 @@
     <link href="http://blog.doyoe.com/2015/03/15/css/%E7%BD%AE%E6%8D%A2%E5%92%8C%E9%9D%9E%E7%BD%AE%E6%8D%A2%E5%85%83%E7%B4%A0/"/>
     <id>http://blog.doyoe.com/2015/03/15/css/置换和非置换元素/</id>
     <published>2015-03-15T05:16:00.000Z</published>
-    <updated>2016-01-14T07:58:12.000Z</updated>
+    <updated>2016-03-29T02:40:50.000Z</updated>
     <content type="html"><![CDATA[<h2 id="先进一个题外话">先进一个题外话</h2><p>在面试一个 <code>重构</code>（各大公司的叫法可能不太一样）时，我喜欢从一个点开始问，然后一直延展下去成为一条线，甚至是一个面，直到问到不会的地方，然后又换另外一个点。</p>
 <blockquote>
 <p>例如：我可能会说，能简单聊聊 <code>行内级元素</code> 和 <code>块级元素</code> 的区别吗。</p>
@@ -499,7 +499,7 @@
     <link href="http://blog.doyoe.com/2015/03/09/css/%E8%A7%86%E8%A7%89%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E6%A1%86/"/>
     <id>http://blog.doyoe.com/2015/03/09/css/视觉格式化模型中的各种框/</id>
     <published>2015-03-09T09:29:00.000Z</published>
-    <updated>2016-01-14T07:58:12.000Z</updated>
+    <updated>2016-03-29T02:40:47.000Z</updated>
     <content type="html"><![CDATA[<p>在聊这个话题之前，我们可能得先简单说说 <code>视觉格式化模型</code> 这个概念。</p>
 <p><code>视觉格式化模型</code> 的全称是 <code>Visual formatting model</code>，它被用来描述用户代理（比如浏览器）在图形媒体下如何处理文档树。</p>
 <p>在 <code>视觉格式化模型</code> 中，每个文档树的元素会根据<a href="http://www.w3.org/TR/CSS2/box.html" target="_blank" rel="external">框模型</a>产生零到多个框（boxes）。这些框的布局取决于框的尺寸，类型，定位方式（正常流，浮动和绝对定位），元素之间的关系和外部信息（例如：视口 ① 大小，置换元素的固有尺寸等等）。</p>
@@ -612,7 +612,7 @@
     <link href="http://blog.doyoe.com/2014/01/21/css/%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E7%9A%84z-index%E4%B8%96%E7%95%8C/"/>
     <id>http://blog.doyoe.com/2014/01/21/css/你需要了解的z-index世界/</id>
     <published>2014-01-21T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:54.000Z</updated>
     <content type="html"><![CDATA[<h2 id="z-index的重要性">z-index的重要性</h2><p>在我看来，<code>z-index</code> 给了我们日常工作中以极大的帮助，我们用它来定义元素的层叠级别（stack level）。受益于它，你能做Popup, DropDown, Tips, 图文替换等等。</p>
 <p>在开始本篇之前，或许我们要先了解一下关于z-index的基本信息。</p>
 <h2 id="W3C这样描述">W3C这样描述</h2><p>每个元素都具有三维空间位置，除了水平和垂直位置外，还能在 “Z轴” 上层层相叠、排列。元素在 “Z轴” 方向上的呈现顺序，由层叠上下文和层叠级别决定。</p>
@@ -748,7 +748,7 @@
     <link href="http://blog.doyoe.com/2013/12/31/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%B8%83%E5%B1%80%E7%AF%87/"/>
     <id>http://blog.doyoe.com/2013/12/31/css/margin系列之布局篇/</id>
     <published>2013-12-31T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:15.000Z</updated>
     <content type="html"><![CDATA[<h2 id="前端工程师对CSS的基本诉求">前端工程师对CSS的基本诉求</h2><p>布局能力或许是Web前端工程师对CSS的最基本的诉求，当开始进入到这个岗位，就避免不了要和CSS打交道，而和CSS交往，布局当然是不可或缺的。</p>
 <p>很遗憾的是，CSS2.1之前都没有出现真正意义上的布局属性，直至现如今的CSS3，才开始出现了一些，如：flex, grid 等，不过其兼容性及国内浏览器的使用情况，真令人捉急。</p>
 <p>不过，有需求就会有变通，对于达成布局目的，已衍生出各式各样的方法，如：float, inline-block, table, absolute 等等。</p>
@@ -926,7 +926,7 @@
     <link href="http://blog.doyoe.com/2013/12/20/css/margin%E7%B3%BB%E5%88%97%E4%B9%8Bbug%E5%B7%A1%E6%BC%94%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://blog.doyoe.com/2013/12/20/css/margin系列之bug巡演（三）/</id>
     <published>2013-12-20T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:09.000Z</updated>
     <content type="html"><![CDATA[<h2 id="IE8按钮margin_auto居中失效Bug">IE8按钮margin auto居中失效Bug</h2><p>你会猛然觉得，这是正解啊，因为 <code>button</code> 或者 <code>input type button类型</code> 的元素是 <code>inline-level</code> 的。</p>
 <p>不对啊，<code>button</code> 应该是 <code>inline</code> 的吧？哦，可能是 <code>inline-block</code> ？</p>
 <p>在这之前，我们似乎要先明确一些基础知识。</p>
@@ -1028,7 +1028,7 @@
     <link href="http://blog.doyoe.com/2013/12/17/css/margin%E7%B3%BB%E5%88%97%E4%B9%8Bbug%E5%B7%A1%E6%BC%94%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://blog.doyoe.com/2013/12/17/css/margin系列之bug巡演（二）/</id>
     <published>2013-12-17T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:06.000Z</updated>
     <content type="html"><![CDATA[<h2 id="IE6/7_clear引发的margin-top_bug">IE6/7 clear引发的margin-top bug</h2><p>我知道，这是一个被谈及较少的bug，但我几乎可以肯定你在遇见过的同时并没有把它当成是一个bug。</p>
 <h2 id="w3c关于_clear_特性的描述">w3c关于 clear 特性的描述</h2><p>设置了 <code>clear</code> 为非 <code>none</code> 值的元素，其顶部 <code>border</code> 边界在垂直方向不允许出现在之前的浮动元素底部 <code>margin</code> 之上。</p>
 <a id="more"></a>
@@ -1123,7 +1123,7 @@
     <link href="http://blog.doyoe.com/2013/12/14/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%86%85%E7%A7%80%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://blog.doyoe.com/2013/12/14/css/margin系列之内秀篇（二）/</id>
     <published>2013-12-14T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:26.000Z</updated>
     <content type="html"><![CDATA[<h2 id="可挖掘性">可挖掘性</h2><p>之前已经写过一篇关于 <code>margin</code> 应用场景的文章：<a href="hhttp://blog.doyoe.com/~posts/css/2013-12-06-margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%86%85%E7%A7%80%E7%AF%87.md">margin系列之内秀篇</a>，当然，它的应用场景会远大于文中所述，无法一一列举。</p>
 <p>所以本篇权当是对此的补遗好了，各位客官如有比较Cool的想法都可以留言给我，我会视情况补丁进来。</p>
 <h2 id="1像素圆角">1像素圆角</h2><a id="more"></a>
@@ -1251,7 +1251,7 @@
     <link href="http://blog.doyoe.com/2013/12/10/css/margin%E7%B3%BB%E5%88%97%E4%B9%8Bbug%E5%B7%A1%E6%BC%94/"/>
     <id>http://blog.doyoe.com/2013/12/10/css/margin系列之bug巡演/</id>
     <published>2013-12-10T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:02.000Z</updated>
     <content type="html"><![CDATA[<h2 id="我所知道的浏览器margin_bug">我所知道的浏览器margin bug</h2><ul>
 <li>IE6浮动双倍margin bug；</li>
 <li>IE6浮动相邻元素3px bug；</li>
@@ -1395,7 +1395,7 @@
     <link href="http://blog.doyoe.com/2013/12/06/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%86%85%E7%A7%80%E7%AF%87/"/>
     <id>http://blog.doyoe.com/2013/12/06/css/margin系列之内秀篇/</id>
     <published>2013-12-06T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:23.000Z</updated>
     <content type="html"><![CDATA[<h2 id="最Cool的利器">最Cool的利器</h2><p>一样东西在不同的场景，不同的人手里，所能做的事会有很大不同。我深切的以为 <code>margin</code> 绝对是 CSS 中最有能力的利器之一，不知大家以为然否？</p>
 <p>前面几篇文章大概的讲了一些关于 <code>margin</code> 的特性，所以本篇会聊聊 <code>margin</code> 的实际应用场景，也算让自己休息一下，不用再讲知识点。</p>
 <h2 id="有个很典型的需求">有个很典型的需求</h2><a id="more"></a>
@@ -1543,7 +1543,7 @@
     <link href="http://blog.doyoe.com/2013/12/04/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0/"/>
     <id>http://blog.doyoe.com/2013/12/04/css/margin系列之外边距折叠/</id>
     <published>2013-12-04T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:20.000Z</updated>
     <content type="html"><![CDATA[<h2 id="不怀疑你也在工作中遇见过">不怀疑你也在工作中遇见过</h2><p>几乎可以不用怀疑，前端工作中的你一定遇见过 <code>margin</code> 折叠。</p>
 <p>不确定？别着急，你可能写过这样的代码：</p>
 <h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">p</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -1640,7 +1640,7 @@
     <link href="http://blog.doyoe.com/2013/12/02/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%8E%E7%9B%B8%E5%AF%B9%E5%81%8F%E7%A7%BB%E7%9A%84%E5%BC%82%E5%90%8C/"/>
     <id>http://blog.doyoe.com/2013/12/02/css/margin系列之与相对偏移的异同/</id>
     <published>2013-12-02T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:29.000Z</updated>
     <content type="html"><![CDATA[<h2 id="也许我们是一样的">也许我们是一样的</h2><p>可能大家都用会 <code>margin</code> 或者相对偏移的 <code>top, right, bottom, left</code> 来做一些类似元素偏移的事，其实我也会。这回我们只聊 <code>relative</code> 下的 <code>top, right, bottom, left</code> 。</p>
 <p>比如说我们想让一个 div 向下偏移 50 个像素，通常会这样：</p>
 <h3 id="Case_1:">Case 1:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#demo</span> <span class="class">.margin-top</span><span class="rules">&#123;</span><br><span class="line">	<span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">50px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
@@ -1725,7 +1725,7 @@
     <link href="http://blog.doyoe.com/2013/11/30/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E7%99%BE%E5%88%86%E6%AF%94/"/>
     <id>http://blog.doyoe.com/2013/11/30/css/margin系列之百分比/</id>
     <published>2013-11-30T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:10.000Z</updated>
+    <updated>2016-03-29T02:40:12.000Z</updated>
     <content type="html"><![CDATA[<h2 id="你可能从没注意过它">你可能从没注意过它</h2><p>在 <a href="http://blog.doyoe.com/~posts/css/2013-11-29-margin%E7%B3%BB%E5%88%97%E4%B9%8Bkeyword%20auto.md">margin系列之keyword auto</a> 中，说过了 <code>margin</code> 值为 <code>auto</code> 的情况，这次要聊的是值为百分比的情形。</p>
 <p>我必须承认这是一个非常基础的知识点，但有一段时间我发现很多人对此有错误的认知。偶尔在面试或者分享的时候，我会问到这个问题，有人会脱口而出的告诉我他对此的感性理解。</p>
 <p>或许现在大多数人对此不屑一顾，但我仍想说一说，这样以后就可以不再问类似的问题了。</p>
@@ -1895,12 +1895,12 @@
     <link href="http://blog.doyoe.com/2013/11/28/life/%E4%B8%80%E5%B9%B4%E5%8F%88%E8%A6%81%E8%BF%87%E5%8E%BB%E4%BA%86/"/>
     <id>http://blog.doyoe.com/2013/11/28/life/一年又要过去了/</id>
     <published>2013-11-28T03:15:00.000Z</published>
-    <updated>2016-01-14T07:58:12.000Z</updated>
-    <content type="html"><![CDATA[<p>## </p>
+    <updated>2016-03-29T02:41:10.000Z</updated>
+    <content type="html"><![CDATA[<p>##</p>
 <p>不知不觉，一年又要过去了。这是年龄暴增的节奏啊，以后是不能过青年节了么？次奥！</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>## </p>
+    <![CDATA[<p>##</p>
 <p>不知不觉，一年又要过去了。这是年龄暴增的节奏啊，以后是不能过青年节了么？次奥！</p>
 ]]>
     </summary>
