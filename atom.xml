@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.doyoe.com/"/>
-  <updated>2016-03-29T02:39:19.000Z</updated>
+  <updated>2016-04-11T11:19:35.000Z</updated>
   <id>http://blog.doyoe.com/</id>
   
   <author>
@@ -13,6 +13,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[background系列之无处不在的妙趣]]></title>
+    <link href="http://blog.doyoe.com/2016/04/11/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E5%A6%99%E8%B6%A3/"/>
+    <id>http://blog.doyoe.com/2016/04/11/css/background系列之无处不在的妙趣/</id>
+    <published>2016-04-11T03:15:00.000Z</published>
+    <updated>2016-04-11T11:19:35.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>上次和大家聊过 <a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a>，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 <code>background</code> 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。</p>
+<h2 id="老需求">老需求</h2><p>这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。</p>
+<a id="more"></a>
+<p>大家来看下面这个例子，应该算是<code>iOS</code>中的典型列表风格，如<code>图0</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/divider.png" alt="图0：iOS风格列表"></p>
+<p>从<code>图0</code>我们能看到这个列表中每个子项都有一根底边线，假设子项高为<code>40px</code>，并且除了最后一根边线是全封闭的外，其余的边线都是非封闭型，距左侧有一定的空白间隙；需要注意的是，当某个子项被选中或激活时，其反馈区域是整行，未封闭区域的背景色也需要改变，如<code>图0</code>中的第4行效果所示。</p>
+<p>我们来细化一下需求：</p>
+<ol>
+<li>每个子项都需要底边线；</li>
+<li>除了最后一根边线，其余边线都是非封闭的；</li>
+<li>子项被选中或激活时，响应区域为整行；</li>
+</ol>
+<p>假设这就是我们现在的需求，你会如何实现呢？</p>
+<h2 id="老思路">老思路</h2><p>我知道，通常来说，大家首先会想到的应该是<code>border</code>属性，然后配合<code>margin</code>来做这件事。</p>
+<p>于是我们可能会这样来写HTML：</p>
+<h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Lady gaga<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"on"</span>&gt;</span>Mariah Carey<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Adele<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Avril Lavigne<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Sarah Brightman<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Celine Dion<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>为了实现需求第1点，CSS这样写：</p>
+<h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Cool，简直太简单了。然后我们又接着来实现第2点：</p>
+<h3 id="CSS:-1">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">last-child &#123;</span><br><span class="line">    margin-left: <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第2点好像也没有想象中那么复杂，就是需要把代码写恶心点，重置最后一个子项的<code>margin-left</code>，并换用<code>padding-left</code>，但貌似也还可以接受，毕竟只有2行代码。</p>
+<p>一鼓作气，我们需要继续把第3点也给做了，为了更好的理解，这里把<code>选中或激活</code>的状态用<code>经过</code>替代，其实是类似的，于是继续写：</p>
+<h3 id="CSS:-2">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">hover &#123;</span><br><span class="line">    background-color: <span class="hexcolor">#f3f3f3</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>迫不及待要看看这样写是否能符合预期了，如下<code>图1</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/bad-divider.png" alt="图1：方案1效果图"></p>
+<p>开心的是，需求中的第1，2两点都做到了；难受的是，第3点没达成。从<code>图1</code>我们就能看到，响应区域除了最后一项外，其它的项都不是整行的。可以直接来观看这个例子， <code>Demo1</code> <a href="http://demo.doyoe.com/css3/background/border-divider.htm" target="_blank" rel="external">使用border和margin做iOS风格列表</a></p>
+<p>很明显，这个解决方案失败了。败在了<code>margin</code>区域无法承载<code>background</code>，因为<code>margin</code>永远是透明的，围绕在盒子之外。有兴趣的童鞋可以翻翻规范了解这些信息。</p>
+<h2 id="再出发">再出发</h2><p>虽然说<code>方案1</code>有问题，但我们也知道了，如果是使用<code>margin</code>来做的间隙，那么将无法填充背景，而<code>padding</code>是可以的，那么这久可以作为下个方案的指导。</p>
+<p>有了这样的指导，我们是不是可以考虑将内容的间隙和边线的间隙分开处理？内容仍然使用<code>padding</code>，边线额外处理，互不影响，避免出现<code>方案1</code>的情况。</p>
+<p>不论怎样，我相信在大多数时候，你都不想为了达到某个效果，而增加层级。所以这里，不在之前<code>HTML</code>上做任何改变，那么要单独处理边线，我们就只能给它创造一个<code>伪元素</code>了。</p>
+<p>于是我们又开始一一实现，首先，内容要有间隙：</p>
+<h3 id="CSS:-3">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>接下来，每个子项都要有底边线。说好的<code>伪元素</code>，我们不能抛弃：</p>
+<h3 id="CSS:-4">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">:after &#123;</span><br><span class="line">    position: absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"\0020"</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还需要让出了最后一根边线外的其它边线距左侧有间隙：</p>
+<h3 id="CSS:-5">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value"><span class="function">not</span>(:last-child)::after &#123;</span><br><span class="line">    left: <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就剩最后一点了，来给它们加上响应反馈效果：</p>
+<h3 id="CSS:-6">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">hover &#123;</span><br><span class="line">    background-color: <span class="hexcolor">#f3f3f3</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嗯，差不多了。貌似还差点，我们的边线的是绝对定位的，所以还需要给它的包含块加上定位：</p>
+<h3 id="CSS:-7">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这下看起来是处理得差不多了，让我们来瞧瞧实际的效果，如<code>图2</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/pseudo-element-divider.png" alt="图2：方案2效果图"></p>
+<p>Good job! <code>方案2</code>完全实现我们的预期，可以看具体的示例：<code>Demo2</code> <a href="http://demo.doyoe.com/css3/background/pseudo-element-divider.htm" target="_blank" rel="external">使用伪元素做iOS风格列表</a></p>
+<h2 id="精益求精">精益求精</h2><p><code>方案2</code>虽然已经完全实现了需求，但我总是有点不太喜欢它。因为我发现，当内容的边距修改后，边线的边距也需要手动修改，问题就在于它们被分别处理了；而且代码居然超过10行了。</p>
+<p>所以，如果我不想只要改变边距就得改2处地方，还是只能讲它们合起来处理，不再分开。这意味着<code>伪元素</code>不再是我们需要考虑的，包括<code>方案1</code>中的<code>margin</code>也要排除。</p>
+<p>怎么办？貌似有点棘手了。</p>
+<p>可能大家已经猜到我会把注意力放到<code>background</code>上了，毕竟好像这个系列讲的就是<code>background</code>，但不知道会不会猜到我准备怎么做。</p>
+<h2 id="旧酒新衣">旧酒新衣</h2><p>用<code>background</code>做边线这样的方案，不少童鞋肯定遇上过，比如说：菜单之间的分隔竖线（当然，这个能用几十种方式来做），这个比较简单，或用背景图，或用伪元素承载背景色。</p>
+<p>然后在当前这个需求背景下，这些方式都不适用了。显然，我不会在真实的背景图片方向去考虑这个问题，毕竟我懒嘛，并不想切图。</p>
+<p>所以，我得打打渐变背景的主意了，大家知道我们其实是可以用渐变来画背景图像的。于是，我又开始写了，当然，<code>HTML</code>仍然不变：</p>
+<h3 id="CSS:-8">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">linear-gradient</span>(<span class="hexcolor">#ccc</span>, <span class="hexcolor">#ccc</span>) no-repeat</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>好了，内容的边距有了；渐变背景也有了（虽然是纯色的），但它不是线，不是线。得改改，我们是不是可以让渐变从透明渐变到边线的颜色呢？试试：</p>
+<h3 id="CSS:-9">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">linear-gradient</span>(transparent <span class="number">39px</span>, <span class="hexcolor">#ccc</span> <span class="number">39px</span>, <span class="hexcolor">#ccc</span>) no-repeat</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们让渐变背景从<code>transparent</code>渐变到<code>#ccc</code>，<code>transparent</code>区域占<code>39px</code>，剩下<code>1px</code>给<code>#ccc</code>。</p>
+<p>事实上，这是可行的，运行结果如我所想，但我还要处理一下边线距左侧的边距问题和响应反馈：</p>
+<h3 id="CSS:-10">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value"><span class="function">not</span>(:last-child) &#123;</span><br><span class="line">    background-position: <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">hover &#123;</span><br><span class="line">    background-color: <span class="hexcolor">#f3f3f3</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>搞定了，赶紧看下效果，如<code>图3</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/gradient-background-divider.png" alt="图3：方案3效果图"></p>
+<p>结果确实正如我想，可以看具体的示例：<code>Demo3</code> <a href="http://demo.doyoe.com/css3/background/gradient-background-divider.htm" target="_blank" rel="external">使用渐变背景做iOS风格列表</a></p>
+<h2 id="新的突破">新的突破</h2><p>通过<code>方案3</code>的实现可以发现使用渐变背景来做边线是完全可用性，只是它也并没有解决我想要的只改<code>1处</code>边距就同时处理了内容边距和边线边距。</p>
+<p>所以就只能再改改了，再发掘发掘<code>background</code>的其他魅力。</p>
+<p>我知道，<code>background</code>体系下有一个特性是用来控制背景图的渲染起始位置的，它可以根据设置，让背景图从<code>边框</code>，<code>内补白</code>或<code>内容</code>区域开始渲染。</p>
+<p>是的，你想起了，它是<code>background-origin</code>。</p>
+<p>因为最后一根边线是封闭的，无需再做任何处理了。但如果我们需要完成其它边线的边距随内容的边距变化而变化，那么就需要让边线从元素的<code>内补白</code>以内的区域开始渲染，即<code>内容</code>区域，于是我们这么改：</p>
+<h3 id="CSS:-11">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value"><span class="function">not</span>(:last-child) &#123;</span><br><span class="line">    background-origin: content-box</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是的，就是这么一句简单的改动，我想要的都得到了。之后边线的边距将由内容的边距来决定，当我们将内容的边距改成<code>20px</code>时，边线的边距也将自动变成<code>20px</code>（当然，原因是因为背景图从元素的<code>content-box</code>区域开始渲染）。</p>
+<p>看看我们新突破后的成果吧，如<code>图4</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/gradient-background-divider.png" alt="图4：方案4效果图"></p>
+<p>这是属于我们共同的胜利，可以看具体的示例：<code>Demo4</code> <a href="http://demo.doyoe.com/css3/background/gradient-background-divider2.htm" target="_blank" rel="external">使用渐变背景和背景图起始位置做iOS风格列表</a></p>
+<p>这只是<code>background</code>趣味性的一个小点，后续应该会继续写一些。</p>
+<h2 id="写在最后">写在最后</h2><p>解决方案不是永远靠谱的，任何差异化的场景都不一定能复用以往的经验，但不停的探索是可以的，并且它是建立在扎实的基础上的。enjoy it.</p>
+<h2 id="background系列文章：">background系列文章：</h2><ul>
+<li><a href="/2016/04/11/css/background系列之无处不在的妙趣/">background系列之无处不在的妙趣</a></li>
+<li><a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="前言">前言</h2><p>上次和大家聊过 <a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a>，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 <code>background</code> 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。</p>
+<h2 id="老需求">老需求</h2><p>这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。</p>]]>
+    
+    </summary>
+    
+      <category term="CSS应用" scheme="http://blog.doyoe.com/tags/CSS%E5%BA%94%E7%94%A8/"/>
+    
+      <category term="background" scheme="http://blog.doyoe.com/tags/background/"/>
+    
+      <category term="background-size" scheme="http://blog.doyoe.com/tags/background-size/"/>
+    
+      <category term="gradient" scheme="http://blog.doyoe.com/tags/gradient/"/>
+    
+      <category term="w3c" scheme="http://blog.doyoe.com/tags/w3c/"/>
+    
+      <category term="CSS" scheme="http://blog.doyoe.com/categories/CSS/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[background系列之你不知道的background-position]]></title>

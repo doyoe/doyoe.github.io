@@ -1,0 +1,745 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="CSS应用,background,background-size,gradient,w3c," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="前言上次和大家聊过 background系列之你不知道的background-position，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 background 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。
+老需求这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="background系列之无处不在的妙趣">
+<meta property="og:url" content="http://blog.doyoe.com/2016/04/11/css/background系列之无处不在的妙趣/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="前言上次和大家聊过 background系列之你不知道的background-position，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 background 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。
+老需求这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background/skin/divider.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background/skin/bad-divider.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background/skin/pseudo-element-divider.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background/skin/gradient-background-divider.png">
+<meta property="og:image" content="http://demo.doyoe.com/css3/background/skin/gradient-background-divider.png">
+<meta property="og:updated_time" content="2016-04-11T11:19:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="background系列之无处不在的妙趣">
+<meta name="twitter:description" content="前言上次和大家聊过 background系列之你不知道的background-position，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 background 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。
+老需求这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> background系列之无处不在的妙趣 | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              background系列之无处不在的妙趣
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-04-11T11:15:00+08:00" content="2016-04-11">
+            2016-04-11
+          </time>
+        </span>
+
+        
+        <span class="post-time">
+          &nbsp; | &nbsp; 杜瑶
+        </span>
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/11/css/background系列之无处不在的妙趣/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/css/background系列之无处不在的妙趣/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="前言">前言</h2><p>上次和大家聊过 <a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a>，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 <code>background</code> 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。</p>
+<h2 id="老需求">老需求</h2><p>这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。</p>
+<a id="more"></a>
+<p>大家来看下面这个例子，应该算是<code>iOS</code>中的典型列表风格，如<code>图0</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/divider.png" alt="图0：iOS风格列表"></p>
+<p>从<code>图0</code>我们能看到这个列表中每个子项都有一根底边线，假设子项高为<code>40px</code>，并且除了最后一根边线是全封闭的外，其余的边线都是非封闭型，距左侧有一定的空白间隙；需要注意的是，当某个子项被选中或激活时，其反馈区域是整行，未封闭区域的背景色也需要改变，如<code>图0</code>中的第4行效果所示。</p>
+<p>我们来细化一下需求：</p>
+<ol>
+<li>每个子项都需要底边线；</li>
+<li>除了最后一根边线，其余边线都是非封闭的；</li>
+<li>子项被选中或激活时，响应区域为整行；</li>
+</ol>
+<p>假设这就是我们现在的需求，你会如何实现呢？</p>
+<h2 id="老思路">老思路</h2><p>我知道，通常来说，大家首先会想到的应该是<code>border</code>属性，然后配合<code>margin</code>来做这件事。</p>
+<p>于是我们可能会这样来写HTML：</p>
+<h3 id="HTML:">HTML:</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Lady gaga<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"on"</span>&gt;</span>Mariah Carey<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Adele<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Avril Lavigne<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Sarah Brightman<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">li</span>&gt;</span>Celine Dion<span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>为了实现需求第1点，CSS这样写：</p>
+<h3 id="CSS:">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Cool，简直太简单了。然后我们又接着来实现第2点：</p>
+<h3 id="CSS:-1">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">last-child &#123;</span><br><span class="line">    margin-left: <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第2点好像也没有想象中那么复杂，就是需要把代码写恶心点，重置最后一个子项的<code>margin-left</code>，并换用<code>padding-left</code>，但貌似也还可以接受，毕竟只有2行代码。</p>
+<p>一鼓作气，我们需要继续把第3点也给做了，为了更好的理解，这里把<code>选中或激活</code>的状态用<code>经过</code>替代，其实是类似的，于是继续写：</p>
+<h3 id="CSS:-2">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">hover &#123;</span><br><span class="line">    background-color: <span class="hexcolor">#f3f3f3</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>迫不及待要看看这样写是否能符合预期了，如下<code>图1</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/bad-divider.png" alt="图1：方案1效果图"></p>
+<p>开心的是，需求中的第1，2两点都做到了；难受的是，第3点没达成。从<code>图1</code>我们就能看到，响应区域除了最后一项外，其它的项都不是整行的。可以直接来观看这个例子， <code>Demo1</code> <a href="http://demo.doyoe.com/css3/background/border-divider.htm" target="_blank" rel="external">使用border和margin做iOS风格列表</a></p>
+<p>很明显，这个解决方案失败了。败在了<code>margin</code>区域无法承载<code>background</code>，因为<code>margin</code>永远是透明的，围绕在盒子之外。有兴趣的童鞋可以翻翻规范了解这些信息。</p>
+<h2 id="再出发">再出发</h2><p>虽然说<code>方案1</code>有问题，但我们也知道了，如果是使用<code>margin</code>来做的间隙，那么将无法填充背景，而<code>padding</code>是可以的，那么这久可以作为下个方案的指导。</p>
+<p>有了这样的指导，我们是不是可以考虑将内容的间隙和边线的间隙分开处理？内容仍然使用<code>padding</code>，边线额外处理，互不影响，避免出现<code>方案1</code>的情况。</p>
+<p>不论怎样，我相信在大多数时候，你都不想为了达到某个效果，而增加层级。所以这里，不在之前<code>HTML</code>上做任何改变，那么要单独处理边线，我们就只能给它创造一个<code>伪元素</code>了。</p>
+<p>于是我们又开始一一实现，首先，内容要有间隙：</p>
+<h3 id="CSS:-3">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>接下来，每个子项都要有底边线。说好的<code>伪元素</code>，我们不能抛弃：</p>
+<h3 id="CSS:-4">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">:after &#123;</span><br><span class="line">    position: absolute</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"\0020"</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还需要让出了最后一根边线外的其它边线距左侧有间隙：</p>
+<h3 id="CSS:-5">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value"><span class="function">not</span>(:last-child)::after &#123;</span><br><span class="line">    left: <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>就剩最后一点了，来给它们加上响应反馈效果：</p>
+<h3 id="CSS:-6">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">hover &#123;</span><br><span class="line">    background-color: <span class="hexcolor">#f3f3f3</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嗯，差不多了。貌似还差点，我们的边线的是绝对定位的，所以还需要给它的包含块加上定位：</p>
+<h3 id="CSS:-7">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这下看起来是处理得差不多了，让我们来瞧瞧实际的效果，如<code>图2</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/pseudo-element-divider.png" alt="图2：方案2效果图"></p>
+<p>Good job! <code>方案2</code>完全实现我们的预期，可以看具体的示例：<code>Demo2</code> <a href="http://demo.doyoe.com/css3/background/pseudo-element-divider.htm" target="_blank" rel="external">使用伪元素做iOS风格列表</a></p>
+<h2 id="精益求精">精益求精</h2><p><code>方案2</code>虽然已经完全实现了需求，但我总是有点不太喜欢它。因为我发现，当内容的边距修改后，边线的边距也需要手动修改，问题就在于它们被分别处理了；而且代码居然超过10行了。</p>
+<p>所以，如果我不想只要改变边距就得改2处地方，还是只能讲它们合起来处理，不再分开。这意味着<code>伪元素</code>不再是我们需要考虑的，包括<code>方案1</code>中的<code>margin</code>也要排除。</p>
+<p>怎么办？貌似有点棘手了。</p>
+<p>可能大家已经猜到我会把注意力放到<code>background</code>上了，毕竟好像这个系列讲的就是<code>background</code>，但不知道会不会猜到我准备怎么做。</p>
+<h2 id="旧酒新衣">旧酒新衣</h2><p>用<code>background</code>做边线这样的方案，不少童鞋肯定遇上过，比如说：菜单之间的分隔竖线（当然，这个能用几十种方式来做），这个比较简单，或用背景图，或用伪元素承载背景色。</p>
+<p>然后在当前这个需求背景下，这些方式都不适用了。显然，我不会在真实的背景图片方向去考虑这个问题，毕竟我懒嘛，并不想切图。</p>
+<p>所以，我得打打渐变背景的主意了，大家知道我们其实是可以用渐变来画背景图像的。于是，我又开始写了，当然，<code>HTML</code>仍然不变：</p>
+<h3 id="CSS:-8">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">linear-gradient</span>(<span class="hexcolor">#ccc</span>, <span class="hexcolor">#ccc</span>) no-repeat</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>好了，内容的边距有了；渐变背景也有了（虽然是纯色的），但它不是线，不是线。得改改，我们是不是可以让渐变从透明渐变到边线的颜色呢？试试：</p>
+<h3 id="CSS:-9">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="tag">li</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">15px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">40px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">linear-gradient</span>(transparent <span class="number">39px</span>, <span class="hexcolor">#ccc</span> <span class="number">39px</span>, <span class="hexcolor">#ccc</span>) no-repeat</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们让渐变背景从<code>transparent</code>渐变到<code>#ccc</code>，<code>transparent</code>区域占<code>39px</code>，剩下<code>1px</code>给<code>#ccc</code>。</p>
+<p>事实上，这是可行的，运行结果如我所想，但我还要处理一下边线距左侧的边距问题和响应反馈：</p>
+<h3 id="CSS:-10">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value"><span class="function">not</span>(:last-child) &#123;</span><br><span class="line">    background-position: <span class="number">15px</span></span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value">hover &#123;</span><br><span class="line">    background-color: <span class="hexcolor">#f3f3f3</span></span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>搞定了，赶紧看下效果，如<code>图3</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/gradient-background-divider.png" alt="图3：方案3效果图"></p>
+<p>结果确实正如我想，可以看具体的示例：<code>Demo3</code> <a href="http://demo.doyoe.com/css3/background/gradient-background-divider.htm" target="_blank" rel="external">使用渐变背景做iOS风格列表</a></p>
+<h2 id="新的突破">新的突破</h2><p>通过<code>方案3</code>的实现可以发现使用渐变背景来做边线是完全可用性，只是它也并没有解决我想要的只改<code>1处</code>边距就同时处理了内容边距和边线边距。</p>
+<p>所以就只能再改改了，再发掘发掘<code>background</code>的其他魅力。</p>
+<p>我知道，<code>background</code>体系下有一个特性是用来控制背景图的渲染起始位置的，它可以根据设置，让背景图从<code>边框</code>，<code>内补白</code>或<code>内容</code>区域开始渲染。</p>
+<p>是的，你想起了，它是<code>background-origin</code>。</p>
+<p>因为最后一根边线是封闭的，无需再做任何处理了。但如果我们需要完成其它边线的边距随内容的边距变化而变化，那么就需要让边线从元素的<code>内补白</code>以内的区域开始渲染，即<code>内容</code>区域，于是我们这么改：</p>
+<h3 id="CSS:-11">CSS:</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.demo</span> <span class="rule"><span class="attribute">li</span>:<span class="value"><span class="function">not</span>(:last-child) &#123;</span><br><span class="line">    background-origin: content-box</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是的，就是这么一句简单的改动，我想要的都得到了。之后边线的边距将由内容的边距来决定，当我们将内容的边距改成<code>20px</code>时，边线的边距也将自动变成<code>20px</code>（当然，原因是因为背景图从元素的<code>content-box</code>区域开始渲染）。</p>
+<p>看看我们新突破后的成果吧，如<code>图4</code>：</p>
+<p><img src="http://demo.doyoe.com/css3/background/skin/gradient-background-divider.png" alt="图4：方案4效果图"></p>
+<p>这是属于我们共同的胜利，可以看具体的示例：<code>Demo4</code> <a href="http://demo.doyoe.com/css3/background/gradient-background-divider2.htm" target="_blank" rel="external">使用渐变背景和背景图起始位置做iOS风格列表</a></p>
+<p>这只是<code>background</code>趣味性的一个小点，后续应该会继续写一些。</p>
+<h2 id="写在最后">写在最后</h2><p>解决方案不是永远靠谱的，任何差异化的场景都不一定能复用以往的经验，但不停的探索是可以的，并且它是建立在扎实的基础上的。enjoy it.</p>
+<h2 id="background系列文章：">background系列文章：</h2><ul>
+<li><a href="/2016/04/11/css/background系列之无处不在的妙趣/">background系列之无处不在的妙趣</a></li>
+<li><a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a></li>
+</ul>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CSS应用/" rel="tag">#CSS应用</a>
+          
+            <a href="/tags/background/" rel="tag">#background</a>
+          
+            <a href="/tags/background-size/" rel="tag">#background-size</a>
+          
+            <a href="/tags/gradient/" rel="tag">#gradient</a>
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/28/css/background系列之你不知道的background-position/" rel="next">background系列之你不知道的background-position</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/04/11/css/background系列之无处不在的妙趣/"
+                   data-title="background系列之无处不在的妙趣" data-url="http://blog.doyoe.com/2016/04/11/css/background系列之无处不在的妙趣/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="/atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/images/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#老需求"><span class="nav-number">2.</span> <span class="nav-text">老需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#老思路"><span class="nav-number">3.</span> <span class="nav-text">老思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML:"><span class="nav-number">3.1.</span> <span class="nav-text">HTML:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:"><span class="nav-number">3.2.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-1"><span class="nav-number">3.3.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-2"><span class="nav-number">3.4.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再出发"><span class="nav-number">4.</span> <span class="nav-text">再出发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-3"><span class="nav-number">4.1.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-4"><span class="nav-number">4.2.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-5"><span class="nav-number">4.3.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-6"><span class="nav-number">4.4.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-7"><span class="nav-number">4.5.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精益求精"><span class="nav-number">5.</span> <span class="nav-text">精益求精</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旧酒新衣"><span class="nav-number">6.</span> <span class="nav-text">旧酒新衣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-8"><span class="nav-number">6.1.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-9"><span class="nav-number">6.2.</span> <span class="nav-text">CSS:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-10"><span class="nav-number">6.3.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新的突破"><span class="nav-number">7.</span> <span class="nav-text">新的突破</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS:-11"><span class="nav-number">7.1.</span> <span class="nav-text">CSS:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写在最后"><span class="nav-number">8.</span> <span class="nav-text">写在最后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#background系列文章："><span class="nav-number">9.</span> <span class="nav-text">background系列文章：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"doyoe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
