@@ -57,7 +57,7 @@
 不过，有需求就会有变通，对于达成布局目的，已衍生">
 <meta property="og:image" content="http://demo.doyoe.com/css/margin/images/layout-1.png">
 <meta property="og:image" content="http://demo.doyoe.com/css/margin/images/layout-2.png">
-<meta property="og:updated_time" content="2016-03-29T02:40:15.000Z">
+<meta property="og:updated_time" content="2016-04-12T08:31:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="margin系列之布局篇">
 <meta name="twitter:description" content="前端工程师对CSS的基本诉求布局能力或许是Web前端工程师对CSS的最基本的诉求，当开始进入到这个岗位，就避免不了要和CSS打交道，而和CSS交往，布局当然是不可或缺的。
@@ -363,7 +363,7 @@
 <p>变通？是的，有的时候稍微换个思路，你会觉得豁然开朗。</p>
 <p><code>#main</code> 不是要自适应吗？那就给它个 <code>100%</code>，怎么做？我们在包含块 <code>#bd</code> 中就将 <code>#aside</code> 的宽度刨除，宽度全部都给 <code>#main</code>。恩，我们只需要这样 <code>#bd{padding-left:210px;}</code> （10px仍然是用来做间隙的），这时 <code>#main</code> 就可以设置 <code>width:100%</code> 了，由于 <code>#bd</code> 设置了 <code>padding</code>，所以已在左边预留出了一块宽 <code>210px</code> 的区域。此时的问题在于如果将 <code>#aside</code> 挪到这个地方，你想对了，我们是在聊 <code>负margin</code> 布局，自然需要利用上。</p>
 <p><code>#aside{margin-left:-100%;}</code> 这样可以了吗？很明显，这样还不行，此时 <code>#aside</code> 和 <code>#main</code> 的起始位置将会重合，因为 <code>#aside</code> 的 <code>margin-left</code> 计算值是相对包含块来计算的，而此时包含块的宽度等于 <code>#main</code> 的宽度。</p>
-<p>如何让 <code>#aside</code> 再向左偏移 <code>210px</code>？显然 <code>margin</code> 是不行了，因为我们已经用掉它了。如果你看过之前的文章的话，你可能还记得，有一篇文章讲 <a href="http://blog.doyoe.com/~posts/css/2013-12-02-margin%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%8E%E7%9B%B8%E5%AF%B9%E5%81%8F%E7%A7%BB%E7%9A%84%E5%BC%82%E5%90%8C.md">margin系列之与相对偏移的异同</a>。恩，是的，这时我们可以借助相对偏移。</p>
+<p>如何让 <code>#aside</code> 再向左偏移 <code>210px</code>？显然 <code>margin</code> 是不行了，因为我们已经用掉它了。如果你看过之前的文章的话，你可能还记得，有一篇文章讲 <a href="http://blog.doyoe.com/2013/12/02/css/margin系列之与相对偏移的异同/">margin系列之与相对偏移的异同</a>。恩，是的，这时我们可以借助相对偏移。</p>
 <p>向左偏移 <code>210px</code> 是件很简单的事：<code>#aside{position:relative;left:-210px;}</code>。</p>
 <p>至此，你的布局OK了，这就是圣杯的实现方式。来看已实现好的示例 <code>DEMO8</code>: <a href="http://demo.doyoe.com/css/margin/layout/holy-grail.html" target="_blank" rel="external">圣杯：左栏固定主内容自适应</a></p>
 <p>当然，圣杯布局必须可以任意调整列顺序，要不，怎么能说是更Cool些的方案呢？</p>
