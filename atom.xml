@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.doyoe.com/"/>
-  <updated>2016-04-12T02:45:57.000Z</updated>
+  <updated>2016-04-28T03:33:10.000Z</updated>
   <id>http://blog.doyoe.com/</id>
   
   <author>
@@ -15,11 +15,94 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[margin系列之圣杯拾遗]]></title>
+    <link href="http://blog.doyoe.com/2016/04/28/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%9C%A3%E6%9D%AF%E6%8B%BE%E9%81%97/"/>
+    <id>http://blog.doyoe.com/2016/04/28/css/margin系列之圣杯拾遗/</id>
+    <published>2016-04-28T03:15:00.000Z</published>
+    <updated>2016-04-28T03:33:10.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="接续">接续</h2><p>我回翻了一下之前的几篇文章，发现在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 中还有些问题没说完，所以准备补全一下。</p>
+<p>不过这2篇文章的时间的跨度有点，在阅读本文之前，大家可以先翻读一下3年前的那篇文章。</p>
+<h2 id="没填完的坑">没填完的坑</h2><p>在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 一文结尾时，我们谈到了圣杯布局，说这个布局的实现本身存在了一些问题：“在IE6/7下报废，不过不用慌，因为它可被修复”。</p>
+<p>我一直以为写完了，然而今天看了下发现还有坑没填。所以本文会讲讲这些问题是什么以及如何修复。</p>
+<a id="more"></a>
+<h2 id="圣杯布局的一些谈资">圣杯布局的一些谈资</h2><p>下面节选一段来自网路上对圣杯的描述（略有调整）：</p>
+<blockquote>
+<p>圣杯是宗教传说中的圣物，耶稣曾经用这个杯子吩咐门徒喝下里面象征他的血的红葡萄酒，借此创立了受难纪念仪式。因为这个特殊的原因，后来有些人认为这个杯子具有某种神奇的能力。很多传说相信，如果能找到这个圣杯而喝下其盛过的水就将返老还童、死而复生并且获得永生，这个传说广泛延续到很多文学、影视、游戏等作品中。</p>
+</blockquote>
+<p>而所谓的圣杯布局也并不是一个具象的形容，更多的是指借希望于它能够实现某种特殊的布局。</p>
+<p>这种特殊布局的需求是：侧边栏宽度固定，主内容栏宽度自适应，并且需要将主内容栏放在侧边栏前面，以便优先渲染（不论是两栏或者三栏，需求都是一样的）。</p>
+<h2 id="遗留的问题">遗留的问题</h2><p>在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 里，我们用圣杯布局做了 <code>图0</code> 的效果。</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/layout-1.png" alt="图0：classsic layout"></p>
+<p>下面是我们在上篇文章中写的圣杯布局核心代码（当然，这个 <code>#demo</code> 容器你也可以利用 <code>body</code> 来取代）：</p>
+<h3 id="HTML">HTML</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">header</span> <span class="attribute">id</span>=<span class="value">"hd"</span>&gt;</span>头部<span class="tag">&lt;/<span class="title">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"bd"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"main"</span>&gt;</span>主内容栏自适应宽度<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">aside</span> <span class="attribute">id</span>=<span class="value">"aside"</span>&gt;</span>侧边栏固定宽度<span class="tag">&lt;/<span class="title">aside</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">footer</span> <span class="attribute">id</span>=<span class="value">"ft"</span>&gt;</span>底部<span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="CSS">CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#demo &#123;</span><br><span class="line">    width: 80%;</span><br><span class="line">&#125;</span><br><span class="line">#bd &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    padding-left: 210px;</span><br><span class="line">&#125;</span><br><span class="line">#main &#123;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#aside &#123;</span><br><span class="line">    _display: inline;</span><br><span class="line">    float: left;</span><br><span class="line">    position: relative;</span><br><span class="line">    left: -210px;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin-left: -100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家可以使用各种浏览器来测试一下这个示例 <a href="http://demo.doyoe.com/css/margin/layout/holy-grail.html" target="_blank" rel="external">圣杯：左栏固定主内容自适应</a></p>
+<p>一般情况下，你会发现除了<code>IE6</code>外，其它的浏览器看起来都算正常，然而问题的范围可能并不仅限于这些，大部分问题没被看出只不过是因为没到达边界。</p>
+<p>问题列表：</p>
+<ul>
+<li><code>IE6</code> 布局错乱，侧边栏位置不对；</li>
+<li><code>IE7</code> resize窗口时，侧边栏会跳动；</li>
+<li><code>IE7及其它浏览器</code>，当窗口缩小到主内容栏的宽度小于侧边栏的宽度时，布局错乱；</li>
+</ul>
+<p>上面这几个问题，大家其实都可以自己去测测看，应该是当前的实现中都存在的。</p>
+<p>对于第3点，我们看看上述的代码实现，还是能非常轻松的理解的。因为侧边栏定义了 <code>margin-left: -100%</code>，在这个场景中，<code>100%</code> 其实就等同于主内容栏的宽度。如果主内容栏的宽度小于侧边栏，那么侧边栏偏移了一个比自己小的宽度，自然是放不下自己的。</p>
+<p>对于第1点，这个就有点意思了，基本上这又算是IE6的一个Bug，描述一下这个Bug的现象：</p>
+<p>在IE6中，假定是处于默认的书写模式下，当一个浮动的元素定义了margin的值是一个百分比，那么此时，浮动元素的margin百分比参照最近的清除了浮动的包含块的父元素的宽度进行计算，或者参照body。（然而标准描述只是参考包含块的宽度进行计算，详情请参阅我之前的文章 <a href="/2013/11/30/css/margin系列之百分比/">margin系列之百分比</a>）</p>
+<p>我会用一段伪代码来详述这个事，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body &gt; c &gt; b &gt; a</span><br></pre></td></tr></table></figure>
+<p>假设上述代码中的 <code>a</code> 就是我们说的浮动元素，正常情况下 <code>a</code> 设置了一个百分比的margin，百分比是要参考 <code>b</code> 的宽度进行计算的。</p>
+<p>然后 <code>IE6</code> 并没有实现这个规则，它的特征是：</p>
+<ul>
+<li>浮动元素 <code>a</code> 定义了百分比的margin，假设它的祖先元素 <code>b</code> 和 <code>c</code> 都没有清除浮动，那么就会参照 <code>body</code> 的宽度进行百分比换算；</li>
+<li>假设 <code>b</code> 清除了浮动，那么就会参照 <code>c</code> 的宽度进行百分比换算；</li>
+</ul>
+<p>对于这个Bug，我写了一个示例，大家可以对照着描述来看这个例子：<a href="http://demo.doyoe.com/css/margin/layout/margin-percentage-bug-on-ie6.html" target="_blank" rel="external">浮动margin百分比在ie6上的Bug</a></p>
+<p>好了，知道了在 <code>IE6</code> 中有这个Bug之后，关于问题列表中的第1点，我们就也能够理解了，因为 <code>position: relative; left: -210px;</code> 这个定义对于 <code>IE6</code> 来讲，其实是多余的。</p>
+<p>对于第2点，应该是在resize过程中，不断的重绘造成的，它需要不断的去计算这个百分比的使用值。</p>
+<h2 id="杀死它们">杀死它们</h2><p>所以如果想使得圣杯布局变得更靠谱一些，我们要么就是见招拆招，修复这个问题（比如说为 <code>IE6</code> 重置掉 <code>position: relative; left: -210px;</code> 定义），要么就避免遇上这些问题，我更喜欢第二种的方式。</p>
+<p>我们如何做才能避免遇上这些问题？</p>
+<p>其实我们可以细看一下，问题列表中的几点，其实都是因浮动元素的margin百分比引发的。既然浮动元素的margin百分比，在各浏览器下需要差异化处理，那么干脆弃用百分比，改用固定值（复杂度其实并没有上升，因为用百分比的时候，还得给<code>left</code>定义一个固定的偏移量）。</p>
+<p>那么，新的问题来了。如果改用margin固定值，我们要如何知道这个固定值是多少？比如在这个布局中我们的容器宽度是视窗的 <code>80%</code>，我们无法得到侧边栏需要偏移的固定值是多少，除非我们使用运算表达式 <code>calc()</code>，但是它的兼容性并不是我们想要的。</p>
+<p>这是因为主内容栏和侧边栏都是左浮动，并且侧边栏浮动在主内容栏后面，所以我们需要让侧边栏偏移 <code>#main + #aside</code> 的宽度，才能让侧边栏出现在正确的位置。</p>
+<p>所以，其实我们可以转变一下思路，让主内容栏和侧边栏朝不同的方向浮动，这样的话，侧边栏只需要偏移自身的宽度就能出现在正确的位置上，不在需要使用margin百分比值。</p>
+<h2 id="新路">新路</h2><p>我们按照前面说的将代码调整一下，HTML不变：</p>
+<h3 id="CSS-1">CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#demo &#123;</span><br><span class="line">    width: 80%;</span><br><span class="line">&#125;</span><br><span class="line">#bd &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    padding-left: 210px;</span><br><span class="line">&#125;</span><br><span class="line">#main &#123;</span><br><span class="line">    float: right;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#aside &#123;</span><br><span class="line">    _display: inline;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin: 0 10px 0 -210px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来看看这个 <a href="http://demo.doyoe.com/css/margin/layout/holy-grail-3.html" target="_blank" rel="external">进化的圣杯：左栏固定主内容自适应</a> 效果，你会欣喜的发现，问题列表中的3个问题都被我们跳过了，这是一个更健康的实现。</p>
+<p>当然，它也是可以任意调整列呈现顺序的，我们只需要这样就行：</p>
+<h3 id="CSS-2">CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#demo &#123;</span><br><span class="line">    width: 80%;</span><br><span class="line">&#125;</span><br><span class="line">#bd &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    padding-right: 210px;</span><br><span class="line">&#125;</span><br><span class="line">#main &#123;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#aside &#123;</span><br><span class="line">    _display: inline;</span><br><span class="line">    float: right;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin: 0 -210px 0 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是我们就得到了一个 <a href="http://demo.doyoe.com/css/margin/layout/holy-grail-4.html" target="_blank" rel="external">进化的圣杯：右栏固定主内容自适应</a> 的布局。</p>
+<p>总体来讲，圣杯布局只是有能力达成我们的需求，但就其本身来讲并不是太先进的布局，灵活性相对局限。</p>
+<p>另外，你可能关注到了代码中出现的 <code>margin</code> 定义，它并不是一个单纯的负值，而是多了一个 <code>10px</code>，这其实是为了解决 <code>IE6/7</code> 右浮动子元素的向右负偏移量最大只能是自身宽度的问题（感兴趣的童鞋可以看看这个测试：<a href="http://demo.doyoe.com/css/margin/layout/margin-right-bug-on-ie67.html" target="_blank" rel="external">右浮动margin-right负值在ie67上的bug</a>），所以额外处理的间隙，但这其实并不影响其他浏览器。</p>
+<h2 id="最后">最后</h2><p>本文，更多的在于补全之前的那篇文章，算个简单的完结。本意其实并不在于说让大家去折腾那些古老而无趣的浏览器，而是希望看到的是对待任何事情，我们首先要觉得它可以解决，然后再抽丝剥茧的去实现它。未知并不可怕，可怕是恐惧未知。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="接续">接续</h2><p>我回翻了一下之前的几篇文章，发现在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 中还有些问题没说完，所以准备补全一下。</p>
+<p>不过这2篇文章的时间的跨度有点，在阅读本文之前，大家可以先翻读一下3年前的那篇文章。</p>
+<h2 id="没填完的坑">没填完的坑</h2><p>在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 一文结尾时，我们谈到了圣杯布局，说这个布局的实现本身存在了一些问题：“在IE6/7下报废，不过不用慌，因为它可被修复”。</p>
+<p>我一直以为写完了，然而今天看了下发现还有坑没填。所以本文会讲讲这些问题是什么以及如何修复。</p>]]>
+    
+    </summary>
+    
+      <category term="holy grail" scheme="http://blog.doyoe.com/tags/holy-grail/"/>
+    
+      <category term="margin" scheme="http://blog.doyoe.com/tags/margin/"/>
+    
+      <category term="margin layout" scheme="http://blog.doyoe.com/tags/margin-layout/"/>
+    
+      <category term="w3c" scheme="http://blog.doyoe.com/tags/w3c/"/>
+    
+      <category term="圣杯布局" scheme="http://blog.doyoe.com/tags/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80/"/>
+    
+      <category term="CSS" scheme="http://blog.doyoe.com/categories/CSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[background系列之无处不在的妙趣]]></title>
     <link href="http://blog.doyoe.com/2016/04/11/css/background%E7%B3%BB%E5%88%97%E4%B9%8B%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E5%A6%99%E8%B6%A3/"/>
     <id>http://blog.doyoe.com/2016/04/11/css/background系列之无处不在的妙趣/</id>
     <published>2016-04-11T03:15:00.000Z</published>
-    <updated>2016-04-12T02:45:57.000Z</updated>
+    <updated>2016-04-19T03:43:07.000Z</updated>
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>上次和大家聊过 <a href="/2016/03/28/css/background系列之你不知道的background-position/">background系列之你不知道的background-position</a>，向大家展示了里面的一些小细节和未被发掘出来的特征。应该说 <code>background</code> 是一个很有意思的东西，不仅实际使用的频度超高，而且处处充满着好玩的妙趣。</p>
 <h2 id="老需求">老需求</h2><p>这里并不打算和大家聊所谓的最佳实践，更多的是希望可以通过一些示例激起大家更深层次的思考和探索欲。</p>
 <a id="more"></a>
@@ -850,7 +933,7 @@
     <link href="http://blog.doyoe.com/2013/12/31/css/margin%E7%B3%BB%E5%88%97%E4%B9%8B%E5%B8%83%E5%B1%80%E7%AF%87/"/>
     <id>http://blog.doyoe.com/2013/12/31/css/margin系列之布局篇/</id>
     <published>2013-12-31T03:15:00.000Z</published>
-    <updated>2016-04-12T08:31:24.000Z</updated>
+    <updated>2016-04-19T04:01:23.000Z</updated>
     <content type="html"><![CDATA[<h2 id="前端工程师对CSS的基本诉求">前端工程师对CSS的基本诉求</h2><p>布局能力或许是Web前端工程师对CSS的最基本的诉求，当开始进入到这个岗位，就避免不了要和CSS打交道，而和CSS交往，布局当然是不可或缺的。</p>
 <p>很遗憾的是，CSS2.1之前都没有出现真正意义上的布局属性，直至现如今的CSS3，才开始出现了一些，如：flex, grid 等，不过其兼容性及国内浏览器的使用情况，真令人捉急。</p>
 <p>不过，有需求就会有变通，对于达成布局目的，已衍生出各式各样的方法，如：float, inline-block, table, absolute 等等。</p>
@@ -1013,11 +1096,15 @@
     
     </summary>
     
+      <category term="holy grail" scheme="http://blog.doyoe.com/tags/holy-grail/"/>
+    
       <category term="margin" scheme="http://blog.doyoe.com/tags/margin/"/>
     
       <category term="margin layout" scheme="http://blog.doyoe.com/tags/margin-layout/"/>
     
       <category term="w3c" scheme="http://blog.doyoe.com/tags/w3c/"/>
+    
+      <category term="圣杯布局" scheme="http://blog.doyoe.com/tags/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80/"/>
     
       <category term="CSS" scheme="http://blog.doyoe.com/categories/CSS/"/>
     

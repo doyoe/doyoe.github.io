@@ -1,0 +1,729 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="icon.png" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="CSS探索之旅带你领略CSS世界的极致之美" />
+
+
+
+  <meta name="keywords" content="holy grail,margin,margin layout,w3c,圣杯布局," />
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CSS探索之旅" type="application/atom+xml" />
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="接续我回翻了一下之前的几篇文章，发现在 margin系列之布局篇 中还有些问题没说完，所以准备补全一下。
+不过这2篇文章的时间的跨度有点，在阅读本文之前，大家可以先翻读一下3年前的那篇文章。
+没填完的坑在 margin系列之布局篇 一文结尾时，我们谈到了圣杯布局，说这个布局的实现本身存在了一些问题：“在IE6/7下报废，不过不用慌，因为它可被修复”。
+我一直以为写完了，然而今天看了下发现还有坑没填">
+<meta property="og:type" content="article">
+<meta property="og:title" content="margin系列之圣杯拾遗">
+<meta property="og:url" content="http://blog.doyoe.com/2016/04/28/css/margin系列之圣杯拾遗/index.html">
+<meta property="og:site_name" content="CSS探索之旅">
+<meta property="og:description" content="接续我回翻了一下之前的几篇文章，发现在 margin系列之布局篇 中还有些问题没说完，所以准备补全一下。
+不过这2篇文章的时间的跨度有点，在阅读本文之前，大家可以先翻读一下3年前的那篇文章。
+没填完的坑在 margin系列之布局篇 一文结尾时，我们谈到了圣杯布局，说这个布局的实现本身存在了一些问题：“在IE6/7下报废，不过不用慌，因为它可被修复”。
+我一直以为写完了，然而今天看了下发现还有坑没填">
+<meta property="og:image" content="http://demo.doyoe.com/css/margin/images/layout-1.png">
+<meta property="og:updated_time" content="2016-04-28T03:33:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="margin系列之圣杯拾遗">
+<meta name="twitter:description" content="接续我回翻了一下之前的几篇文章，发现在 margin系列之布局篇 中还有些问题没说完，所以准备补全一下。
+不过这2篇文章的时间的跨度有点，在阅读本文之前，大家可以先翻读一下3年前的那篇文章。
+没填完的坑在 margin系列之布局篇 一文结尾时，我们谈到了圣杯布局，说这个布局的实现本身存在了一些问题：“在IE6/7下报废，不过不用慌，因为它可被修复”。
+我一直以为写完了，然而今天看了下发现还有坑没填">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'always'
+  };
+</script>
+
+  <title> margin系列之圣杯拾遗 | CSS探索之旅 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">CSS探索之旅</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              margin系列之圣杯拾遗
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-04-28T11:15:00+08:00" content="2016-04-28">
+            2016-04-28
+          </time>
+        </span>
+
+        
+        <span class="post-time">
+          &nbsp; | &nbsp; 杜瑶
+        </span>
+        
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/CSS/" itemprop="url" rel="index">
+                  <span itemprop="name">CSS</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/28/css/margin系列之圣杯拾遗/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/28/css/margin系列之圣杯拾遗/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="接续">接续</h2><p>我回翻了一下之前的几篇文章，发现在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 中还有些问题没说完，所以准备补全一下。</p>
+<p>不过这2篇文章的时间的跨度有点，在阅读本文之前，大家可以先翻读一下3年前的那篇文章。</p>
+<h2 id="没填完的坑">没填完的坑</h2><p>在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 一文结尾时，我们谈到了圣杯布局，说这个布局的实现本身存在了一些问题：“在IE6/7下报废，不过不用慌，因为它可被修复”。</p>
+<p>我一直以为写完了，然而今天看了下发现还有坑没填。所以本文会讲讲这些问题是什么以及如何修复。</p>
+<a id="more"></a>
+<h2 id="圣杯布局的一些谈资">圣杯布局的一些谈资</h2><p>下面节选一段来自网路上对圣杯的描述（略有调整）：</p>
+<blockquote>
+<p>圣杯是宗教传说中的圣物，耶稣曾经用这个杯子吩咐门徒喝下里面象征他的血的红葡萄酒，借此创立了受难纪念仪式。因为这个特殊的原因，后来有些人认为这个杯子具有某种神奇的能力。很多传说相信，如果能找到这个圣杯而喝下其盛过的水就将返老还童、死而复生并且获得永生，这个传说广泛延续到很多文学、影视、游戏等作品中。</p>
+</blockquote>
+<p>而所谓的圣杯布局也并不是一个具象的形容，更多的是指借希望于它能够实现某种特殊的布局。</p>
+<p>这种特殊布局的需求是：侧边栏宽度固定，主内容栏宽度自适应，并且需要将主内容栏放在侧边栏前面，以便优先渲染（不论是两栏或者三栏，需求都是一样的）。</p>
+<h2 id="遗留的问题">遗留的问题</h2><p>在 <a href="/2013/12/31/css/margin系列之布局篇/">margin系列之布局篇</a> 里，我们用圣杯布局做了 <code>图0</code> 的效果。</p>
+<p><img src="http://demo.doyoe.com/css/margin/images/layout-1.png" alt="图0：classsic layout"></p>
+<p>下面是我们在上篇文章中写的圣杯布局核心代码（当然，这个 <code>#demo</code> 容器你也可以利用 <code>body</code> 来取代）：</p>
+<h3 id="HTML">HTML</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">header</span> <span class="attribute">id</span>=<span class="value">"hd"</span>&gt;</span>头部<span class="tag">&lt;/<span class="title">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"bd"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"main"</span>&gt;</span>主内容栏自适应宽度<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">aside</span> <span class="attribute">id</span>=<span class="value">"aside"</span>&gt;</span>侧边栏固定宽度<span class="tag">&lt;/<span class="title">aside</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">footer</span> <span class="attribute">id</span>=<span class="value">"ft"</span>&gt;</span>底部<span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="CSS">CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#demo &#123;</span><br><span class="line">    width: 80%;</span><br><span class="line">&#125;</span><br><span class="line">#bd &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    padding-left: 210px;</span><br><span class="line">&#125;</span><br><span class="line">#main &#123;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#aside &#123;</span><br><span class="line">    _display: inline;</span><br><span class="line">    float: left;</span><br><span class="line">    position: relative;</span><br><span class="line">    left: -210px;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin-left: -100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家可以使用各种浏览器来测试一下这个示例 <a href="http://demo.doyoe.com/css/margin/layout/holy-grail.html" target="_blank" rel="external">圣杯：左栏固定主内容自适应</a></p>
+<p>一般情况下，你会发现除了<code>IE6</code>外，其它的浏览器看起来都算正常，然而问题的范围可能并不仅限于这些，大部分问题没被看出只不过是因为没到达边界。</p>
+<p>问题列表：</p>
+<ul>
+<li><code>IE6</code> 布局错乱，侧边栏位置不对；</li>
+<li><code>IE7</code> resize窗口时，侧边栏会跳动；</li>
+<li><code>IE7及其它浏览器</code>，当窗口缩小到主内容栏的宽度小于侧边栏的宽度时，布局错乱；</li>
+</ul>
+<p>上面这几个问题，大家其实都可以自己去测测看，应该是当前的实现中都存在的。</p>
+<p>对于第3点，我们看看上述的代码实现，还是能非常轻松的理解的。因为侧边栏定义了 <code>margin-left: -100%</code>，在这个场景中，<code>100%</code> 其实就等同于主内容栏的宽度。如果主内容栏的宽度小于侧边栏，那么侧边栏偏移了一个比自己小的宽度，自然是放不下自己的。</p>
+<p>对于第1点，这个就有点意思了，基本上这又算是IE6的一个Bug，描述一下这个Bug的现象：</p>
+<p>在IE6中，假定是处于默认的书写模式下，当一个浮动的元素定义了margin的值是一个百分比，那么此时，浮动元素的margin百分比参照最近的清除了浮动的包含块的父元素的宽度进行计算，或者参照body。（然而标准描述只是参考包含块的宽度进行计算，详情请参阅我之前的文章 <a href="/2013/11/30/css/margin系列之百分比/">margin系列之百分比</a>）</p>
+<p>我会用一段伪代码来详述这个事，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body &gt; c &gt; b &gt; a</span><br></pre></td></tr></table></figure>
+<p>假设上述代码中的 <code>a</code> 就是我们说的浮动元素，正常情况下 <code>a</code> 设置了一个百分比的margin，百分比是要参考 <code>b</code> 的宽度进行计算的。</p>
+<p>然后 <code>IE6</code> 并没有实现这个规则，它的特征是：</p>
+<ul>
+<li>浮动元素 <code>a</code> 定义了百分比的margin，假设它的祖先元素 <code>b</code> 和 <code>c</code> 都没有清除浮动，那么就会参照 <code>body</code> 的宽度进行百分比换算；</li>
+<li>假设 <code>b</code> 清除了浮动，那么就会参照 <code>c</code> 的宽度进行百分比换算；</li>
+</ul>
+<p>对于这个Bug，我写了一个示例，大家可以对照着描述来看这个例子：<a href="http://demo.doyoe.com/css/margin/layout/margin-percentage-bug-on-ie6.html" target="_blank" rel="external">浮动margin百分比在ie6上的Bug</a></p>
+<p>好了，知道了在 <code>IE6</code> 中有这个Bug之后，关于问题列表中的第1点，我们就也能够理解了，因为 <code>position: relative; left: -210px;</code> 这个定义对于 <code>IE6</code> 来讲，其实是多余的。</p>
+<p>对于第2点，应该是在resize过程中，不断的重绘造成的，它需要不断的去计算这个百分比的使用值。</p>
+<h2 id="杀死它们">杀死它们</h2><p>所以如果想使得圣杯布局变得更靠谱一些，我们要么就是见招拆招，修复这个问题（比如说为 <code>IE6</code> 重置掉 <code>position: relative; left: -210px;</code> 定义），要么就避免遇上这些问题，我更喜欢第二种的方式。</p>
+<p>我们如何做才能避免遇上这些问题？</p>
+<p>其实我们可以细看一下，问题列表中的几点，其实都是因浮动元素的margin百分比引发的。既然浮动元素的margin百分比，在各浏览器下需要差异化处理，那么干脆弃用百分比，改用固定值（复杂度其实并没有上升，因为用百分比的时候，还得给<code>left</code>定义一个固定的偏移量）。</p>
+<p>那么，新的问题来了。如果改用margin固定值，我们要如何知道这个固定值是多少？比如在这个布局中我们的容器宽度是视窗的 <code>80%</code>，我们无法得到侧边栏需要偏移的固定值是多少，除非我们使用运算表达式 <code>calc()</code>，但是它的兼容性并不是我们想要的。</p>
+<p>这是因为主内容栏和侧边栏都是左浮动，并且侧边栏浮动在主内容栏后面，所以我们需要让侧边栏偏移 <code>#main + #aside</code> 的宽度，才能让侧边栏出现在正确的位置。</p>
+<p>所以，其实我们可以转变一下思路，让主内容栏和侧边栏朝不同的方向浮动，这样的话，侧边栏只需要偏移自身的宽度就能出现在正确的位置上，不在需要使用margin百分比值。</p>
+<h2 id="新路">新路</h2><p>我们按照前面说的将代码调整一下，HTML不变：</p>
+<h3 id="CSS-1">CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#demo &#123;</span><br><span class="line">    width: 80%;</span><br><span class="line">&#125;</span><br><span class="line">#bd &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    padding-left: 210px;</span><br><span class="line">&#125;</span><br><span class="line">#main &#123;</span><br><span class="line">    float: right;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#aside &#123;</span><br><span class="line">    _display: inline;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin: 0 10px 0 -210px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们来看看这个 <a href="http://demo.doyoe.com/css/margin/layout/holy-grail-3.html" target="_blank" rel="external">进化的圣杯：左栏固定主内容自适应</a> 效果，你会欣喜的发现，问题列表中的3个问题都被我们跳过了，这是一个更健康的实现。</p>
+<p>当然，它也是可以任意调整列呈现顺序的，我们只需要这样就行：</p>
+<h3 id="CSS-2">CSS</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#demo &#123;</span><br><span class="line">    width: 80%;</span><br><span class="line">&#125;</span><br><span class="line">#bd &#123;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    overflow: hidden;</span><br><span class="line">    padding-right: 210px;</span><br><span class="line">&#125;</span><br><span class="line">#main &#123;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">#aside &#123;</span><br><span class="line">    _display: inline;</span><br><span class="line">    float: right;</span><br><span class="line">    width: 200px;</span><br><span class="line">    margin: 0 -210px 0 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是我们就得到了一个 <a href="http://demo.doyoe.com/css/margin/layout/holy-grail-4.html" target="_blank" rel="external">进化的圣杯：右栏固定主内容自适应</a> 的布局。</p>
+<p>总体来讲，圣杯布局只是有能力达成我们的需求，但就其本身来讲并不是太先进的布局，灵活性相对局限。</p>
+<p>另外，你可能关注到了代码中出现的 <code>margin</code> 定义，它并不是一个单纯的负值，而是多了一个 <code>10px</code>，这其实是为了解决 <code>IE6/7</code> 右浮动子元素的向右负偏移量最大只能是自身宽度的问题（感兴趣的童鞋可以看看这个测试：<a href="http://demo.doyoe.com/css/margin/layout/margin-right-bug-on-ie67.html" target="_blank" rel="external">右浮动margin-right负值在ie67上的bug</a>），所以额外处理的间隙，但这其实并不影响其他浏览器。</p>
+<h2 id="最后">最后</h2><p>本文，更多的在于补全之前的那篇文章，算个简单的完结。本意其实并不在于说让大家去折腾那些古老而无趣的浏览器，而是希望看到的是对待任何事情，我们首先要觉得它可以解决，然后再抽丝剥茧的去实现它。未知并不可怕，可怕是恐惧未知。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+
+      
+        <div class="post-tags">
+          
+            <a href="/tags/holy-grail/" rel="tag">#holy grail</a>
+          
+            <a href="/tags/margin/" rel="tag">#margin</a>
+          
+            <a href="/tags/margin-layout/" rel="tag">#margin layout</a>
+          
+            <a href="/tags/w3c/" rel="tag">#w3c</a>
+          
+            <a href="/tags/圣杯布局/" rel="tag">#圣杯布局</a>
+          
+        </div>
+      
+
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/11/css/background系列之无处不在的妙趣/" rel="next">background系列之无处不在的妙趣</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/04/28/css/margin系列之圣杯拾遗/"
+                   data-title="margin系列之圣杯拾遗" data-url="http://blog.doyoe.com/2016/04/28/css/margin系列之圣杯拾遗/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="CSS探索之旅" width="200" itemprop="image" />
+          <p class="site-author-name" itemprop="name">CSS探索之旅</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        <div class="links-of-social motion-element">
+          
+            
+            <a href="https://github.com/doyoe/doyoe.github.io" class="links-of-social-item github" target="_blank">github</a>
+            
+            <a href="http://weibo.com/doyoe" class="links-of-social-item weibo" target="_blank">weibo</a>
+            
+            <a href="/atom.xml" class="links-of-social-item rss" target="_blank">rss</a>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        <div class="links-of-author motion-element">
+            <p class="site-author-name">订阅号</p>
+            <p style="padding:20px 75px">
+                <img src="/images/wechat.jpg" width="150px" style="border-radius:10px"/>
+            </p>
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#接续"><span class="nav-number">1.</span> <span class="nav-text">接续</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#没填完的坑"><span class="nav-number">2.</span> <span class="nav-text">没填完的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圣杯布局的一些谈资"><span class="nav-number">3.</span> <span class="nav-text">圣杯布局的一些谈资</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗留的问题"><span class="nav-number">4.</span> <span class="nav-text">遗留的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">4.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS"><span class="nav-number">4.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀死它们"><span class="nav-number">5.</span> <span class="nav-text">杀死它们</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新路"><span class="nav-number">6.</span> <span class="nav-text">新路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-1"><span class="nav-number">6.1.</span> <span class="nav-text">CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-2"><span class="nav-number">6.2.</span> <span class="nav-text">CSS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSS探索之旅</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"doyoe"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
